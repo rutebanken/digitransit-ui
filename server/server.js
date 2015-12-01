@@ -126,7 +126,7 @@ function setupErrorHandling(){
 
 function setUpRoutes() {
   app.use(function (req, res, next) { // pass in `req.url` and the router will immediately match
-    var locale = req.cookies.lang  || req.acceptsLanguages(['fi', 'sv', 'en']) || 'en';
+    var locale = req.cookies.lang  || req.acceptsLanguages(['fi', 'sv', 'en','no']) || 'en';
     var messages = translations[locale]
     var context = application.createContext()
     navigator = {userAgent:req.headers['user-agent']};  //required by material-ui

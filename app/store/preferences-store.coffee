@@ -1,7 +1,7 @@
 Store             = require 'fluxible/addons/BaseStore'
 
 STORAGE_KEY       = "userPreferences"
-ALLOWED_LANGUAGES = ['fi', 'sv', 'en']
+ALLOWED_LANGUAGES = ['fi', 'sv', 'en', 'no']
 
 class PreferencesStore extends Store
   @storeName: 'PreferencesStore'

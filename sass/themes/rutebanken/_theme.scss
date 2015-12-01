@@ -1,0 +1,78 @@
+/* default theme */
+
+/* General palette */
+$white: #ffffff;
+$black: #333;
+$gray-blue: #7f929c;
+$gray-blue-light: rgb(182, 193, 199);
+$light-gray: #ddd;
+$medium-gray: #ccc;
+$dark-gray: #575757;
+$gray: #999;
+
+/* Palette */
+$hsl-alert: #dc0451;
+$hsl-disruption: #fed100;
+
+$livi-bus-blue: rgb(0, 136, 206);
+$livi-logo-blue: rgb(61, 183, 228);
+$livi-airplane-blue: rgb(0, 70, 173);
+$livi-ferry-blue: rgb(53, 181, 179);
+$livi-gold: rgb(233, 171, 0);
+$hsl-tram-green: #00985f;
+$hsl-metro-orange: #ff6319;
+$hsl-rail-red: #8c4799;
+$vr-rail-green: rgb(100, 190, 20);
+
+
+$primary-color: $white;
+$primary-font-color: $gray;
+$secondary-color: #eef1f3;
+$secondary-font-color: $gray-blue;
+$title-color: $livi-logo-blue;
+$favourite-color: $livi-gold;
+$hilight-color: $livi-logo-blue;
+$action-color: $livi-logo-blue;
+$disruption-color: $hsl-disruption;
+$disruption-passive-color: $livi-logo-blue;
+
+/* Fonts */
+$font-family: Lato, Arial, Georgia, Serif;
+$font-family-narrow: 'PT Sans Narrow', 'Arial Condensed', Arial, Georgia, Serif;
+
+$body-font-family: $font-family;
+$link-color: $gray-blue;
+$realtime-color: #46b32a;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$line-height-normal: 1.2;
+
+$font-size-xsmall: 12px;
+$font-size-small: 13px;
+$font-size-normal: 16px;
+$font-size-large: 24px;
+$font-size-xlarge: 32px;
+
+/* Application base colors */
+$background-color: #eef1f3;
+$dark-color: $gray;
+
+/* Vehicle colors */
+$bus-color: $livi-bus-blue;
+$tram-color: $hsl-tram-green;
+$metro-color: $hsl-metro-orange;
+$rail-color: $vr-rail-green;
+$ferry-color: $livi-ferry-blue;
+$citybike-color: #FBB800;
+$from-color: #64be14;
+$to-color: #f092cd;
+$walk-color: #6ba3af;
+$wait-color: #979797;
+$bicycle-color: #64be14;
+$car-color: #333;
+
+/* Borders */
+$border-radius: 3px;

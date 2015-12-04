@@ -41,6 +41,7 @@
     "fulltilt": "https://github.com/Full-Tilt/Full-Tilt/archive/0.5.3.tar.gz",
     "history": "^1.13.1",
     "intl": "^1.0.1",
+    "javascript-natural-sort": "^0.7.1",
     "leaflet": "^1.0.0-beta.2",
     "lodash": "^3.10.1",
     "mapbox-gl": "^0.11.4",
@@ -65,6 +66,7 @@
     "react-router-relay": "^0.8.0",
     "react-simpletabs": "^0.7.0",
     "react-slick": "^0.9.2",
+    "react-tap-event-plugin": "^0.2.1",
     "serialize-javascript": "^1.1.2",
     "slick-carousel": "^1.5.8",
     "zurb-foundation-5": "^5.4.7"

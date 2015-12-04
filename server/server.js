@@ -60,20 +60,11 @@ fetch(config.URL.FONT).then(function(res){
 /* Setup functions */
 function setUpStaticFolders() {
   var staticFolder = appRoot + "/_static"
-  var cssFolder = path.join(staticFolder, 'css')
-  app.use(config.ROOT_PATH + "/css", express.static(cssFolder))
-  var jsFolder = path.join(staticFolder, 'js')
-  app.use(config.ROOT_PATH + "/js", express.static(jsFolder))
   var mapFontsFolder = path.join(staticFolder, 'map', 'fonts')
   app.use(config.ROOT_PATH + "/mapFonts", express.static(mapFontsFolder, {
     setHeaders: function(res) {res.setHeader("Content-Encoding","gzip")}
   }))
-  var mapFolder = path.join(staticFolder, 'map')
-  app.use(config.ROOT_PATH + "/map", express.static(mapFolder))
-  var iconFolder = path.join(staticFolder, 'icon')
-  app.use(config.ROOT_PATH + "/icon", express.static(iconFolder))
-  var imgFolder = path.join(staticFolder, 'img')
-  app.use(config.ROOT_PATH + "/img", express.static(imgFolder))
+  app.use(config.ROOT_PATH, express.static(staticFolder))
 }
 
 function setUpMiddleware() {
@@ -106,6 +97,9 @@ function getPolyfills(userAgent) {
       'Promise': {flags: ['gated']},
       'String.prototype.repeat': {flags: ['gated']},
       'Intl': {flags: ['gated']},
+      'Intl.~locale.en': {flags: ['gated']},
+      'Intl.~locale.fi': {flags: ['gated']},
+      'Intl.~locale.sv': {flags: ['gated']},
       'Object.assign': {flags: ['gated']},
       'Array.prototype.find': {flags: ['gated']},
       'es5': {flags: ['gated']},

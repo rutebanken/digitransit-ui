@@ -184,6 +184,7 @@ translations =
     'inquiry': 'Delta på förfrågan'
     'platform-num': 'Plattform {platformCode}'
     'departures': 'Avgångar'
+    
   'no':
     'searching-position': 'Leter etter posisjon'
     'own-position': 'Min posisjon'
@@ -273,5 +274,5 @@ translations =
     'bike-availability': 'Sykler finnes'
     'inquiry': 'Send forespørsel'
     'platform-num': 'Plattform {platformCode}'
-    'departures': 'Avgangar'
+    'departures': 'Avganger'
 module.exports = translations

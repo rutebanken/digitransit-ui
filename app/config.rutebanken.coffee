@@ -12,6 +12,8 @@ module.exports =
     PELIAS_REVERSE_GEOCODER: "#{SERVER_ROOT}/apiman-gateway/rutebanken/geocoder/1.0/reverse"
   ROOT_PATH: process.env.ROOT_PATH or ''
   title: "Rutebanken"
+  # TODO: What is preferredAgency??
+  preferredAgency: "HSL"
   searchParams: {}
   nearbyRoutes:
     radius: 10000
@@ -41,3 +43,8 @@ module.exports =
   stopsSmallMaxZoom: 15
   # Highest level when terminals are still rendered instead of individual stops
   terminalStopsMaxZoom: 17
+  colors:
+    primary: "#007ac9"
+  socialMedia:
+    title: "Rutebanken"
+    description: "... under utvikling ..."

@@ -1,7 +1,20 @@
+CONFIG = process.env.CONFIG or 'rutebanken'
+API_URL = process.env.API_URL or 'http://localhost:8080'
+APP_PATH = process.env.APP_CONTEXT or ''
+PIWIK_ADDRESS = process.env.PIWIK_ADDRESS or ''
+PIWIK_ID = process.env.PIWIK_ID or ''
+SENTRY_DSN = process.env.SENTRY_DSN or ''
+PORT = process.env.PORT or 8080
+# Erlend is not sure if SERVER_ROOT is still used
 SERVER_ROOT = process.env.SERVER_ROOT or "http://localhost:8080"
 module.exports =
+  PIWIK_ADDRESS: "#{PIWIK_ADDRESS}"
+  PIWIK_ID: "#{PIWIK_ID}"
+  SENTRY_DSN: "#{SENTRY_DSN}"
+  PORT: "#{PORT}"
+  CONFIG: "#{CONFIG}"
   URL:
-    SERVER_ROOT: SERVER_ROOT
+    API_URL: "#{API_URL}"
     OTP: "#{SERVER_ROOT}/apiman-gateway/rutebanken/journeyplanner/1.0/"
     MAP: "#{SERVER_ROOT}/apiman-gateway/rutebanken/map/1.0/"
     MQTT: "ws://localhost:1883"
@@ -10,7 +23,7 @@ module.exports =
     REALTIME: "#{SERVER_ROOT}/navigator-server"
     PELIAS: "#{SERVER_ROOT}/apiman-gateway/rutebanken/geocoder/1.0/autocomplete"
     PELIAS_REVERSE_GEOCODER: "#{SERVER_ROOT}/apiman-gateway/rutebanken/geocoder/1.0/reverse"
-  ROOT_PATH: process.env.ROOT_PATH or ''
+  APP_PATH: "#{APP_PATH}"
   title: "Rutebanken"
   # TODO: What is preferredAgency??
   preferredAgency: "HSL"

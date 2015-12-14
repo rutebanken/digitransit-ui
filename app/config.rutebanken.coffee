@@ -1,4 +1,5 @@
-CONFIG = process.env.CONFIG or 'rutebanken'
+#CONFIG = process.env.CONFIG or 'rutebanken'
+CONFIG = 'hsl' # JUST TO SEE IF Erlend CAN GET THE APPLICATION RUNNING W/O ERROR
 API_URL = process.env.API_URL or 'http://localhost:8080'
 APP_PATH = process.env.APP_CONTEXT or ''
 PIWIK_ADDRESS = process.env.PIWIK_ADDRESS or ''

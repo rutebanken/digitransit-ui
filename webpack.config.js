@@ -100,7 +100,8 @@ module.exports = {
     ],
     leaflet: ['leaflet'],
     default_theme: ['./sass/themes/default/main.scss'],
-    hsl_theme: ['./sass/themes/hsl/main.scss']
+    hsl_theme: ['./sass/themes/hsl/main.scss'],
+    rutebanken_theme: ['./sass/themes/rutebanken/main.scss']
   },
   output: {
     path: path.join(__dirname, "_static"),

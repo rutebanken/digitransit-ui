@@ -5,9 +5,9 @@ ENV WORK=/opt/digitransit-ui
 ENV SENTRY_DSN=''
 ENV SENTRY_SECRET_DSN=''
 ENV PORT=8080
-ENV API_URL=''
+ENV API_URL='http://localhost:8080'
 ENV APP_PATH=''
-ENV CONFIG=''
+ENV CONFIG='rutebanken'
 ENV PIWIK_ADDRESS=''
 ENV PIWIK_ID=''
 ENV NODE_ENV=''
@@ -25,3 +25,4 @@ RUN npm install && \
   npm run build
 
 CMD npm run start
+# Run locally with: docker run -it -p 8079:8080 ui

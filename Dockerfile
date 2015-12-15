@@ -25,4 +25,6 @@ RUN npm install && \
   npm run build
 
 CMD npm run start
-# Run locally with: docker run -it -p 8079:8080 ui
+# Run locally with:
+# docker build -t ui .
+# docker run -it -p 8079:8080 ui

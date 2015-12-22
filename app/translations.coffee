@@ -116,6 +116,7 @@ translations =
     'route-with-headsign': "Linje {route} i riktning mot {headsign}"
     'route-without-headsign': "Linje {route}"
     'end-journey': 'Avsluta resan vid'
+    'buy-ticket': 'Biljett'
     'required-ticket': 'Biljett för resan'
     'num-stops': '{stops, plural,
                              =1 {en hållplats}
@@ -211,6 +212,7 @@ translations =
     'route-with-headsign': "Rute {route} mot {headsign}"
     'route-without-headsign': "Rute {route}"
     'end-journey': 'Avslutt reisen ved'
+    'buy-ticket': 'Kjøp billett'
     'required-ticket': 'Billett før påstigning'
     'num-stops': '{stops, plural,
                              =1 {en holdeplass}
@@ -280,9 +282,14 @@ translations =
     'locate': 'Lokalisere'
     'extra-info': 'mer info'
     'bike-availability': 'Sykler finnes'
+    'citybike-register-required': 'Bysykkelregistrering påkreves'
+    'use-citybike': 'Bruk bysykkel'
+    'citybike': 'Bysykkel'
     'inquiry': 'Send forespørsel'
     'platform-num': 'Plattform {platformCode}'
     'departures': 'Avganger'
     'show-departures': 'Vis avganger'
+    'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute. Forsøk å endre adresse'
+    'close': 'Steng'
 
 module.exports = translations

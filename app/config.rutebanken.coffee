@@ -16,7 +16,8 @@ module.exports =
   URL:
     API_URL: "#{API_URL}"
     OTP: "http://apiman:8080/apiman-gateway/rutebanken/journeyplanner/1.0/"
-    MAP: "#{API_URL}/apiman-gateway/rutebanken/map/1.0/"
+    #MAP: "#{API_URL}/apiman-gateway/rutebanken/map/1.0/"
+    MAP: "http://test.rutebanken.org/hsl-map/"
     MQTT: "ws://localhost:1883"
     ALERTS: "#{API_URL}/hsl-alert/"
     FONT: "http://fonts.googleapis.com/css?family=Lato:300,400,900%7CPT+Sans+Narrow:400,700"

@@ -116,7 +116,7 @@ getHtml = (context, renderProps, locale, polyfills, req) ->
 
 module.exports = (req, res, next) ->
   # pass in `req.url` and the router will immediately match
-  locale = req.cookies.lang or req.acceptsLanguages(['fi', 'sv', 'en']) or 'en'
+  locale = req.cookies.lang or req.acceptsLanguages(['fi', 'sv', 'en','no']) or 'en'
   context = application.createContext()
   #required by material-ui
   global.navigator = userAgent: req.headers['user-agent']

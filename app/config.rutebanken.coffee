@@ -27,7 +27,7 @@ module.exports =
   APP_PATH: "#{APP_PATH}"
   title: "Rutebanken"
   # TODO: What is preferredAgency??
-  preferredAgency: "HSL"
+  preferredAgency: "Kolumbus"
   searchParams: {}
   nearbyRoutes:
     radius: 10000

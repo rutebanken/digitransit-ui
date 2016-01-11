@@ -26,8 +26,8 @@ module.exports =
     PELIAS_REVERSE_GEOCODER: "#{API_URL}/apiman-gateway/rutebanken/geocoder/1.0/reverse"
   APP_PATH: "#{APP_PATH}"
   title: "Rutebanken"
-  # TODO: What is preferredAgency??
-  preferredAgency: "Kolumbus"
+  # TODO: What is preferredAgency?? Explanation: Used to filter trips for a certain agency at several places in the app
+  preferredAgency: null
   searchParams: {}
   nearbyRoutes:
     radius: 10000

@@ -50,7 +50,7 @@ module.exports =
   autoSuggest:
     sortOrder: locality: 1, address: 2, stop: 3
     sortOthers: 4
-  showCityBikes: false
+  showCityBikes: true
   # Lowest level when stop or terminal markers are rendered at all
   stopsMinZoom: 15
   # Highest level when stops and terminals are still rendered as small markers

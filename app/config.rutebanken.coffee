@@ -1,5 +1,5 @@
 CONFIG = process.env.CONFIG or 'rutebanken'
-API_URL = process.env.API_URL or 'http://aa6ee0bc6bb8411e5ac380a067554088-411124556.eu-west-1.elb.amazonaws.com'
+API_URL = process.env.API_URL or 'http://apiman.rutebanken.org'
 APP_PATH = process.env.APP_CONTEXT or ''
 PIWIK_ADDRESS = process.env.PIWIK_ADDRESS or ''
 PIWIK_ID = process.env.PIWIK_ID or ''

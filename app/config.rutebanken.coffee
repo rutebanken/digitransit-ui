@@ -1,12 +1,12 @@
 CONFIG = process.env.CONFIG or 'rutebanken'
-API_URL = process.env.API_URL or 'http://localhost:8080'
+API_URL = process.env.API_URL or 'http://apiman.rutebanken.org'
 APP_PATH = process.env.APP_CONTEXT or ''
 PIWIK_ADDRESS = process.env.PIWIK_ADDRESS or ''
 PIWIK_ID = process.env.PIWIK_ID or ''
 SENTRY_DSN = process.env.SENTRY_DSN or ''
 PORT = process.env.PORT or 8080
 # Erlend is not sure if SERVER_ROOT is still used
-SERVER_ROOT = process.env.SERVER_ROOT or "http://localhost:8080"
+SERVER_ROOT = process.env.SERVER_ROOT or "#{API_URL}"
 module.exports =
   PIWIK_ADDRESS: "#{PIWIK_ADDRESS}"
   PIWIK_ID: "#{PIWIK_ID}"
@@ -15,9 +15,10 @@ module.exports =
   CONFIG: "#{CONFIG}"
   URL:
     API_URL: "#{API_URL}"
-    OTP: "http://apiman:8080/apiman-gateway/rutebanken/journeyplanner/1.0/"
+    OTP: "#{API_URL}/apiman-gateway/rutebanken/journeyplanner/1.0/"
     #MAP: "#{API_URL}/apiman-gateway/rutebanken/map/1.0/"
-    MAP: "http://test.rutebanken.org/hsl-map/"
+    MAP: "http://map.rutebanken.org/hsl-map/"
+    STOP_MAP: "http://map.rutebanken.org/hsl-map/hsl-stop-map/"
     MQTT: "ws://localhost:1883"
     ALERTS: "#{API_URL}/hsl-alert/"
     FONT: "http://fonts.googleapis.com/css?family=Lato:300,400,900%7CPT+Sans+Narrow:400,700"

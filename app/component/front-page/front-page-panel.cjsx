@@ -2,8 +2,6 @@ React                 = require 'react'
 Relay                 = require 'react-relay'
 queries               = require '../../queries'
 Tabs                  = require 'react-simpletabs'
-RouteListContainer    = require '../route/route-list-container'
-StopCardListContainer = require '../stop-cards/nearest-stop-card-list-container'
 ModeFilter            = require '../route/mode-filter'
 NoPositionPanel       = require './no-position-panel'
 Icon                  = require '../icon/icon.cjsx'
@@ -32,10 +30,10 @@ class FrontPagePanel extends React.Component
     @context.getStore('PositionStore').removeChangeListener @onGeolocationChange
     @context.getStore('EndpointStore').removeChangeListener @onChange
 
-  onGeolocationChange: (statusChanged) =>
+  onGeolocationChange: (status) =>
     #We want to rerender only if position status changes,
     #not if position changes
-    if statusChanged
+    if status.statusChanged
       @forceUpdate()
 
   onChange: =>

@@ -206,6 +206,17 @@ translations =
     'close': 'Stäng'
 
   'no':
+    'stop-page.title': "Holdeplass {stop_name}"
+    'stop-page.description': "Holdeplass {stop_name} - {stop_code}"
+    'route-page.title': "Rute {route_short_name}"
+    'route-page.description': "Rute {route_short_name} - {route_long_name}"
+    'itinerary-page.title': "Reisebeksrivelse"
+    'itinerary-page.description': "Reisebeskrivelse"
+    'trip-page.title': "Linje {route_short_name}"
+    'trip-page.description': "Linje {route_short_name} - {route_long_name}"
+    'itinerary-summary-page.title': "Anbefalt rute"
+    'itinerary-summary-page.description': "Anbefalt rute"
+    'description': 'Löydä joukkoliikennetarjonta lähelle ja kauas.' #TODO
     'searching-position': 'Leter etter posisjon'
     'own-position': 'Min posisjon'
     'no-position': 'Ingen posisjon'
@@ -282,6 +293,7 @@ translations =
     'or': 'eller'
     'give-position': 'Skriv inn posisjon i søkefeltet over.'
     'give-origin': 'Skriv inn avgangssted'
+    'give-destination': 'Skriv in destinasjon'
     'select-position': 'Velg din posisjon basert på tidligere søk'
     'page-not-found': 'Siden kunne ikke finnes ੨( ･᷄ ︵･᷅ )ｼ'
     'today': 'I dag'

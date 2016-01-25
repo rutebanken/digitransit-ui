@@ -1,4 +1,4 @@
-/* default theme */
+/* HSL theme */
 
 /* General palette */
 $white: #ffffff;
@@ -11,37 +11,33 @@ $dark-gray: #575757;
 $gray: #999;
 
 /* Palette */
-$hsl-alert: #dc0451;
-$hsl-disruption: #fed100;
-
-$livi-bus-blue: rgb(0, 136, 206);
-$livi-logo-blue: rgb(61, 183, 228);
-$livi-airplane-blue: rgb(0, 70, 173);
-$livi-ferry-blue: rgb(53, 181, 179);
-$livi-rail-purple: rgb(175, 141, 188);
-$livi-subway-orange: rgb(237, 140, 0);
-$livi-tram-green: rgb(106, 137, 37);
-$livi-gold: rgb(233, 171, 0);
+$hsl-blue: #007ac9;
+$hsl-dark-blue: #0062a1;
 $hsl-tram-green: #00985f;
 $hsl-metro-orange: #ff6319;
 $hsl-rail-red: #8c4799;
-$vr-rail-green: rgb(100, 190, 20);
+$hsl-ferry-blue: #00b9e4;
+$hsl-pink: #f092cd;
+$hsl-alert: #dc0451;
+$hsl-disruption: #fed100;
 
-
-$primary-color: $white;
-$primary-font-color: $gray;
-$secondary-color: #eef1f3;
-$secondary-font-color: $gray-blue;
-$title-color: $livi-logo-blue;
-$favourite-color: $livi-gold;
-$hilight-color: $livi-logo-blue;
-$action-color: $livi-logo-blue;
+$primary-color: $hsl-blue;
+$primary-font-color: $white;
+$secondary-color: $hsl-dark-blue;
+$secondary-font-color: $white;
+$title-color: $white;
+$favourite-color: $hsl-pink;
+$hilight-color: $hsl-pink;
+$action-color: $hsl-blue;
 $disruption-color: $hsl-disruption;
-$disruption-passive-color: $livi-logo-blue;
+$disruption-passive-color: rgb(77, 162, 217);
+
+/* Markers */
+$viewpoint-marker-color: $hsl-blue;
 
 /* Fonts */
-$font-family: Lato, Arial, Georgia, Serif;
-$font-family-narrow: 'PT Sans Narrow', 'Arial Condensed', Arial, Georgia, Serif;
+$font-family: Nunito, Arial, Georgia, Serif;
+$font-family-narrow: 'Open Sans Condensed', 'Arial Condensed', Arial, Georgia, Serif;
 
 $body-font-family: $font-family;
 $link-color: $gray-blue;
@@ -49,7 +45,7 @@ $realtime-color: #46b32a;
 
 $font-weight-light: 300;
 $font-weight-normal: 400;
-$font-weight-bold: 700;
+$font-weight-bold: 900;
 
 $line-height-normal: 1.2;
 
@@ -64,12 +60,12 @@ $background-color: #eef1f3;
 $dark-color: $gray;
 
 /* Vehicle colors */
-$airplane-color: $livi-airplane-blue;
-$bus-color: $livi-bus-blue;
-$tram-color: $livi-tram-green;
-$metro-color: $livi-subway-orange;
-$rail-color: $livi-rail-purple;
-$ferry-color: $livi-ferry-blue;
+$airplane-color: black;
+$bus-color: $hsl-blue;
+$tram-color: $hsl-tram-green;
+$metro-color: $hsl-metro-orange;
+$rail-color: $hsl-rail-red;
+$ferry-color: $hsl-ferry-blue;
 $citybike-color: #FBB800;
 $from-color: #64be14;
 $to-color: #f092cd;

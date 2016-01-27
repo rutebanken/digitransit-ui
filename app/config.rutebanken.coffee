@@ -67,4 +67,4 @@ module.exports =
   socialMedia:
     title: "Rutebanken"
     description: "... under utvikling ..."
-  hideTicketInformation = true
+  hideTicketInformation : true

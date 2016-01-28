@@ -53,8 +53,8 @@ module.exports =
   autoSuggest:
     sortOrder: locality: 1, address: 2, stop: 3
     sortOthers: 4
-  # Let Pelias suggest based on current user location
-  locationAwareSuggestions: false
+    # Let Pelias suggest based on current user location
+    locationAware: false
   showCityBikes: true
   # Lowest level when stop or terminal markers are rendered at all
   stopsMinZoom: 15

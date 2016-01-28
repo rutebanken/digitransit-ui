@@ -2,7 +2,7 @@
 - [Run application in Docker](Docker.md).
 
 ## Install requirements
-- Install Node.js
+- Install Node.js version 5 or newer
   (if you are on Debian, the distribution version is likely too old -
   in case of problems try https://deb.nodesource.com)
 - `sudo npm install -g npm@3`
@@ -28,6 +28,9 @@
 - `npm run build`
 - `npm run start`
 - open: http://localhost:8080
+
+Note: on Windows, add "win-" prefix to the run commands above. For example: `npm run win-build`.
+The same applies to other npm run commands below.
 
 ## Analyse webpack bundle
 - run: `webpack -p --json > digitransit.json`

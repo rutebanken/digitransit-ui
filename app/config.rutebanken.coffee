@@ -51,10 +51,10 @@ module.exports =
   map:
     useRetinaTiles: false
   autoSuggest:
-    sortOrder: locality: 1, address: 2, stop: 3
-    sortOthers: 4
+    sortOrder: locality: 2, address: 3, stop: 1
+    sortOther: 4
     # Let Pelias suggest based on current user location
-    locationAware: false
+    locationAware: true
   showCityBikes: true
   # Lowest level when stop or terminal markers are rendered at all
   stopsMinZoom: 15

@@ -319,5 +319,10 @@ translations =
     'show-departures': 'Vis avganger'
     'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute. Forsøk å endre adresse'
     'close': 'Steng'
+    'likely-to-recommend': 'Hvor sannsynlig er det at du anbefaler vår tjeneste til en venn eller kollega?'
+    'likely-to-use': 'Hvor sannsynlig er det at du vil bruke denne tjenesten fremfor tjenesten du allerede bruker?'
+    'how-to-rate-service': 'Hvordan vil du rangere tjenesten?'
+    'char-left': 'slett'
+    'send': 'Send'
 
 module.exports = translations

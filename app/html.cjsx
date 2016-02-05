@@ -6,7 +6,7 @@ class Application extends React.Component
   render: ->
     head = Helmet.rewind()
 
-    <html lang="fi">
+    <html lang="no">
     <head>
       {head?.title.toComponent()}
       {head?.meta.toComponent()}

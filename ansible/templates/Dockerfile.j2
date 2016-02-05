@@ -8,12 +8,13 @@ RUN npm set progress=false
 
 EXPOSE 8000
 
+# Forcing reset of source:
+RUN echo "{{ansible_date_time.epoch}}" /build_time.txt
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY source/ .
 
-# Forcing reset of source:
-RUN git log -n 1 --pretty=format:"%H" > /git_version_"{{ansible_date_time.epoch}}".txt
+RUN git log -n 1 --pretty=format:"%H" > /git_hash.txt
 RUN npm install && \
   npm run static && \
   SERVER_ROOT=http://localhost:8080 CONFIG=rutebanken npm run build

@@ -23,7 +23,7 @@ module.exports =
     ALERTS: "#{API_URL}/hsl-alert/"
     FONT: "http://fonts.googleapis.com/css?family=Lato:300,400,900%7CPT+Sans+Narrow:400,700"
     REALTIME: "#{API_URL}/navigator-server"
-    PELIAS: "http://pelias.rutebanken.org/v1/autocomplete"
+    PELIAS: "http://pelias.rutebanken.org/v1/search"
 #    PELIAS: "http://apiman.rutebanken.org/apiman-gateway/rutebanken/geocoder/1.0/autocomplete"
     PELIAS_REVERSE_GEOCODER: "http://pelias.rutebanken.org/v1/reverse"
 #    PELIAS_REVERSE_GEOCODER: "http://apiman.rutebanken.org/apiman-gateway/rutebanken/geocoder/1.0/reverse"

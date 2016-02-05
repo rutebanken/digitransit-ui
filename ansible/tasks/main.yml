@@ -1,6 +1,6 @@
 ---
-#- set_fact: build_home="/usr/src/jenkinsbuild/workspace/ui"
-- set_fact: build_home="/home/en/git/rutebanken/digitransit-ui"
+- set_fact: build_home="/usr/src/jenkinsbuild/workspace/ui"
+# - set_fact: build_home="/home/en/git/rutebanken/digitransit-ui"
 - set_fact: build_log_directory="/usr/src/log"
 - set_fact: logfile="{{build_log_directory}}/ui.log"
 
@@ -20,6 +20,6 @@
   shell: docker build --tag={{ ui_docker_image|quote }} --force-rm=true {{ui_root}} > {{logfile}} 2>&1
   register: image
 
-#- name: Push ui docker image if built
-#  when: image.changed
-#  shell: docker push {{ ui_docker_image|quote }}
+- name: Push ui docker image if built
+  when: image.changed
+  shell: docker push {{ ui_docker_image|quote }}

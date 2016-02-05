@@ -59,22 +59,24 @@ class Autosuggest extends React.Component
       else
         <Icon img="icon-icon_place"/>
 
+
+
   getSuggestions: (input, callback) =>
     geolocation = @context.getStore('PositionStore').getLocationState()
+
     if config.autoSuggest.locationAware && geolocation.hasLocation
       opts = Object.assign(text: input, config.searchParams, "focus.point.lat":geolocation.lat,"focus.point.lon":geolocation.lon)
     else
       opts = Object.assign(text: input, config.searchParams)
 
-    XhrPromise.getJson(config.URL.PELIAS, opts).then (res) ->
-      features = res.features
+    stopLayerOpts = Object.assign({}, opts, "layers":"stop", "size":config.autoSuggest.stopsFromPeliasSize)
+    addressLayerOpts = Object.assign({}, opts, "layers":"kartverket-address");
 
-      if config.autoSuggest?
-        features = sortBy(features,
-          (feature) ->
-            config.autoSuggest.sortOrder[feature.properties.layer] || config.autoSuggest.sortOther
-          )
-      callback null, features
+    XhrPromise.getJson(config.URL.PELIAS, stopLayerOpts).then (res1) ->
+      stopFeatures = res1.features
+      XhrPromise.getJson(config.URL.PELIAS, addressLayerOpts).then (res2) ->
+        addressFeatures = res2.features
+        callback null, stopFeatures.concat addressFeatures
 
   renderSuggestions: (suggestion, input) =>
     displayText = @getName suggestion.properties

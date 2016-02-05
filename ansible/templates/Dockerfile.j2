@@ -11,8 +11,8 @@ EXPOSE 8000
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY source/ .
-RUN rm -rf .git
 
+RUN git log -n 1 --pretty=format:"%H" > /git_version.txt
 RUN npm install && \
   npm run static && \
   SERVER_ROOT=http://localhost:8080 CONFIG=rutebanken npm run build

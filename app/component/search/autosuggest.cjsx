@@ -69,11 +69,14 @@ class Autosuggest extends React.Component
     else
       opts = Object.assign(text: input, config.searchParams)
 
-    stopLayerOpts = Object.assign({}, opts, "layers":"stop", "size":config.autoSuggest.stopsFromPeliasSize)
+    stopLayerOpts = Object.assign({}, opts, "layers":"stop")
     addressLayerOpts = Object.assign({}, opts, "layers":"kartverket-address");
 
+    # POC-203 Search for stop places first and put them first in result.
     XhrPromise.getJson(config.URL.PELIAS, stopLayerOpts).then (res1) ->
       stopFeatures = res1.features
+      stopFeatures = stopFeatures[..2]
+
       XhrPromise.getJson(config.URL.PELIAS, addressLayerOpts).then (res2) ->
         addressFeatures = res2.features
         callback null, stopFeatures.concat addressFeatures

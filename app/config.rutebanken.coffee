@@ -51,8 +51,6 @@ module.exports =
   map:
     useRetinaTiles: false
   autoSuggest:
-    # Number of stops to search for in pelias and to put first in search result.
-    stopsFromPeliasSize: 3
     sortOrder: locality: 1, address: 2, stop: 3
     sortOthers: 4
     # Let Pelias suggest based on current user location

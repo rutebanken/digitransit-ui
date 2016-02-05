@@ -12,7 +12,8 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY source/ .
 
-RUN git log -n 1 --pretty=format:"%H" > /git_version.txt
+# Forcing reset of source:
+RUN git log -n 1 --pretty=format:"%H" > /git_version_"{{ansible_date_time.epoch}}".txt
 RUN npm install && \
   npm run static && \
   SERVER_ROOT=http://localhost:8080 CONFIG=rutebanken npm run build

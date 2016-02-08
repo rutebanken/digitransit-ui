@@ -324,5 +324,6 @@ translations =
     'how-to-rate-service': 'Hvordan vil du rangere tjenesten?'
     'char-left': 'slett'
     'send': 'Send'
+    'walk-from-to': 'Gå i {estimatedMinutes} minutter fra {fromName} til {toName}'
 
 module.exports = translations

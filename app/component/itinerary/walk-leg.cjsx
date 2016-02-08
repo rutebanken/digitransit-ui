@@ -16,27 +16,16 @@ class WalkLeg extends React.Component
         <RouteNumber mode={@props.leg.mode.toLowerCase()} vertical={true}/>
       </div>
       <div className={"small-10 columns itinerary-instruction-column " + @props.leg.mode.toLowerCase()}>
-        {if @props.index == 0
-          <div>
-            <FormattedMessage id="start-journey-place"
-                              defaultMessage='Start journey from' />
-          </div>
-        else
-          false }
-        <div>{@props.leg.from.name}</div>
-        <div>{if @props.legs == @props.index + 1
-          <FormattedMessage
-            id="walk-to-destination"
-            defaultMessage='Walk to destination' />
-        else
-          <FormattedMessage
-            id="walk-to-stop"
-            defaultMessage='Walk to stop' /> }
+        <div>
+            <FormattedMessage
+              id='walk-from-to'
+              values={{
+                  fromName: <b>{@props.leg.from.name}</b>
+                  toName: <b>{@props.leg.to.name}</b>
+                  estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
+              defaultMessage='Walk for {estimatedMinutes} minutes from {fromName} to {toName}' />
         </div>
-        <div>{@props.leg.to.name}</div>
-        <div>{Math.round(@props.leg.distance)} m ({Math.round(@props.leg.duration / 60)} <FormattedMessage id='minutes' defaultMessage='minutes' />)</div>
       </div>
     </div>
-
 
 module.exports = WalkLeg

@@ -18,7 +18,7 @@ class XhrPromise
   # Return Promise for a url json get request
   getJson: (url, params) ->
     fetch((encodeURI(url) + if params then ("?" + serialize params) else ""),
-      timeout: 10000
+      timeout: 60000
       method: 'GET'
       headers:
         "Accept": "application/json"

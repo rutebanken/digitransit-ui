@@ -5,7 +5,7 @@ moment = require 'moment'
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 
-class WaitLeg extends React.Component
+class AirportLeg extends React.Component
 
   render: ->
     <div key={@props.index} style={{width: "100%"}} className="row itinerary-row">
@@ -16,15 +16,21 @@ class WaitLeg extends React.Component
         <RouteNumber mode={@props.leg.mode.toLowerCase()} vertical={true}/>
       </div>
       <div className={"small-10 columns itinerary-instruction-column " + @props.leg.mode.toLowerCase()}>
-        <div>
-          <FormattedMessage
-            id='wait-message'
+        <div><FormattedMessage
+            id='airport-check-in'
             values={{
-                stopPlace: <b>{@props.leg.to.name}</b>
-                estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
-            defaultMessage='Wait for {estimatedMinutes} minutes at {stopPlace}' />
+                agency: @props.leg.nextLeg.agencyName}}
+            defaultMessage='Check in your luggage with {agency}' />
+        </div>
+        <div><FormattedMessage
+            id='airport-security-check'
+            defaultMessage='Walk through the security check' />
+        </div>
+        <div><FormattedMessage
+            id='airport-go-to-gate'
+            defaultMessage='Go to gate' />
         </div>
       </div>
     </div>
 
-module.exports = WaitLeg
+module.exports = AirportLeg

@@ -5,6 +5,7 @@ TransitLeg         = require './transit-leg'
 WalkLeg            = require './walk-leg'
 WaitLeg            = require './wait-leg'
 EndLeg             = require './end-leg'
+AirportLeg         = require './airport-leg'
 TicketInformation  = require './ticket-information'
 ItinerarySummary   = require './itinerary-summary'
 Map                = require '../map/map'
@@ -26,9 +27,11 @@ class ItineraryTabs extends React.Component
     @props.itinerary.legs.forEach (leg, j) ->
      if leg.transitLeg
         legs.push <TransitLeg key={j} index={j} leg={leg}/>
-      else if leg.mode == 'WAIT'
+     else if leg.mode == 'WAIT' && leg.nextLeg && leg.nextLeg.mode == 'AIRPLANE'
+        legs.push <AirportLeg key={j} index={j} leg={leg}/>
+     else if leg.mode == 'WAIT'
         legs.push <WaitLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>
-      else
+     else
         legs.push <WalkLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>
 
     legs.push <EndLeg key={numberOfLegs}  index={numberOfLegs} endTime={@props.itinerary.endTime} to={@props.itinerary.legs[numberOfLegs - 1].to.name}/>

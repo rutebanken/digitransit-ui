@@ -19,6 +19,7 @@ $itinerary-navigate-icon-size: 50px;
       height: calc(100vh - #{$itinerary-bottom-navigation-height} - #{$itinerary-tabs-height} - #{$itinerary-summary-height} - 40px);
       overflow-y: auto;
       background: $white;
+      padding-top: 1em;
     }
   }
 }

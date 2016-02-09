@@ -18,22 +18,8 @@ createWaitLeg = (startTime, duration, point, placename) ->
     routeType: null # non-transit
     route: ""
     startTime: startTime
-    distance: 0
   leg.to = leg.from
   return leg
-
-changeWaitLegs = (data) ->
-
-  for itinerary in data.plan?.itineraries or []
-    for leg, index in itinerary.legs
-      if(index + 1 < itinerary.legs.length)
-        nextLeg = itinerary.legs[index + 1]
-        console.log(nextLeg.mode)
-        if(nextLeg.mode == 'AIRPLANE')
-          console.log("Wow next leg is AIRPLAINE trip")
-          console.log(leg)
-          leg.routeLongName = "Her må du sjekke inn og komme deg igjennom sikkerhetskontrollen"
-
 
 addWaitLegs = (data) ->
   for itinerary in data.plan?.itineraries or []
@@ -104,7 +90,6 @@ itinerarySearchRequest = (actionContext, options, done) ->
 
   xhrPromise.getJson(config.URL.OTP + "plan", params).then((data) ->
     addWaitLegs(data)
-    changeWaitLegs(data)
     actionContext.dispatch "ItineraryFound", data
     done()
   , (err) ->

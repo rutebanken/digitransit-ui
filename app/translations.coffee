@@ -245,8 +245,14 @@ translations =
                              =1 {en holdeplass}
                              other {# holdeplasser}
                             } ({minutes, plural,
-                               =1 {et minutt}
+                               =1 {ett minutt}
                                other {# minutter}})'
+    'num-stops-flight': '{stops, plural,
+                            =1 {En mellomlanding}
+                            other {# mellomlandinger}
+                           } ({minutes, plural,
+                              =1 {ett minutt}
+                              other {# minutter}})'
     'alight': 'Gå av ved {toName}'
     'start-journey-place': 'Start fra'
     'walk-to-destination': 'Gå til destinasjon'

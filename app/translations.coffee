@@ -324,15 +324,15 @@ translations =
     'how-to-rate-service': 'Hvordan vil du rangere tjenesten?'
     'char-left': 'slett'
     'send': 'Send'
-    'walk-from-to': 'Gå i {estimatedMinutes} minutter fra {fromName} til {toName}'
+    'walk-from-to': 'Gå {estimatedMinutes} minutter fra {fromName} til {toName}'
     'RAIL': 'tog'
     'SUBWAY': 'T-bane'
     'BUS': 'buss'
     'AIRPLANE': 'fly'
-    'transit-from-to': 'Reis med {transitMode} fra {fromName} til {toName}'
-    'wait-message': 'Vent i {estimatedMinutes} minutter på {stopPlace}'
+    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
+    'wait-message': 'Vent {estimatedMinutes} minutter på {stopPlace}'
     'transit-duration': '{minutes, plural,
-       =1 {en minutt}
+       =1 {ett minutt}
        other {# minutter}}'
 
 module.exports = translations

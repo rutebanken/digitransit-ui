@@ -328,7 +328,8 @@ translations =
     'RAIL': 'tog'
     'SUBWAY': 'T-bane'
     'BUS': 'buss'
-    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
+    'AIRPLANE': 'fly'
+    'transit-from-to': 'Reis med {transitMode} fra {fromName} til {toName}'
     'wait-message': 'Vent i {estimatedMinutes} minutter på {stopPlace}'
     'transit-duration': '{minutes, plural,
        =1 {en minutt}

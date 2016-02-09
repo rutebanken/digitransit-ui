@@ -8,6 +8,8 @@ intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 
 class TransitLeg extends React.Component
+  @contextTypes:
+    intl: intl.intlShape.isRequired
 
   render: ->
     originalTime = if @props.leg.realTime and @props.leg.departureDelay >= config.itinerary.delayThreshold then [
@@ -35,21 +37,23 @@ class TransitLeg extends React.Component
         </div>
       </Link>
       <div className={"small-10 columns itinerary-instruction-column " + @props.leg.mode.toLowerCase() + if @props.index == 0 then " from" else ""}>
-        {if @props.index == 0
-          <div>
-            <FormattedMessage id='start-journey-stop'
-                              defaultMessage='Start journey from stop' />
-          </div>
-        else
-          false}
-        <div>{@props.leg.from.name}</div>
+        <div>
+          <FormattedMessage
+            id='transit-from-to'
+            values={{
+                type: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: "Rail"})
+                fromName: <b>{@props.leg.from.name}</b>
+                toName: <b>{@props.leg.to.name}</b>
+                }}
+            defaultMessage='Take the {transitMode} from {fromName} to {toName}' />
+        </div>
         <div>{if @props.leg.headsign
           <FormattedMessage
             id='route-with-headsign'
             values={{
               route: @props.leg.route
               headsign: @props.leg.headsign}}
-              defaultMessage="Route {route} towards {headsign}" />
+              defaultMessage="Route: {route} towards {headsign}" />
          else
            <FormattedMessage
             id='route-without-headsign'
@@ -73,9 +77,12 @@ class TransitLeg extends React.Component
         </div>
         <div><FormattedMessage
           id='alight'
-          defaultMessage='Alight at stop'/>
+          values={{
+            toName: <b>{@props.leg.to.name}</b>
+            }}
+          defaultMessage='Alight at stop {toName}'/>
         </div>
-        <div>{@props.leg.to.name}</div>
+
       </div>
     </div>
 

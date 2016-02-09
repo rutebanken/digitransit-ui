@@ -247,7 +247,7 @@ translations =
                             } ({minutes, plural,
                                =1 {et minutt}
                                other {# minutter}})'
-    'alight': 'Gå av ved holdeplassen'
+    'alight': 'Gå av ved {toName}'
     'start-journey-place': 'Start fra'
     'walk-to-destination': 'Gå til destinasjon'
     'walk-to-stop': 'Gå til holdeplassen'
@@ -325,5 +325,9 @@ translations =
     'char-left': 'slett'
     'send': 'Send'
     'walk-from-to': 'Gå i {estimatedMinutes} minutter fra {fromName} til {toName}'
+    'RAIL': 'tog'
+    'SUBWAY': 'T-bane'
+    'BUS': 'buss'
+    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
 
 module.exports = translations

@@ -18,7 +18,11 @@ class WalkLeg extends React.Component
       <div className={"small-10 columns itinerary-instruction-column " + @props.leg.mode.toLowerCase()}>
         <div>
             <FormattedMessage
-              id='walk-from-to'
+              id={if(@props.leg.from.name == @props.leg.to.name)
+                    'walk-from-to-same-dest'
+                  else
+                    'walk-from-to'
+                  }
               values={{
                   fromName: <b>{@props.leg.from.name}</b>
                   toName: <b>{@props.leg.to.name}</b>

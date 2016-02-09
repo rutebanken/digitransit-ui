@@ -61,7 +61,7 @@ class TransitLeg extends React.Component
               route: @props.leg.route}}
               defaultMessage="Route {route}" />}
         </div>
-        <div>
+        <div>{if @props.leg.intermediateStops.length > 0
           <FormattedMessage
             id='num-stops'
             values={{
@@ -74,6 +74,16 @@ class TransitLeg extends React.Component
               } ({minutes, plural,
               =1 {one minute}
               other {# minutes}})' />
+        else
+            <FormattedMessage
+              id='transit-duration'
+              values={{
+                minutes: Math.round(@props.leg.duration / 60)}}
+              defaultMessage='
+                {minutes, plural,
+                =1 {one minute}
+                other {# minutes}}' />}
+
         </div>
         <div><FormattedMessage
           id='alight'

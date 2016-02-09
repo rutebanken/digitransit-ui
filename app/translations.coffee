@@ -330,5 +330,8 @@ translations =
     'BUS': 'buss'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
     'wait-message': 'Vent i {estimatedMinutes} minutter på {stopPlace}'
+    'transit-duration': '{minutes, plural,
+       =1 {en minutt}
+       other {# minutter}}'
 
 module.exports = translations

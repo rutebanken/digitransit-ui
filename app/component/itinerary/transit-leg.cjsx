@@ -41,7 +41,7 @@ class TransitLeg extends React.Component
           <FormattedMessage
             id='transit-from-to'
             values={{
-                transitMode: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: "Rail"})
+                transitMode: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: @props.leg.mode})
                 fromName: <b>{@props.leg.from.name}</b>
                 toName: <b>{@props.leg.to.name}</b>
                 }}
@@ -61,7 +61,7 @@ class TransitLeg extends React.Component
               route: @props.leg.route}}
               defaultMessage="Route {route}" />}
         </div>
-        <div>{if @props.leg.intermediateStops.length > 0
+        <div>{if @props.leg.intermediateStops.length > 1
           <FormattedMessage
             id='num-stops'
             values={{

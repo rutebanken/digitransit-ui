@@ -41,7 +41,7 @@ class TransitLeg extends React.Component
           <FormattedMessage
             id='transit-from-to'
             values={{
-                type: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: "Rail"})
+                transitMode: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: "Rail"})
                 fromName: <b>{@props.leg.from.name}</b>
                 toName: <b>{@props.leg.to.name}</b>
                 }}

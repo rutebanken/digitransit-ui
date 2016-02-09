@@ -24,10 +24,7 @@ class ItineraryTabs extends React.Component
     legs = []
     numberOfLegs = @props.itinerary.legs.length
     @props.itinerary.legs.forEach (leg, j) ->
-
-      console.log(leg.mode)
-
-      if leg.transitLeg
+     if leg.transitLeg
         legs.push <TransitLeg key={j} index={j} leg={leg}/>
       else if leg.mode == 'WAIT'
         legs.push <WaitLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>

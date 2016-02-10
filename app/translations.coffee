@@ -210,7 +210,7 @@ translations =
     'no-route-msg': 'Vi kunde tyvärr inte hitta några reseförslag för denna sträcka. Ändra adress.'
     'close': 'Stäng'
 
-  'no':
+  'nb':
     'stop-page.title': "Holdeplass {stop_name}"
     'stop-page.description': "Holdeplass {stop_name} - {stop_code}"
     'route-page.title': "Rute {route_short_name}"

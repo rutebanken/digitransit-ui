@@ -1,7 +1,10 @@
 React        = require 'react'
 RouteNumber  = require '../departure/route-number'
 Link         = require 'react-router/lib/Link'
-moment       = require 'moment'
+moment        = require 'moment'
+#TODO Use two letter language code from server.cjsx with context
+require 'moment/locale/nb'
+
 config       = require '../../config'
 
 intl = require 'react-intl'
@@ -70,23 +73,14 @@ class TransitLeg extends React.Component
                   'num-stops'}
             values={{
               stops: @props.leg.intermediateStops.length
-              minutes: Math.round(@props.leg.duration / 60)}}
+              duration: moment.duration(@props.leg.duration, 'seconds').humanize()}}
             defaultMessage='{
               stops, plural,
               =1 {one stop}
               other {# stops}
-              } ({minutes, plural,
-              =1 {one minute}
-              other {# minutes}})' />
+              } ({duration})' />
         else
-            <FormattedMessage
-              id='transit-duration'
-              values={{
-                minutes: Math.round(@props.leg.duration / 60)}}
-              defaultMessage='
-                {minutes, plural,
-                =1 {one minute}
-                other {# minutes}}' />}
+            moment.duration(@props.leg.duration, 'seconds').humanize()}
 
         </div>
         <div>

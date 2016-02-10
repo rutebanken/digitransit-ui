@@ -244,15 +244,11 @@ translations =
     'num-stops': '{stops, plural,
                              =1 {en holdeplass}
                              other {# holdeplasser}
-                            } ({minutes, plural,
-                               =1 {ett minutt}
-                               other {# minutter}})'
+                            } ({duration})'
     'num-stops-flight': '{stops, plural,
                             =1 {En mellomlanding}
                             other {# mellomlandinger}
-                           } ({minutes, plural,
-                              =1 {ett minutt}
-                              other {# minutter}})'
+                           } ({duration})'
     'alight': 'Gå av ved {toName}'
     'start-journey-place': 'Start fra'
     'walk-to-destination': 'Gå til destinasjon'
@@ -347,9 +343,6 @@ translations =
     'FUNICULAR': 'taubane'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
     'wait-message': 'Vent {estimatedTime} på {stopPlace}'
-    'transit-duration': '{minutes, plural,
-       =1 {ett minutt}
-       other {# minutter}}'
     'airport-check-in': 'Sjekk inn eventuell bagasje hos {agency}'
     'airport-security-check-go-to-gate': 'Gå igjennom sikkerhetskontrollen og fortsett til gate'
     'airport-collect-luggage': 'Plukk opp (eller overfør) eventuell bagasje'

@@ -21,6 +21,8 @@ RUN npm install && \
 
 ENV ROOT_PATH=""
 ENV CONFIG="rutebanken"
+ENV PIWIK_ADDRESS="http://rutebanken.piwik.pro/piwik.php"
+ENV PIWIK_ID="1"
 
 # Build app, use current host as SERVER_ROOT
 ENV PORT=8088

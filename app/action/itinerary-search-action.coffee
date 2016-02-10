@@ -3,7 +3,7 @@ polyUtil = require 'polyline-encoded'
 xhrPromise = require '../util/xhr-promise'
 config     = require '../config'
 
-createWaitLeg = (startTime, duration, point, placename, nextLeg) ->
+createWaitLeg = (startTime, duration, point, placename) ->
   leg =
     # OTP returns start and end times in milliseconds, but durations in seconds
     duration: duration / 1000
@@ -18,7 +18,6 @@ createWaitLeg = (startTime, duration, point, placename, nextLeg) ->
     routeType: null # non-transit
     route: ""
     startTime: startTime
-    nextLeg: nextLeg
   leg.to = leg.from
   return leg
 
@@ -38,9 +37,6 @@ addWaitLegs = (data) ->
         if leg.mode == 'WALK'
           leg.mode = 'CITYBIKE_WALK'
 
-      if (index+1)  < itinerary.legs.length
-        nextLeg = itinerary.legs[index + 1]
-
       waitTime = leg.startTime - time
       # If there's enough unaccounted time before a leg, add a wait leg
       if waitTime > waitThreshold
@@ -48,8 +44,7 @@ addWaitLegs = (data) ->
           createWaitLeg(time,
                           waitTime,
                           polyUtil.decode(leg.legGeometry.points)[0],
-                          leg.from.name,
-                          nextLeg))
+                          leg.from.name))
 
       time = leg.endTime  # next wait leg should start when this transit leg ends
 
@@ -57,6 +52,12 @@ addWaitLegs = (data) ->
       newLegs.push leg
 
     itinerary.legs = newLegs
+
+addNextLegs = (data) ->
+  for itinerary in data.plan?.itineraries or []
+    for leg, index in itinerary.legs
+      if index + 1 < itinerary.legs.length
+        leg.nextLeg = itinerary.legs[index + 1]
 
 itinerarySearchRequest = (actionContext, options, done) ->
   itinerarySearchStore = actionContext.getStore('ItinerarySearchStore')
@@ -95,6 +96,7 @@ itinerarySearchRequest = (actionContext, options, done) ->
 
   xhrPromise.getJson(config.URL.OTP + "plan", params).then((data) ->
     addWaitLegs(data)
+    addNextLegs(data)
     actionContext.dispatch "ItineraryFound", data
     done()
   , (err) ->

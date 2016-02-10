@@ -330,8 +330,8 @@ translations =
     'how-to-rate-service': 'Hvordan vil du rangere tjenesten?'
     'char-left': 'slett'
     'send': 'Send'
-    'walk-from-to': 'Gå {estimatedMinutes} minutter fra {fromName} til {toName}'
-    'walk-from-to-same-dest': 'Gå {estimatedMinutes} minutter i {fromName}'
+    'walk-from-to': 'Gå {estimatedTime} fra {fromName} til {toName}'
+    'walk-from-to-same-dest': 'Gå {estimatedTime} i {fromName}'
     'RAIL': 'tog'
     'SUBWAY': 'T-bane'
     'BUS': 'buss'
@@ -346,7 +346,7 @@ translations =
     'GONDOLA': 'gondolbane'
     'FUNICULAR': 'taubane'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
-    'wait-message': 'Vent {estimatedMinutes} minutter på {stopPlace}'
+    'wait-message': 'Vent {estimatedMinutes} på {stopPlace}'
     'transit-duration': '{minutes, plural,
        =1 {ett minutt}
        other {# minutter}}'

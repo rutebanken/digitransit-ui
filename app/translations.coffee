@@ -344,5 +344,6 @@ translations =
     'airport-check-in': 'Sjekk inn eventuell bagasje hos {agency}'
     'airport-security-check-go-to-gate': 'Gå igjennom sikkerhetskontrollen og fortsett til gate'
     'airport-collect-luggage': 'Plukk opp (eller overfør) eventuell bagasje'
+    'cycle-from-to': 'Sykle i {estimatedMinutes} minutter fra {fromName} til {toName}'
 
 module.exports = translations

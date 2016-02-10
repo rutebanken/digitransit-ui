@@ -7,6 +7,7 @@ WaitLeg = require './wait-leg'
 EndLeg = require './end-leg'
 AirportCheckInLeg = require './airport-check-in-leg'
 AirportCollectLuggageLeg  = require './airport-collect-luggage-leg'
+BicycleLeg = require './bicycle-leg'
 TicketInformation = require './ticket-information'
 ItinerarySummary = require './itinerary-summary'
 Map = require '../map/map'
@@ -34,6 +35,8 @@ class ItineraryTabs extends React.Component
         legs.push <AirportCollectLuggageLeg key={j} index={j} leg={leg}/>
      else if leg.mode == 'WAIT'
         legs.push <WaitLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>
+     else if leg.rentedBike || leg.mode == 'BICYCLE' || leg.mode == 'CITYBIKE' || leg.mode == 'CITYBIKE_WALK'
+        legs.push <BicycleLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>
      else
         legs.push <WalkLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>
 

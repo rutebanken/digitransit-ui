@@ -238,7 +238,7 @@ translations =
     'start-journey-stop': 'Start fra holdeplassen'
     'route-with-headsign': "Rute {route} mot {headsign}"
     'route-without-headsign': "Rute {route}"
-    'end-journey': 'Avslutt reisen ved'
+    'end-journey': 'Du er fremme'
     'buy-ticket': 'Kjøp billett'
     'required-ticket': 'Billett før påstigning'
     'num-stops': '{stops, plural,

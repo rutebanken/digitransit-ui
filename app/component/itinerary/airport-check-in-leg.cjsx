@@ -5,7 +5,7 @@ moment = require 'moment'
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 
-class AirportLeg extends React.Component
+class AirportCheckInLeg extends React.Component
 
   render: ->
     <div key={@props.index} style={{width: "100%"}} className="row itinerary-row">
@@ -33,4 +33,4 @@ class AirportLeg extends React.Component
       </div>
     </div>
 
-module.exports = AirportLeg
+module.exports = AirportCheckInLeg

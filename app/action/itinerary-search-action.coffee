@@ -58,6 +58,8 @@ addNextLegs = (data) ->
     for leg, index in itinerary.legs
       if index + 1 < itinerary.legs.length
         leg.nextLeg = itinerary.legs[index + 1]
+      if index - 1 > 0
+        leg.previousLegMode = itinerary.legs[index - 1].mode
 
 itinerarySearchRequest = (actionContext, options, done) ->
   itinerarySearchStore = actionContext.getStore('ItinerarySearchStore')

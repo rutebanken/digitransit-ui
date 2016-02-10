@@ -341,5 +341,8 @@ translations =
     'transit-duration': '{minutes, plural,
        =1 {ett minutt}
        other {# minutter}}'
+    'airport-check-in': 'Sjekk inn eventuell bagasje hos {agency}'
+    'airport-security-check-go-to-gate': 'Gå igjennom sikkerhetskontrollen og fortsett til gate'
+    'airport-collect-luggage': 'Plukk opp (eller overfør) eventuell bagasje'
 
 module.exports = translations

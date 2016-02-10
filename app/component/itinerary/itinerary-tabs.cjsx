@@ -1,17 +1,18 @@
 React  = require 'react'
 Tabs   = require 'react-simpletabs'
 
-TransitLeg         = require './transit-leg'
-WalkLeg            = require './walk-leg'
-WaitLeg            = require './wait-leg'
-EndLeg             = require './end-leg'
-AirportCheckInLeg  = require './airport-check-in-leg'
-TicketInformation  = require './ticket-information'
-ItinerarySummary   = require './itinerary-summary'
-Map                = require '../map/map'
-ItineraryLine      = require '../map/itinerary-line'
+TransitLeg = require './transit-leg'
+WalkLeg = require './walk-leg'
+WaitLeg = require './wait-leg'
+EndLeg = require './end-leg'
+AirportCheckInLeg = require './airport-check-in-leg'
+AirportCollectLuggageLeg  = require './airport-collect-luggage-leg'
+TicketInformation = require './ticket-information'
+ItinerarySummary = require './itinerary-summary'
+Map = require '../map/map'
+ItineraryLine = require '../map/itinerary-line'
 TimeFrame = require './time-frame'
-config        = require '../../config'
+config = require '../../config'
 
 intl = require 'react-intl'
 
@@ -29,6 +30,8 @@ class ItineraryTabs extends React.Component
         legs.push <TransitLeg key={j} index={j} leg={leg}/>
      else if leg.mode == 'WAIT' && leg.nextLeg && leg.nextLeg.mode == 'AIRPLANE'
         legs.push <AirportCheckInLeg key={j} index={j} leg={leg}/>
+     else if leg.mode == 'WAIT' && leg.previousLegMode && leg.previousLegMode == 'AIRPLANE'
+        legs.push <AirportCollectLuggageLeg key={j} index={j} leg={leg}/>
      else if leg.mode == 'WAIT'
         legs.push <WaitLeg key={j} index={j} leg={leg} legs={numberOfLegs}/>
      else

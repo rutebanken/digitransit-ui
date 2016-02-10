@@ -20,15 +20,11 @@ class AirportCheckInLeg extends React.Component
             id='airport-check-in'
             values={{
                 agency: @props.leg.nextLeg.agencyName}}
-            defaultMessage='Check in your luggage with {agency}' />
+            defaultMessage='Optionally check in your luggage with {agency}' />
         </div>
         <div><FormattedMessage
-            id='airport-security-check'
+            id='airport-security-check-go-to-gate'
             defaultMessage='Walk through the security check' />
-        </div>
-        <div><FormattedMessage
-            id='airport-go-to-gate'
-            defaultMessage='Go to gate' />
         </div>
       </div>
     </div>

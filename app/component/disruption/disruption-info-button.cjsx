@@ -10,7 +10,7 @@ class DisruptionInfoButton extends React.Component
     alerts: React.PropTypes.object
 
   render: ->
-    if !config.disruption.hideDisruptionInfoButton
+    if !config.disruption || !config.disruption.hideDisruptionInfoButton
       disruptionIconClass = if @props.alerts.alerts.length > 0 then 'active' else 'inactive'
       <div onClick={@props.toggleDisruptionInfo} className="icon-holder cursor-pointer disruption-info">
         <Icon img={'icon-icon_caution'} className={'icon disruption-info ' + disruptionIconClass} />

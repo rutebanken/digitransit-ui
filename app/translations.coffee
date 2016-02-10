@@ -346,7 +346,7 @@ translations =
     'GONDOLA': 'gondolbane'
     'FUNICULAR': 'taubane'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
-    'wait-message': 'Vent {estimatedMinutes} på {stopPlace}'
+    'wait-message': 'Vent {estimatedTime} på {stopPlace}'
     'transit-duration': '{minutes, plural,
        =1 {ett minutt}
        other {# minutter}}'

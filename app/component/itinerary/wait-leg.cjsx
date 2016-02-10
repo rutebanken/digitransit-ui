@@ -1,6 +1,8 @@
 React = require 'react'
 RouteNumber  = require '../departure/route-number'
 moment = require 'moment'
+#TODO Use two letter language code from server.cjsx with context
+require 'moment/locale/nb'
 
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
@@ -21,7 +23,7 @@ class WaitLeg extends React.Component
             id='wait-message'
             values={{
                 stopPlace: <b>{@props.leg.to.name}</b>
-                estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
+                estimatedTime: <b>{moment.duration(@props.leg.duration, 'seconds').humanize()}</b>}}
             defaultMessage='Wait for {estimatedMinutes} minutes at {stopPlace}' />
         </div>
       </div>

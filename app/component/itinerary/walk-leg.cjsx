@@ -1,5 +1,6 @@
 React = require 'react'
 RouteNumber  = require '../departure/route-number'
+Distance = require './distance'
 moment = require 'moment'
 
 intl = require 'react-intl'
@@ -28,6 +29,9 @@ class WalkLeg extends React.Component
                   toName: <b>{@props.leg.to.name}</b>
                   estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
               defaultMessage='Walk for {estimatedMinutes} minutes from {fromName} to {toName}' />
+        </div>
+        <div>
+          <Distance distance={@props.leg.distance}/>
         </div>
       </div>
     </div>

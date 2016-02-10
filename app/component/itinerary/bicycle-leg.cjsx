@@ -1,12 +1,13 @@
 React = require 'react'
 RouteNumber  = require '../departure/route-number'
 moment = require 'moment'
+Distance = require './distance'
 
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 FormattedRelative = intl.FormattedRelative
 
-class WalkLeg extends React.Component
+class BicycleLeg extends React.Component
 
   render: ->
     <div key={@props.index} style={{width: "100%"}} className="row itinerary-row">
@@ -26,7 +27,11 @@ class WalkLeg extends React.Component
                   estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
               defaultMessage='Cycle for about {estimatedMinutes} minutes from {fromName} to {toName}' />
         </div>
+        <div>
+          <Distance distance={@props.leg.distance}/>
+        </div>
+
       </div>
     </div>
 
-module.exports = WalkLeg
+module.exports = BicycleLeg

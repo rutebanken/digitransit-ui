@@ -89,14 +89,15 @@ class TransitLeg extends React.Component
                 other {# minutes}}' />}
 
         </div>
-        <div><FormattedMessage
-          id='alight'
-          values={{
-            toName: <b>{@props.leg.to.name}</b>
-            }}
-          defaultMessage='Alight at stop {toName}'/>
+        <div>
+          {if @props.leg.mode != 'AIRPLANE'
+            <FormattedMessage
+              id='alight'
+              values={{
+                toName: <b>{@props.leg.to.name}</b>
+                }}
+              defaultMessage='Alight at stop {toName}'/>}
         </div>
-
       </div>
     </div>
 

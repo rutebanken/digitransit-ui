@@ -5,7 +5,7 @@ moment = require 'moment'
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 
-class WalkLeg extends React.Component
+class WaitLeg extends React.Component
 
   render: ->
     <div key={@props.index} style={{width: "100%"}} className="row itinerary-row">
@@ -17,19 +17,14 @@ class WalkLeg extends React.Component
       </div>
       <div className={"small-10 columns itinerary-instruction-column " + @props.leg.mode.toLowerCase()}>
         <div>
-            <FormattedMessage
-              id={if(@props.leg.from.name == @props.leg.to.name)
-                    'walk-from-to-same-dest'
-                  else
-                    'walk-from-to'
-                  }
-              values={{
-                  fromName: <b>{@props.leg.from.name}</b>
-                  toName: <b>{@props.leg.to.name}</b>
-                  estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
-              defaultMessage='Walk for {estimatedMinutes} minutes from {fromName} to {toName}' />
+          <FormattedMessage
+            id='wait-message'
+            values={{
+                stopPlace: <b>{@props.leg.to.name}</b>
+                estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
+            defaultMessage='Wait for {estimatedMinutes} minutes at {stopPlace}' />
         </div>
       </div>
     </div>
 
-module.exports = WalkLeg
+module.exports = WaitLeg

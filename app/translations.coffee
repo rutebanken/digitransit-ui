@@ -245,9 +245,15 @@ translations =
                              =1 {en holdeplass}
                              other {# holdeplasser}
                             } ({minutes, plural,
-                               =1 {et minutt}
+                               =1 {ett minutt}
                                other {# minutter}})'
-    'alight': 'Gå av ved holdeplassen'
+    'num-stops-flight': '{stops, plural,
+                            =1 {En mellomlanding}
+                            other {# mellomlandinger}
+                           } ({minutes, plural,
+                              =1 {ett minutt}
+                              other {# minutter}})'
+    'alight': 'Gå av ved {toName}'
     'start-journey-place': 'Start fra'
     'walk-to-destination': 'Gå til destinasjon'
     'walk-to-stop': 'Gå til holdeplassen'
@@ -324,5 +330,16 @@ translations =
     'how-to-rate-service': 'Hvordan vil du rangere tjenesten?'
     'char-left': 'slett'
     'send': 'Send'
+    'walk-from-to': 'Gå {estimatedMinutes} minutter fra {fromName} til {toName}'
+    'walk-from-to-same-dest': 'Gå {estimatedMinutes} minutter i {fromName}'
+    'RAIL': 'tog'
+    'SUBWAY': 'T-bane'
+    'BUS': 'buss'
+    'AIRPLANE': 'fly'
+    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
+    'wait-message': 'Vent {estimatedMinutes} minutter på {stopPlace}'
+    'transit-duration': '{minutes, plural,
+       =1 {ett minutt}
+       other {# minutter}}'
 
 module.exports = translations

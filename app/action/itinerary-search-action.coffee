@@ -3,7 +3,7 @@ polyUtil = require 'polyline-encoded'
 xhrPromise = require '../util/xhr-promise'
 config     = require '../config'
 
-createWaitLeg = (startTime, duration, point, placename) ->
+createWaitLeg = (startTime, duration, point, placename, nextLeg) ->
   leg =
     # OTP returns start and end times in milliseconds, but durations in seconds
     duration: duration / 1000
@@ -18,6 +18,7 @@ createWaitLeg = (startTime, duration, point, placename) ->
     routeType: null # non-transit
     route: ""
     startTime: startTime
+    nextLeg: nextLeg
   leg.to = leg.from
   return leg
 
@@ -29,13 +30,16 @@ addWaitLegs = (data) ->
     # Read wait threshold from config and change it to milliseconds
     waitThreshold = config.itinerary.waitThreshold * 1000
 
-    for leg in itinerary.legs
+    for leg, index in itinerary.legs
 
       if leg.rentedBike == true
         if leg.mode == 'BICYCLE'
           leg.mode = 'CITYBIKE'
         if leg.mode == 'WALK'
           leg.mode = 'CITYBIKE_WALK'
+
+      if (index+1)  < itinerary.legs.length
+        nextLeg = itinerary.legs[index + 1]
 
       waitTime = leg.startTime - time
       # If there's enough unaccounted time before a leg, add a wait leg
@@ -44,7 +48,8 @@ addWaitLegs = (data) ->
           createWaitLeg(time,
                           waitTime,
                           polyUtil.decode(leg.legGeometry.points)[0],
-                          leg.from.name))
+                          leg.from.name,
+                          nextLeg))
 
       time = leg.endTime  # next wait leg should start when this transit leg ends
 

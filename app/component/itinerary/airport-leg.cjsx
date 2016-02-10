@@ -5,7 +5,7 @@ moment = require 'moment'
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 
-class WalkLeg extends React.Component
+class AirportLeg extends React.Component
 
   render: ->
     <div key={@props.index} style={{width: "100%"}} className="row itinerary-row">
@@ -16,20 +16,21 @@ class WalkLeg extends React.Component
         <RouteNumber mode={@props.leg.mode.toLowerCase()} vertical={true}/>
       </div>
       <div className={"small-10 columns itinerary-instruction-column " + @props.leg.mode.toLowerCase()}>
-        <div>
-            <FormattedMessage
-              id={if(@props.leg.from.name == @props.leg.to.name)
-                    'walk-from-to-same-dest'
-                  else
-                    'walk-from-to'
-                  }
-              values={{
-                  fromName: <b>{@props.leg.from.name}</b>
-                  toName: <b>{@props.leg.to.name}</b>
-                  estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
-              defaultMessage='Walk for {estimatedMinutes} minutes from {fromName} to {toName}' />
+        <div><FormattedMessage
+            id='airport-check-in'
+            values={{
+                agency: @props.leg.nextLeg.agencyName}}
+            defaultMessage='Check in your luggage with {agency}' />
+        </div>
+        <div><FormattedMessage
+            id='airport-security-check'
+            defaultMessage='Walk through the security check' />
+        </div>
+        <div><FormattedMessage
+            id='airport-go-to-gate'
+            defaultMessage='Go to gate' />
         </div>
       </div>
     </div>
 
-module.exports = WalkLeg
+module.exports = AirportLeg

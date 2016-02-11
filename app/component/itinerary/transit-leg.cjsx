@@ -47,16 +47,16 @@ class TransitLeg extends React.Component
                 transitMode: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: @props.leg.mode})
                 fromName: <b>{@props.leg.from.name}</b>
                 toName: <b>{@props.leg.to.name}</b>
+                duration: moment.duration(@props.leg.duration, 'seconds').humanize()}}
                 }}
-            defaultMessage='Take the {transitMode} from {fromName} to {toName}' />
+            defaultMessage='Take the {transitMode} from {fromName} to {toName} ({duration})' />
         </div>
-        <div>{if @props.leg.headsign
+        <div>{if @props.leg.headsign && @props.leg.headsign != @props.leg.to.name
           <FormattedMessage
             id='route-with-headsign'
             values={{
-              route: @props.leg.route
               headsign: @props.leg.headsign}}
-              defaultMessage="Route: {route} towards {headsign}" />
+              defaultMessage="Route: towards {headsign}" />
          else
            <FormattedMessage
             id='route-without-headsign'
@@ -65,12 +65,9 @@ class TransitLeg extends React.Component
               defaultMessage="Route {route}" />}
         </div>
 
-        <div>{if @props.leg.intermediateStops.length > 0
+        <div>{if @props.leg.intermediateStops.length > 0 && @props.leg.mode == 'AIRPLANE'
           <FormattedMessage
-            id={if(@props.leg.mode == 'AIRPLANE')
-                  'num-stops-flight'
-                else
-                  'num-stops'}
+            id='num-stops-flight'
             values={{
               stops: @props.leg.intermediateStops.length
               duration: moment.duration(@props.leg.duration, 'seconds').humanize()}}
@@ -78,9 +75,7 @@ class TransitLeg extends React.Component
               stops, plural,
               =1 {one stop}
               other {# stops}
-              } ({duration})' />
-        else
-            moment.duration(@props.leg.duration, 'seconds').humanize()}
+              }' />}
 
         </div>
       </div>

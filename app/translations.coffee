@@ -236,8 +236,8 @@ translations =
     'instructions': 'Instruksjoner'
     'map': 'Kart'
     'start-journey-stop': 'Start fra holdeplassen'
-    'route-with-headsign': "Rute {route} mot {headsign}"
-    'route-without-headsign': "Rute {route}"
+    'route-with-headsign': "Mot {headsign}"
+    'route-without-headsign': "Rute: {route}"
     'end-journey': 'Du er fremme'
     'buy-ticket': 'Kjøp billett'
     'required-ticket': 'Billett før påstigning'
@@ -248,7 +248,7 @@ translations =
     'num-stops-flight': '{stops, plural,
                             =1 {En mellomlanding}
                             other {# mellomlandinger}
-                           } ({duration})'
+                           }'
     'alight': 'Gå av ved {toName}'
     'start-journey-place': 'Start fra'
     'walk-to-destination': 'Gå til destinasjon'
@@ -341,7 +341,7 @@ translations =
     'CABLE_CAR': 'kabeltrikk'
     'GONDOLA': 'gondolbane'
     'FUNICULAR': 'taubane'
-    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
+    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName} ({duration})'
     'wait-message': 'Vent {estimatedTime} på {stopPlace}'
     'airport-check-in': 'Bagasje kan sjekkes inn hos {agency}'
     'airport-security-check-go-to-gate': 'Passer sikkerhetskontrollen og fortsett til gate'

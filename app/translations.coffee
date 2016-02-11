@@ -343,9 +343,9 @@ translations =
     'FUNICULAR': 'taubane'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
     'wait-message': 'Vent {estimatedTime} på {stopPlace}'
-    'airport-check-in': 'Sjekk inn eventuell bagasje hos {agency}'
-    'airport-security-check-go-to-gate': 'Gå igjennom sikkerhetskontrollen og fortsett til gate'
-    'airport-collect-luggage': 'Plukk opp (eller overfør) eventuell bagasje'
+    'airport-check-in': 'Bagasje kan sjekkes inn hos {agency}'
+    'airport-security-check-go-to-gate': 'Passer sikkerhetskontrollen og fortsett til gate'
+    'airport-collect-luggage': 'Hent eventuell bagasje'
     'cycle-from-to': 'Sykle i {estimatedTime} fra {fromName} til {toName}'
     'approx-meters': '{approxDistance} meter'
 

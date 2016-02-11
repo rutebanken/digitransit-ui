@@ -16,13 +16,7 @@ class Distance extends React.Component
           values={{
             approxDistance: approxDistance}}
           defaultMessage='About {approxDistance} meters' />
-      else
-        return null
     else
-      <FormattedMessage
-        id='less-than-meters'
-        values={{
-          threshold: 50}}
-        defaultMessage='Less than {threshold} meters' />
-
+      return null
+    
 module.exports = Distance

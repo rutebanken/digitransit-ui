@@ -210,7 +210,7 @@ translations =
     'no-route-msg': 'Vi kunde tyvärr inte hitta några reseförslag för denna sträcka. Ändra adress.'
     'close': 'Stäng'
 
-  'no':
+  'nb':
     'stop-page.title': "Holdeplass {stop_name}"
     'stop-page.description': "Holdeplass {stop_name} - {stop_code}"
     'route-page.title': "Rute {route_short_name}"
@@ -236,23 +236,19 @@ translations =
     'instructions': 'Instruksjoner'
     'map': 'Kart'
     'start-journey-stop': 'Start fra holdeplassen'
-    'route-with-headsign': "Rute {route} mot {headsign}"
-    'route-without-headsign': "Rute {route}"
+    'route-with-headsign': "Mot {headsign}"
+    'route-without-headsign': "Rute: {route}"
     'end-journey': 'Du er fremme'
     'buy-ticket': 'Kjøp billett'
     'required-ticket': 'Billett før påstigning'
     'num-stops': '{stops, plural,
                              =1 {en holdeplass}
                              other {# holdeplasser}
-                            } ({minutes, plural,
-                               =1 {ett minutt}
-                               other {# minutter}})'
+                            } ({duration})'
     'num-stops-flight': '{stops, plural,
                             =1 {En mellomlanding}
                             other {# mellomlandinger}
-                           } ({minutes, plural,
-                              =1 {ett minutt}
-                              other {# minutter}})'
+                           }'
     'alight': 'Gå av ved {toName}'
     'start-journey-place': 'Start fra'
     'walk-to-destination': 'Gå til destinasjon'
@@ -330,8 +326,8 @@ translations =
     'how-to-rate-service': 'Hvordan vil du rangere tjenesten?'
     'char-left': 'slett'
     'send': 'Send'
-    'walk-from-to': 'Gå {estimatedMinutes} minutter fra {fromName} til {toName}'
-    'walk-from-to-same-dest': 'Gå {estimatedMinutes} minutter i {fromName}'
+    'walk-from-to': 'Gå {estimatedTime} fra {fromName} til {toName}'
+    'walk-from-to-same-dest': 'Gå {estimatedTime} i {fromName}'
     'RAIL': 'tog'
     'SUBWAY': 'T-bane'
     'BUS': 'buss'
@@ -345,16 +341,12 @@ translations =
     'CABLE_CAR': 'kabeltrikk'
     'GONDOLA': 'gondolbane'
     'FUNICULAR': 'taubane'
-    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName}'
-    'wait-message': 'Vent {estimatedMinutes} minutter på {stopPlace}'
-    'transit-duration': '{minutes, plural,
-       =1 {ett minutt}
-       other {# minutter}}'
-    'airport-check-in': 'Sjekk inn eventuell bagasje hos {agency}'
-    'airport-security-check-go-to-gate': 'Gå igjennom sikkerhetskontrollen og fortsett til gate'
-    'airport-collect-luggage': 'Plukk opp (eller overfør) eventuell bagasje'
-    'cycle-from-to': 'Sykle i {estimatedMinutes} minutter fra {fromName} til {toName}'
-    'less-than-meters': 'Mindre enn {threshold} meter'
-    'approx-meters': 'Omtrent {approxDistance} meter'
+    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName} ({duration})'
+    'wait-message': 'Vent {estimatedTime} på {stopPlace}'
+    'airport-check-in': 'Bagasje kan sjekkes inn hos {agency}'
+    'airport-security-check-go-to-gate': 'Passer sikkerhetskontrollen og fortsett til gate'
+    'airport-collect-luggage': 'Hent eventuell bagasje'
+    'cycle-from-to': 'Sykle i {estimatedTime} fra {fromName} til {toName}'
+    'approx-meters': '{approxDistance} meter'
 
 module.exports = translations

@@ -1,7 +1,10 @@
 React        = require 'react'
 RouteNumber  = require '../departure/route-number'
 Link         = require 'react-router/lib/Link'
-moment       = require 'moment'
+moment        = require 'moment'
+#TODO Use two letter language code from server.cjsx with context
+require 'moment/locale/nb'
+
 config       = require '../../config'
 
 intl = require 'react-intl'
@@ -44,16 +47,16 @@ class TransitLeg extends React.Component
                 transitMode: @context.intl.formatMessage({id: @props.leg.mode, defaultMessage: @props.leg.mode})
                 fromName: <b>{@props.leg.from.name}</b>
                 toName: <b>{@props.leg.to.name}</b>
+                duration: moment.duration(@props.leg.duration, 'seconds').humanize()}}
                 }}
-            defaultMessage='Take the {transitMode} from {fromName} to {toName}' />
+            defaultMessage='Take the {transitMode} from {fromName} to {toName} ({duration})' />
         </div>
-        <div>{if @props.leg.headsign
+        <div>{if @props.leg.headsign && @props.leg.headsign != @props.leg.to.name
           <FormattedMessage
             id='route-with-headsign'
             values={{
-              route: @props.leg.route
               headsign: @props.leg.headsign}}
-              defaultMessage="Route: {route} towards {headsign}" />
+              defaultMessage="Route: towards {headsign}" />
          else
            <FormattedMessage
             id='route-without-headsign'
@@ -62,41 +65,18 @@ class TransitLeg extends React.Component
               defaultMessage="Route {route}" />}
         </div>
 
-        <div>{if @props.leg.intermediateStops.length > 0
+        <div>{if @props.leg.intermediateStops.length > 0 && @props.leg.mode == 'AIRPLANE'
           <FormattedMessage
-            id={if(@props.leg.mode == 'AIRPLANE')
-                  'num-stops-flight'
-                else
-                  'num-stops'}
+            id='num-stops-flight'
             values={{
               stops: @props.leg.intermediateStops.length
-              minutes: Math.round(@props.leg.duration / 60)}}
+              duration: moment.duration(@props.leg.duration, 'seconds').humanize()}}
             defaultMessage='{
               stops, plural,
               =1 {one stop}
               other {# stops}
-              } ({minutes, plural,
-              =1 {one minute}
-              other {# minutes}})' />
-        else
-            <FormattedMessage
-              id='transit-duration'
-              values={{
-                minutes: Math.round(@props.leg.duration / 60)}}
-              defaultMessage='
-                {minutes, plural,
-                =1 {one minute}
-                other {# minutes}}' />}
+              }' />}
 
-        </div>
-        <div>
-          {if @props.leg.mode != 'AIRPLANE'
-            <FormattedMessage
-              id='alight'
-              values={{
-                toName: <b>{@props.leg.to.name}</b>
-                }}
-              defaultMessage='Alight at stop {toName}'/>}
         </div>
       </div>
     </div>

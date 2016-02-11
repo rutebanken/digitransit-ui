@@ -120,7 +120,8 @@ getHtml = (context, renderProps, locale, polyfills, req) ->
     content={getContent(context, renderProps, locale)}
     polyfill={polyfills}
     state={'window.state=' + serialize(application.dehydrate(context)) + ';'}
-    locale={'window.locale="' + locale + '"'}
+    windowLocale={'window.locale="' + locale + '"'}
+    locale={locale}
     scripts={getScripts(req)}
     fonts={fonts}
     config={'window.config=' + JSON.stringify(config)}
@@ -130,7 +131,10 @@ getHtml = (context, renderProps, locale, polyfills, req) ->
 module.exports = (req, res, next) ->
   # pass in `req.url` and the router will immediately match
   processFeedback req, res
-  locale = req.cookies.lang or req.acceptsLanguages(['fi', 'sv', 'en','no']) or 'en'
+  locale = req.cookies.lang or req.acceptsLanguages(['fi', 'sv', 'en', 'nb', 'nn', 'no']) or 'en'
+  if locale == 'nn' || locale == 'no'
+    locale = 'nb'
+
   context = application.createContext()
   #required by material-ui
   global.navigator = userAgent: req.headers['user-agent']

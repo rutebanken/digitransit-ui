@@ -1,6 +1,9 @@
 React = require 'react'
 RouteNumber  = require '../departure/route-number'
 moment = require 'moment'
+#TODO Use two letter language code from server.cjsx with context
+require 'moment/locale/nb'
+
 Distance = require './distance'
 
 intl = require 'react-intl'
@@ -24,8 +27,8 @@ class BicycleLeg extends React.Component
               values={{
                   fromName: <b>{@props.leg.from.name}</b>
                   toName: <b>{@props.leg.to.name}</b>
-                  estimatedMinutes: <b>{Math.round(@props.leg.duration / 60)}</b>}}
-              defaultMessage='Cycle for about {estimatedMinutes} minutes from {fromName} to {toName}' />
+                  estimatedTime: <b>{moment.duration(@props.leg.duration, 'seconds').humanize()}</b>}}
+              defaultMessage='Cycle for about {estimatedTime} from {fromName} to {toName}' />
         </div>
         <div>
           <Distance distance={@props.leg.distance}/>

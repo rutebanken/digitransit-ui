@@ -32,6 +32,8 @@ module.exports =
   # TODO: What is preferredAgency?? Explanation: Used to filter trips for a certain agency at several places in the app
   preferredAgency: null
   searchParams: {}
+  disruption:
+    hideDisruptionInfoButton: true
   nearbyRoutes:
     radius: 10000
     bucketSize: 1000

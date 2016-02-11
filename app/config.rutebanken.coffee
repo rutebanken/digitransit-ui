@@ -15,7 +15,8 @@ module.exports =
   CONFIG: "#{CONFIG}"
   URL:
     API_URL: "#{API_URL}"
-    OTP: "#{API_URL}/apiman-gateway/rutebanken/journeyplanner/1.0/"
+#    OTP: "#{API_URL}/apiman-gateway/rutebanken/journeyplanner/1.0/"
+    OTP: "#{API_URL}/apiman-gateway/rutebanken/journeyplanner/1.1/"
 #    MAP: "#{API_URL}/apiman-gateway/rutebanken/map/1.0/"
     MAP: "http://map.rutebanken.org/hsl-map/"
 #    STOP_MAP: "http://map.rutebanken.org/hsl-map/hsl-stop-map/"

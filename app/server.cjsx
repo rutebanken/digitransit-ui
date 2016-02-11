@@ -132,8 +132,8 @@ module.exports = (req, res, next) ->
   # pass in `req.url` and the router will immediately match
   processFeedback req, res
   locale = req.cookies.lang or req.acceptsLanguages(['fi', 'sv', 'en', 'nb', 'nn', 'no']) or 'en'
-  if locale == 'nn' || locale == 'no'
-    locale = 'nb'
+  if locale == 'nn' || locale == 'nb'
+    locale = 'no'
 
   context = application.createContext()
   #required by material-ui

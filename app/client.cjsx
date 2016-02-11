@@ -37,7 +37,7 @@ require('react-tap-event-plugin')()
 # English data added as default
 addLocaleData require "react-intl/lib/locale-data/fi"
 addLocaleData require "react-intl/lib/locale-data/sv"
-addLocaleData require "react-intl/lib/locale-data/nb"
+addLocaleData require "react-intl/lib/locale-data/no"
 
 # Run application
 app.rehydrate dehydratedState, (err, context) ->

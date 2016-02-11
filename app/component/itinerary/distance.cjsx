@@ -16,7 +16,9 @@ class Distance extends React.Component
           values={{
             approxDistance: approxDistance}}
           defaultMessage='About {approxDistance} meters' />
+      else
+        return null
     else
       return null
-    
+
 module.exports = Distance

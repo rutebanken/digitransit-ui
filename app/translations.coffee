@@ -347,7 +347,6 @@ translations =
     'airport-security-check-go-to-gate': 'Gå igjennom sikkerhetskontrollen og fortsett til gate'
     'airport-collect-luggage': 'Plukk opp (eller overfør) eventuell bagasje'
     'cycle-from-to': 'Sykle i {estimatedTime} fra {fromName} til {toName}'
-    'less-than-meters': 'Mindre enn {threshold} meter'
-    'approx-meters': 'Omtrent {approxDistance} meter'
+    'approx-meters': '{approxDistance} meter'
 
 module.exports = translations

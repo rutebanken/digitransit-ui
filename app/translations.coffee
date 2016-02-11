@@ -215,7 +215,7 @@ translations =
     'stop-page.description': "Holdeplass {stop_name} - {stop_code}"
     'route-page.title': "Rute {route_short_name}"
     'route-page.description': "Rute {route_short_name} - {route_long_name}"
-    'itinerary-page.title': "Reisebeksrivelse"
+    'itinerary-page.title': "Reisebeskrivelse"
     'itinerary-page.description': "Reisebeskrivelse"
     'trip-page.title': "Linje {route_short_name}"
     'trip-page.description': "Linje {route_short_name} - {route_long_name}"
@@ -299,8 +299,8 @@ translations =
     'geolocate-yourself': 'Finn min posisjon'
     'or': 'eller'
     'give-position': 'Skriv inn posisjon i søkefeltet over.'
-    'give-origin': 'Skriv inn avgangssted'
-    'give-destination': 'Skriv in destinasjon'
+    'give-origin': 'skriv avgangssted'
+    'give-destination': 'skriv hvor du vil reise'
     'select-position': 'Velg din posisjon basert på tidligere søk'
     'page-not-found': 'Siden kunne ikke finnes ੨( ･᷄ ︵･᷅ )ｼ'
     'today': 'I dag'
@@ -309,7 +309,7 @@ translations =
     'not-implemented-msg': 'Om du vil delta i utviklingen kan du finne mer informasjon i følgende lenker'
     'route-not-possible': 'Dessverre kan vi ikke finne et reiseforslag til deg. Teknisk feil: "{error}"'
     'realtime-matching': 'Sanntidsmatching'
-    'locate': 'Lokalisere'
+    'locate': 'Der jeg er'
     'extra-info': 'mer info'
     'bike-availability': 'Sykler finnes'
     'citybike-register-required': 'Bysykkelregistrering påkreves'

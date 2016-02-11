@@ -83,15 +83,6 @@ class TransitLeg extends React.Component
             moment.duration(@props.leg.duration, 'seconds').humanize()}
 
         </div>
-        <div>
-          {if @props.leg.mode != 'AIRPLANE'
-            <FormattedMessage
-              id='alight'
-              values={{
-                toName: <b>{@props.leg.to.name}</b>
-                }}
-              defaultMessage='Alight at stop {toName}'/>}
-        </div>
       </div>
     </div>
 

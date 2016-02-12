@@ -342,7 +342,7 @@ translations =
     'GONDOLA': 'gondolbane'
     'FUNICULAR': 'taubane'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName} ({duration})'
-    'wait-message': 'Vent {estimatedTime} på {stopPlace}'
+    'wait-message': 'Vent {estimatedTime}'
     'airport-check-in': 'Bagasje kan sjekkes inn hos {agency}'
     'airport-security-check-go-to-gate': 'Passer sikkerhetskontrollen og fortsett til gate'
     'airport-collect-luggage': 'Hent eventuell bagasje'

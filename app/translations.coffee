@@ -327,7 +327,7 @@ translations =
     'char-left': 'slett'
     'send': 'Send'
     'walk-from-to': 'Gå {estimatedTime} fra {fromName} til {toName}'
-    'walk-from-to-same-dest': 'Gå {estimatedTime} i {fromName}'
+    'walk-from-to-same-dest': 'Gå {estimatedTime} på {fromName}'
     'RAIL': 'tog'
     'SUBWAY': 'T-bane'
     'BUS': 'buss'

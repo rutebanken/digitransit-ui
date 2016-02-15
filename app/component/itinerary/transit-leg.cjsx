@@ -1,13 +1,9 @@
 React        = require 'react'
 RouteNumber  = require '../departure/route-number'
 Link         = require 'react-router/lib/Link'
-moment        = require 'moment'
-#TODO Use two letter language code from server.cjsx with context
-require 'moment/locale/nb'
-
+moment       = require '../../util/moment-configured.js'
 config       = require '../../config'
-
-intl = require 'react-intl'
+intl         = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 
 class TransitLeg extends React.Component

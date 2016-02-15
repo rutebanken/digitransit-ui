@@ -2,9 +2,7 @@ React = require 'react'
 RouteNumber  = require '../departure/route-number'
 Distance = require './distance'
 
-moment = require 'moment'
-#TODO Use two letter language code from server.cjsx with context
-require 'moment/locale/nb'
+moment = require '../../util/moment-configured.js'
 
 intl = require 'react-intl'
 FormattedMessage = intl.FormattedMessage

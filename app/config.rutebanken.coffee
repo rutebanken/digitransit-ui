@@ -72,3 +72,11 @@ module.exports =
     title: "Rutebanken"
     description: "... under utvikling ..."
   hideTicketInformation : true
+  moment:
+    locale: "nb"
+    relativeTimeThreshold:
+      seconds: 55
+      minutes: 59
+      hours: 23
+      days: 26
+      months: 11

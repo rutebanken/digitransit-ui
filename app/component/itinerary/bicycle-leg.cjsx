@@ -1,8 +1,6 @@
 React = require 'react'
 RouteNumber  = require '../departure/route-number'
-moment = require 'moment'
-#TODO Use two letter language code from server.cjsx with context
-require 'moment/locale/nb'
+moment = require '../../util/moment-configured.js'
 
 Distance = require './distance'
 

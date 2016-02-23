@@ -17,24 +17,26 @@ class EndpointStore extends Store
     @origin.useCurrentPosition || @destination.useCurrentPosition
 
   clearOrigin: () =>
-    if @origin?.userSetPosition && @origin.address?.length > 0
-      @origin = @getUseCurrent(null, false)
-      @emitChange("set-origin")
+    @origin = @getUseCurrent(null, false)
+    @emitChange("set-origin")
 
   clearDestination: () =>
-    if @destination?.userSetPosition && @destination.address?.length > 0
-      @destination = @getUseCurrent(null, false)
-      @emitChange()
+    @destination = @getUseCurrent(null, false)
+    @emitChange()
 
-  swapOriginDestination: () ->
+  swapEndpoints: () ->
     [@destination, @origin] = [@origin, @destination]
     @emitChange()
 
   setOriginToCurrent: () ->
+    if @destination.useCurrentPosition == true
+      @clearDestination()
     @origin = @getUseCurrent(@origin, true)
     @emitChange("set-origin")
 
   setDestinationToCurrent: () ->
+    if @origin.useCurrentPosition == true
+      @clearOrigin()
     @destination = @getUseCurrent(@destination, true)
     @emitChange()
 
@@ -53,39 +55,6 @@ class EndpointStore extends Store
       lon: location.lon
       address: location.address
     @emitChange("set-origin")
-
-  enableOriginInputMode: () =>
-    @originFocusRequired = true
-    @enable(@origin)
-
-  disableOriginInputMode: () ->
-    if @origin.address == ""
-      @origin.userSetPosition = false
-      @emitChange()
-
-  enableDestinationInputMode: () ->
-    @destinationFocusRequired = true
-    @enable(@destination)
-
-  enable: (t) ->
-    t.userSetPosition = true
-    t.useCurrentPosition = false
-    @emitChange()
-
-  isOriginFocus: () =>
-    focus = @originFocusRequired
-    @originFocusRequired = false
-    focus
-
-  isDestinationFocus: () =>
-    focus = @destinationFocusRequired
-    @destinationFocusRequired = false
-    focus
-
-  disableDestinationInputMode: () ->
-    if @destination.address == ""
-      @destination.userSetPosition = false
-      @emitChange()
 
   setDestination: (location) ->
     @destination =
@@ -116,12 +85,23 @@ class EndpointStore extends Store
     @origin = data.origin
     @destination = data.destination
 
+  setEndpoint: (props) ->
+    {target, value} = props
+    if "destination" == target
+      @setDestination value
+    else
+      @setOrigin value
+
+  useCurrentPosition: (target) ->
+    if "destination" == target
+      @setDestinationToCurrent()
+    else
+      @setOriginToCurrent()
+
   @handlers:
-    "setOrigin": "setOrigin"
-    "setDestination": "setDestination"
-    "setOriginToCurrent": "setOriginToCurrent"
-    "setDestinationToCurrent": "setDestinationToCurrent"
-    "swapOriginDestination": "swapOriginDestination"
+    "setEndpoint": "setEndpoint"
+    "useCurrentPosition": "useCurrentPosition"
+    "swapEndpoints": "swapEndpoints"
     "clearOrigin": "clearOrigin"
     "clearDestination": "clearDestination"
     "GeolocationNotSupported": 'clearGeolocation'
@@ -129,12 +109,5 @@ class EndpointStore extends Store
     "GeolocationTimeout": 'clearGeolocation'
     "clearGeolocation": "clearGeolocation"
     "isCurrentPositionInUse": "isCurrentPositionInUse"
-    "enableOriginInputMode": "enableOriginInputMode"
-    "disableOriginInputMode": "disableOriginInputMode"
-    "enableDestinationInputMode": "enableDestinationInputMode"
-    "disableDestinationInputMode": "disableDestinationInputMode"
-    "isDestinationFocus": "isDestinationFocus"
-    "isOriginFocus": "isOriginFocus"
-
 
 module.exports = EndpointStore

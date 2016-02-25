@@ -29,21 +29,37 @@ ItineraryTabs = React.createClass
   toggleFullscreenMap: ->
     @setState ("fullscreen": !@state.fullscreen)
 
-  focusMap: (leg) ->
-    @setState (
-      "lat": leg.from.lat
-      "lon": leg.from.lon
-    )
+  focusMap: (lat, lon) ->
+    @setState
+      "lat": lat
+      "lon": lon
+
+  unFocus: ->
+    @setState
+      lat: undefined
+      lon: undefined
 
   render: ->
     numberOfLegs = @props.itinerary.legs.length
     leafletObj = <ItineraryLine key="line" legs={@props.itinerary.legs} showFromToMarkers={true} showTransferLabels={true}/>
+
     if @state.fullscreen == true
       <div style={"height": "100%"}
         onTouchStart={(e) => e.stopPropagation()}
         onMouseDown={(e) => e.stopPropagation()}
         >
-        <Map className="fullscreen" ref="map2" leafletObjs={leafletObj} lat={@state.lat} lon={@state.lon} zoom="16" fitBounds={false} from={@props.itinerary.legs[0].from} to={@props.itinerary.legs[numberOfLegs - 1].to}>
+        <Map
+          className="fullscreen"
+          ref="map2"
+          leafletObjs={leafletObj}
+          lat={@state.lat}
+          lon={@state.lon}
+          zoom="16"
+          fitBounds={false}
+          from={@props.itinerary.legs[0].from}
+          to={@props.itinerary.legs[numberOfLegs - 1].to}
+          leafletEvents={if @state.lat then onLeafletDragstart: @unFocus, onLeafletZoomend: @unFocus}
+          >
             <div className="fullscreen-toggle" onClick={@toggleFullscreenMap}>
               <Icon img={'icon-icon_maximize'} className="cursor-pointer" />
             </div>
@@ -53,22 +69,36 @@ ItineraryTabs = React.createClass
     else
       legs = []
       @props.itinerary.legs.forEach (leg, j) =>
-        focus = () => @focusMap(leg)
+        focus = () => @focusMap(leg.from.lat, leg.from.lon)
         if leg.transitLeg
           legs.push <TransitLeg key={j} index={j} leg={leg} focusAction={focus}/>
         else if leg.mode == 'WAIT'
           legs.push <WaitLeg key={j} index={j} leg={leg} legs={numberOfLegs} focusAction={focus}/>
         else
           legs.push <WalkLeg key={j} index={j} leg={leg} legs={numberOfLegs} focusAction={focus}/>
-      legs.push <EndLeg key={numberOfLegs}  index={numberOfLegs} endTime={@props.itinerary.endTime} to={@props.itinerary.legs[numberOfLegs - 1].to.name}/>
 
+      legs.push <EndLeg
+                  key={numberOfLegs}
+                  index={numberOfLegs}
+                  endTime={@props.itinerary.endTime}
+                  to={@props.itinerary.legs[numberOfLegs - 1].to.name}
+                  focusAction={() => @focusMap(@props.itinerary.legs[numberOfLegs - 1].to.lat, @props.itinerary.legs[numberOfLegs - 1].to.lon)}/>
 
       <div>
           <div
             onTouchStart={(e) => e.stopPropagation()}
             onMouseDown={(e) => e.stopPropagation()}
-            >
-            <Map ref="map" leafletObjs={leafletObj} lat={@state.lat} lon={@state.lon} zoom="16" fitBounds={false} from={@props.itinerary.legs[0].from} to={@props.itinerary.legs[numberOfLegs - 1].to}>
+          >
+            <Map
+              ref="map"
+              leafletObjs={leafletObj}
+              lat={@state.lat}
+              lon={@state.lon}
+              zoom="16"
+              fitBounds={false}
+              from={@props.itinerary.legs[0].from}
+              to={@props.itinerary.legs[numberOfLegs - 1].to}
+              leafletEvents={if @state.lat then onLeafletDragstart: @unFocus, onLeafletZoomend: @unFocus}>
               <div className="fullscreen-toggle" onClick={@toggleFullscreenMap}>
                 <Icon img={'icon-icon_maximize'} className="cursor-pointer" />
               </div>
@@ -76,10 +106,10 @@ ItineraryTabs = React.createClass
           </div>
         <Tabs className="itinerary-tabs">
           <Tabs.Panel className="fullscreen">
-            <div className="momentum-scroll">
-              <ItinerarySummary itinerary={@props.itinerary}>
-                <TimeFrame startTime={@props.itinerary.startTime} endTime={@props.itinerary.endTime} className="timeframe--itinerary-summary"/>
-              </ItinerarySummary>
+            <ItinerarySummary itinerary={@props.itinerary}>
+              <TimeFrame startTime={@props.itinerary.startTime} endTime={@props.itinerary.endTime} className="timeframe--itinerary-summary"/>
+            </ItinerarySummary>
+            <div className="momentum-scroll itinerary-tabs__scroll">
               <div className="itinerary-main">
                 {legs}
                 <RouteInformation/>

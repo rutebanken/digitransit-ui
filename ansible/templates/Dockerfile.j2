@@ -1,0 +1,31 @@
+FROM node:5.5-wheezy
+# https://github.com/nodejs/docker-node/blob/master/5.5/wheezy/Dockerfilehttps://github.com/nodejs/docker-node/blob/master/5.5/wheezy/Dockerfile
+
+# https://github.com/Yelp/dumb-init
+RUN wget --quiet https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64.deb
+RUN dpkg -i dumb-init_*.deb
+RUN npm set progress=false
+
+EXPOSE 8000
+
+# Forcing reset of source:
+RUN echo "{{ansible_date_time.epoch}}" /build_time.txt
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY source/ .
+
+RUN git log -n 1 --pretty=format:"%H" > /git_hash.txt
+RUN npm install && \
+  npm run static && \
+  SERVER_ROOT=http://localhost:8080 CONFIG=rutebanken npm run build
+
+ENV ROOT_PATH=""
+ENV CONFIG="rutebanken"
+ENV PIWIK_ADDRESS="http://rutebanken.piwik.pro/piwik.php"
+ENV PIWIK_ID="1"
+
+# Build app, use current host as SERVER_ROOT
+ENV PORT=8088
+EXPOSE 8088
+
+CMD [ "dumb-init", "npm", "run", "start" ]

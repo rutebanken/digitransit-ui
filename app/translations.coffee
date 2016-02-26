@@ -155,7 +155,6 @@ translations =
     'route-with-headsign': "Linje {route} i riktning mot {headsign}"
     'route-without-headsign': "Linje {route}"
     'end-journey': 'Avsluta resan vid'
-    'buy-ticket': 'Biljett'
     'required-ticket': 'Biljett för resan'
     'num-stops': '{stops, plural,
                              =1 {en hållplats}
@@ -364,115 +363,5 @@ translations =
     'save': "Lagre"
     'address': 'Adresse'
     'wait-message': 'Vänta i {estimatedMinutes} minuter vid {stopPlace}'
-
-  'no':
-    'stop-page.title': "Holdeplass {stop_name}"
-    'stop-page.description': "Holdeplass {stop_name} - {stop_code}"
-    'route-page.title': "Rute {route_short_name}"
-    'route-page.description': "Rute {route_short_name} - {route_long_name}"
-    'itinerary-page.title': "Reisebeksrivelse"
-    'itinerary-page.description': "Reisebeskrivelse"
-    'trip-page.title': "Linje {route_short_name}"
-    'trip-page.description': "Linje {route_short_name} - {route_long_name}"
-    'itinerary-summary-page.title': "Anbefalt rute"
-    'itinerary-summary-page.description': "Anbefalt rute"
-    'description': 'Löydä joukkoliikennetarjonta lähelle ja kauas.' #TODO
-    'searching-position': 'Leter etter posisjon'
-    'own-position': 'Min posisjon'
-    'no-position': 'Ingen posisjon'
-    'origin': 'Fra'
-    'destination': 'Til'
-    'nearest': 'Nærmeste'
-    'previous': 'Tidligere'
-    'favourites': 'Favoritter'
-    'show-more': 'Vis flere'
-    'now': 'Nå'
-    'later': 'Senere'
-    'instructions': 'Instruksjoner'
-    'map': 'Kart'
-    'start-journey-stop': 'Start fra holdeplassen'
-    'route-with-headsign': "Rute {route} mot {headsign}"
-    'route-without-headsign': "Rute {route}"
-    'end-journey': 'Avslutt reisen ved'
-    'buy-ticket': 'Kjøp billett'
-    'required-ticket': 'Billett før påstigning'
-    'num-stops': '{stops, plural,
-                             =1 {en holdeplass}
-                             other {# holdeplasser}
-                            } ({minutes, plural,
-                               =1 {et minutt}
-                               other {# minutter}})'
-    'alight': 'Gå av ved holdeplassen'
-    'start-journey-place': 'Start fra'
-    'walk-to-destination': 'Gå til destinasjon'
-    'walk-to-stop': 'Gå til holdeplassen'
-    'share': 'Del reisen'
-    'print': 'Skriv ut'
-    'navigate': 'Naviger'
-    'minutes': 'minutter'
-    'nearby-stops': 'Holdeplasser i nærheten'
-    'nearby-routes': 'Ruter i nærheten'
-    'routes': 'Ruter'
-    'time': 'Tid'
-    'stop': 'Holdeplass'
-    'stops': 'Holdeplasser'
-    'stop-number': 'Holdeplassnummer'
-    'right-now': 'Nå'
-    'minutes': 'min'
-    'timetable': 'Tidtabeller'
-    'no-favourites': 'Du har ikke lagret noen favoritter enda'
-    'distance-under': 'Avstand mindre enn {distance} m'
-    'distance-between': 'Avstand {distance1} m — {distance2} m'
-    'tickets': 'Billetter'
-    'settings': 'Innstillinger'
-    'terms-of-use': 'Brukervilkår'
-    'hsl-contact-information': 'Rutebanken kontaktinformasjon'
-    'create-account': 'Lag Rutebanken-konto'
-    'login': 'Logg inn'
-    'off-canvas-info': 'Ved å logge inn kan du finne tilbake til dine favoritter på andre enheter'
-    'cause': 'Årsak'
-    'disruption-info': 'Avviksmelding'
-    'disruption-info-no-alerts': 'Ingen avviksmeldinger.'
-    'leaving-at': 'Avgangstid'
-    'arriving-at': 'Ankomsttid'
-    'route-here': 'Finn rute hit'
-    'walking': 'Gange'
-    'prefer-walking': 'Foretrekk gange'
-    'avoid-walking': 'Unngå gange'
-    'transfers': 'Bytter'
-    'transfers-allowed': 'Bytter tillatt'
-    'avoid-transfers': 'Unngå bytter'
-    'transfers-margin': 'Byttetid'
-    'walking-speed': 'Ganghastighet'
-    'slow': 'Spasering'
-    'run': 'Løping'
-    'zones': 'Billettsoner'
-    'accessibility': 'Tilgjengelighet'
-    'no-position-no-stops': 'Kan ikke vise holdeplasser i nærheten da vi ikke vet din posisjon.'
-    'geolocate-yourself': 'Finn min posisjon'
-    'or': 'eller'
-    'give-position': 'Skriv inn posisjon i søkefeltet over.'
-    'give-origin': 'Skriv inn avgangssted'
-    'give-destination': 'Skriv in destinasjon'
-    'select-position': 'Velg din posisjon basert på tidligere søk'
-    'page-not-found': 'Siden kunne ikke finnes ੨( ･᷄ ︵･᷅ )ｼ'
-    'today': 'I dag'
-    'tomorrow': 'I morgen'
-    'not-implemented': '{name} - funksjonen er ikke implementert'
-    'not-implemented-msg': 'Om du vil delta i utviklingen kan du finne mer informasjon i følgende lenker'
-    'route-not-possible': 'Dessverre kan vi ikke finne et reiseforslag til deg. Teknisk feil: "{error}"'
-    'realtime-matching': 'Sanntidsmatching'
-    'locate': 'Lokalisere'
-    'extra-info': 'mer info'
-    'bike-availability': 'Sykler finnes'
-    'citybike-register-required': 'Bysykkelregistrering påkreves'
-    'use-citybike': 'Bruk bysykkel'
-    'citybike': 'Bysykkel'
-    'inquiry': 'Send forespørsel'
-    'platform-num': 'Plattform {platformCode}'
-    'departures': 'Avganger'
-    'show-departures': 'Vis avganger'
-    'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute. Forsøk å endre adresse'
-    'close': 'Steng'
 
 module.exports = translations

@@ -33,6 +33,8 @@ module.exports =
   maxBikingDistance: 40000
   leftMenu:
     show: true
+  availableLanguages: ['fi', 'sv', 'en', 'nb']
+  defaultLanguage: 'en'
   itinerary:
     # How long vehicle should be late in order to mark it delayed. Measured in seconds.
     delayThreshold: 180
@@ -106,3 +108,10 @@ module.exports =
       available: true
     accessibility:
       available: true
+  moment:
+    relativeTimeThreshold:
+      seconds: 55
+      minutes: 59
+      hours: 23
+      days: 26
+      months: 11

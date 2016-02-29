@@ -6,6 +6,9 @@ var csswring = require('csswring');
 var StatsPlugin = require('stats-webpack-plugin');
 var fs = require("fs");
 
+require('coffee-script/register');
+var config = require('./app/config')
+
 var port = process.env.HOT_LOAD_PORT || 9000;
 
 
@@ -36,16 +39,21 @@ function getLoadersConfig(env) {
 }
 
 function getPluginsConfig(env) {
+  if(!config.availableLanguages) {
+    throw "availableLanguages needs to be configured in the config file";
+  }
+  var languageExpression = new RegExp("/" + config.availableLanguages.join('|') + "/");
+
   if (env === "development") {
     return([
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.ContextReplacementPlugin(/moment(\/|\\)locale$/, /fi|sv|en\-gb/),
+      new webpack.ContextReplacementPlugin(/moment(\/|\\)locale$/, languageExpression),
       new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify("development")}}),
       new webpack.NoErrorsPlugin()
     ])
   } else {
     return([
-      new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /fi|sv|en\-gb/),
+      new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, languageExpression),
       new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify("production")}}),
       new webpack.PrefetchPlugin('react'),
       new webpack.PrefetchPlugin('react-router'),

@@ -234,7 +234,7 @@ translations =
     'wait-message': 'Vänta i {estimatedMinutes} minuter vid {stopPlace}'
     'airport-check-in': 'Bagage kan checkas in på {agency}'
     'airport-security-check-go-to-gate': 'Gå igenom säkerhetskontrollen och gå till gate'
-    'airport-collect-luggage': 'Samla ditt bagage om någon'    
+    'airport-collect-luggage': 'Samla ditt bagage om någon'
   'nb':
     'stop-page.title': "Holdeplass {stop_name}"
     'stop-page.description': "Holdeplass {stop_name} - {stop_code}"

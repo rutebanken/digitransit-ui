@@ -42,7 +42,7 @@ translations =
                             } ({minutes, plural,
                                =1 {yksi minuutti}
                                other {# minuutia}})'
-    'alight': 'Nouse kyydistä pysäkillä'
+    'alight': 'Nouse kyydistä pysäkillä ({toName})'
     'start-journey-place': 'Aloita matka paikasta'
     'share': 'Jaa ohje'
     'print': 'Tulosta'
@@ -164,7 +164,7 @@ translations =
                             } ({minutes, plural,
                                =1 {en minut}
                                other {# minuter}})'
-    'alight': 'Stig av vid hållplatsen'
+    'alight': 'Stig av vid hållplatsen {toName}'
     'start-journey-place': 'Utgå från'
     'share': 'Dela resan'
     'print': 'Skriv ut'

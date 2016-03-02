@@ -42,7 +42,6 @@ translations =
                             } ({minutes, plural,
                                =1 {yksi minuutti}
                                other {# minuutia}})'
-    'alight': 'Nouse kyydistä pysäkillä ({toName})'
     'start-journey-place': 'Aloita matka paikasta'
     'share': 'Jaa ohje'
     'print': 'Tulosta'
@@ -133,6 +132,8 @@ translations =
     'airport-check-in': 'Tee lähtöselvitys lentoyhtiön {agency} tiskillä'
     'airport-security-check-go-to-gate': 'Kävele turvatarkastuksen läpi lähtöportille'
     'airport-collect-luggage': 'Nouda matkatavarat'
+    'bus': 'bussilla'
+    'transit-from-to': 'Matkusta {transitMode} pysäkiltä {fromName} pysäkille {toName} ({duration})'
   'sv':
     'searching-position': 'Letar efter position'
     'own-position': 'Egen position'
@@ -164,7 +165,6 @@ translations =
                             } ({minutes, plural,
                                =1 {en minut}
                                other {# minuter}})'
-    'alight': 'Stig av vid hållplatsen {toName}'
     'start-journey-place': 'Utgå från'
     'share': 'Dela resan'
     'print': 'Skriv ut'
@@ -275,7 +275,10 @@ translations =
                              =1 {en holdeplass}
                              other {# holdeplasser}
                             } ({duration})'
-    'alight': 'Gå av ved {toName}'
+    'num-stops-flight': '{stops, plural,
+                            =1 {En mellomlanding}
+                            other {# mellomlandinger}
+                           }'
     'start-journey-place': 'Start fra'
     'share': 'Del reisen'
     'print': 'Skriv ut'
@@ -371,5 +374,18 @@ translations =
     'airport-security-check-go-to-gate': 'Passer sikkerhetskontrollen og fortsett til gate'
     'airport-collect-luggage': 'Hent eventuell bagasje'
     'cycle-from-to': 'Sykle i {estimatedTime} fra {fromName} til {toName}'
+    'rail': 'tog'
+    'subway': 'T-bane'
+    'bus': 'buss'
+    'airplane': 'fly'
+    'walk': 'gå'
+    'bicycle': 'sykkel'
+    'car': 'bil'
+    'tram': 'trikk'
+    'ferry': 'ferge'
+    'cable_car': 'kabeltrikk'
+    'gondola': 'gondolbane'
+    'funicular': 'taubane'
+    'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName} ({duration})'
 
 module.exports = translations

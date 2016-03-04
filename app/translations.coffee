@@ -31,8 +31,8 @@ translations =
     'instructions': 'Ohjeet'
     'map': 'Kartta'
     'start-journey-stop': 'Aloita matka pysäkiltä'
-    'route-with-headsign': "Linja {route} suuntaan {headsign}"
-    'route-without-headsign': "Linja {route}"
+    'route-with-headsign': 'Reitti suuntaan {headsign}'
+    'route-without-headsign': 'Linja {route}'
     'end-journey': 'Lopeta matka paikassa'
     'buy-ticket': 'Osta lippu'
     'required-ticket': 'Reitillä tarvittava lippu'
@@ -41,7 +41,7 @@ translations =
                              other {# pysäkkiä}
                             } ({minutes, plural,
                                =1 {yksi minuutti}
-                               other {# minuutia}})'
+                               other {# minuuttia}})'
     'start-journey-place': 'Aloita matka paikasta'
     'share': 'Jaa ohje'
     'print': 'Tulosta'
@@ -114,7 +114,8 @@ translations =
     'how-to-rate-service': 'Kuinka arvioisit palvelua?'
     'char-left': 'merkkiä'
     'send': 'Lähetä'
-    'walk-from-to': "Kävele {estimatedTime} paikasta {fromName} paikkaan {toName}"
+    'walk-from-to': "Kävele {fromName} - {toName}"
+    'approx-meters': '{approxDistance} m'
     'very-likely': 'Erittäin todennäköistä'
     'very-unlikely': 'Erittäin epätodennäköistä'
     'weather-at-destination': 'Sää määränpäässä'
@@ -128,12 +129,25 @@ translations =
     'location-examples': "esim. Koti, Työ, Koulu,..."
     'save': "Tallenna"
     'address': 'Osoite'
-    'wait-message': 'Odota {estimatedTime} paikassa {stopPlace}'
+    'wait-message': 'Odota paikassa {stopPlace}'
     'airport-check-in': 'Tee lähtöselvitys lentoyhtiön {agency} tiskillä'
     'airport-security-check-go-to-gate': 'Kävele turvatarkastuksen läpi lähtöportille'
     'airport-collect-luggage': 'Nouda matkatavarat'
     'bus': 'bussilla'
-    'transit-from-to': 'Matkusta {transitMode} pysäkiltä {fromName} pysäkille {toName} ({duration})'
+    'rail': 'juna'
+    'subway': 'metro'
+    'bus': 'bussi'
+    'airplane': 'lento'
+    'walk': 'kävele'
+    'bicycle': 'pyörä'
+    'car': 'auto'
+    'tram': 'raitiovaunu'
+    'ferry': 'lautta'
+    'cable_car': 'kondooli'
+    'gondola': 'kondooli'
+    'funicular': 'juna'
+    'transit-from-to': 'Ota {transitMode} {fromName} - {toName}'
+    'cycle-from-to': 'Pyöräile {fromName} - {toName}'
   'sv':
     'searching-position': 'Letar efter position'
     'own-position': 'Egen position'
@@ -373,7 +387,6 @@ translations =
     'airport-check-in': 'Bagasje kan sjekkes inn hos {agency}'
     'airport-security-check-go-to-gate': 'Passer sikkerhetskontrollen og fortsett til gate'
     'airport-collect-luggage': 'Hent eventuell bagasje'
-    'cycle-from-to': 'Sykle i {estimatedTime} fra {fromName} til {toName}'
     'rail': 'tog'
     'subway': 'T-bane'
     'bus': 'buss'
@@ -387,5 +400,6 @@ translations =
     'gondola': 'gondolbane'
     'funicular': 'taubane'
     'transit-from-to': 'Ta {transitMode} fra {fromName} til {toName} ({duration})'
+    'cycle-from-to': 'Sykle i {estimatedTime} fra {fromName} til {toName}'
 
 module.exports = translations

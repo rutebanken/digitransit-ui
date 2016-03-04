@@ -2,7 +2,8 @@ React        = require 'react'
 moment       = require 'moment'
 intl         = require 'react-intl'
 RouteNumber  = require '../departure/route-number'
-
+Icon         = require '../icon/icon'
+Distance     = require './distance'
 FormattedMessage = intl.FormattedMessage
 FormattedRelative = intl.FormattedRelative
 
@@ -25,6 +26,10 @@ class BicycleLeg extends React.Component
               toName: <b>{@props.leg.to.name}</b>
               estimatedTime: <b>{moment.duration(@props.leg.duration, 'seconds').humanize()}</b>}}
             defaultMessage='Cycle for about {estimatedTime} from {fromName} to {toName}' />
+          <Icon img={'icon-icon_search-plus'} className={'itinerary-search-icon'}/>
+        </div>
+        <div>
+          <Distance distance={@props.leg.distance}/>
         </div>
       </div>
     </div>

@@ -1,2 +1,3 @@
-module.exports.addFavouriteLocation = (actionContext, location) ->
-  actionContext.dispatch "AddFavouriteLocation", location
+module.exports =
+  'addFavouriteLocation': (actionContext, location) ->
+    actionContext.dispatch "AddFavouriteLocation", location

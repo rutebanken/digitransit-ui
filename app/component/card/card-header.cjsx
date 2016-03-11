@@ -1,5 +1,5 @@
 React                 = require 'react'
-Icon                  = require '../icon/icon'
+Icon                  = require '../icon/icon.cjsx'
 Link                  = require 'react-router/lib/Link'
 cx                    = require 'classnames'
 NotImplementedLink    = require '../util/not-implemented-link'

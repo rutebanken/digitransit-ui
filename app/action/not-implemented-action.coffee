@@ -1,2 +1,3 @@
-module.exports.click = (actionContext, feature) ->
-  actionContext.dispatch "click", feature
+module.exports =
+  click: (actionContext, feature) ->
+    actionContext.dispatch "click", feature

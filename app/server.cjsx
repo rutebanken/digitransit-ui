@@ -6,8 +6,10 @@ ReactDOM = require('react-dom/server')
 
 ### Route and history management ###
 match = require('react-router/lib/match')
-RouterContext = require('react-router/lib/RouterContext')
-createHistory = require('react-router/lib/createMemoryHistory')
+RoutingContext = require('react-router/lib/RoutingContext')
+createHistory = require('history/lib/createMemoryHistory')
+useQueries = require('history/lib/useQueries')
+useBasename = require('history/lib/useBasename')
 
 ### Fluxible ###
 FluxibleComponent = require('fluxible-addons-react/FluxibleComponent')
@@ -95,7 +97,13 @@ getContent = (context, renderProps, locale) ->
   ReactDOM.renderToString(
     <FluxibleComponent context={context.getComponentContext()}>
       <IntlProvider locale={locale} messages={translations[locale]}>
-        <RouterContext {...renderProps}/>
+        <RoutingContext
+          history={renderProps.history}
+          createElement={React.createElement}
+          location={renderProps.location}
+          routes={renderProps.routes}
+          params={renderProps.params}
+          components={renderProps.components} />
       </IntlProvider>
     </FluxibleComponent>
   )
@@ -123,7 +131,7 @@ module.exports = (req, res, next) ->
   context = application.createContext()
   #required by material-ui
   global.navigator = userAgent: req.headers['user-agent']
-  location = createHistory(basename: config.APP_PATH).createLocation(req.url)
+  location = useBasename(useQueries(createHistory))(basename: config.APP_PATH).createLocation(req.url)
 
   match {routes: context.getComponent(), location: location}
   , (error, redirectLocation, renderProps) ->

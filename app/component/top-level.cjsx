@@ -4,15 +4,8 @@ meta   = require('../meta')
 configureMoment = require '../util/configure-moment'
 
 class TopLevel extends React.Component
-
   @contextTypes:
     getStore: React.PropTypes.func.isRequired
-
-  @childContextTypes:
-    location: React.PropTypes.object
-
-  getChildContext: () ->
-    location: @props.location
 
   render: ->
     preferencesStore = @context.getStore('PreferencesStore')

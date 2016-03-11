@@ -4,7 +4,7 @@ queries               = require '../../queries'
 Tabs                  = require 'react-simpletabs'
 ModeFilterContainer   = require '../route/mode-filter-container'
 NoPositionPanel       = require './no-position-panel'
-Icon                  = require '../icon/icon'
+Icon                  = require '../icon/icon.cjsx'
 cx                    = require 'classnames'
 ReactCSSTransitionGroup = require 'react-addons-css-transition-group'
 FavouritesPanel       = require '../favourites/favourites-panel'
@@ -21,7 +21,7 @@ class FrontPagePanel extends React.Component
     getStore: React.PropTypes.func.isRequired
     intl: intl.intlShape.isRequired
     piwik: React.PropTypes.object
-    router: React.PropTypes.object.isRequired
+    history: React.PropTypes.object.isRequired
     location: React.PropTypes.object.isRequired
     executeAction: React.PropTypes.func.isRequired
 
@@ -63,13 +63,13 @@ class FrontPagePanel extends React.Component
     if supportsHistory()
       tabOpensOrCloses = oldSelection == null or typeof oldSelection == 'undefined' or newSelection == null
       if tabOpensOrCloses
-        @context.router.push
-          state: selectedPanel: newSelection
-          pathname: @context.location.pathname
+        @context.history.pushState
+          selectedPanel: newSelection
+        , @context.location.pathname
       else
-        @context.router.replace
-          state: selectedPanel: newSelection
-          pathname: @context.location.pathname
+        @context.history.replaceState
+          selectedPanel: newSelection
+        , @context.location.pathname
     else
       @setState
         selectedPanel: newSelection

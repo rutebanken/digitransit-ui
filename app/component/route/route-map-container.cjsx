@@ -11,13 +11,13 @@ Link               = require 'react-router/lib/Link'
 
 class RouteMapContainer extends React.Component
   @contextTypes:
-    router: React.PropTypes.object.isRequired
+    history: React.PropTypes.object.isRequired
 
   @defaultProps: ->
     fullscreen: false
 
   toggleFullscreenMap: =>
-    @context.router.push "/lahdot/#{@props.tripId}/kartta"
+    @context.history.pushState null, "/lahdot/#{@props.tripId}/kartta"
 
   # map can be toggeled fullscreen on Trip page
   getFullScreenToggle: ->

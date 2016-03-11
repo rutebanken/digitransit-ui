@@ -33,13 +33,14 @@ class CityBikeMarker extends React.Component
 
   @propTypes:
     station: React.PropTypes.object.isRequired
+    key: React.PropTypes.string
     map: React.PropTypes.object.isRequired
 
   @contextTypes:
     #Needed for passing context to dynamic popup, maybe should be done in there?
     getStore: React.PropTypes.func.isRequired
     executeAction: React.PropTypes.func.isRequired
-    router: React.PropTypes.object.isRequired
+    history: React.PropTypes.object.isRequired
     route: React.PropTypes.object.isRequired
     intl: intl.intlShape.isRequired
 
@@ -49,7 +50,7 @@ class CityBikeMarker extends React.Component
   getCityBikeMarker: ->
     CityBikePopupWithContext = provideContext CityBikePopup,
       intl: intl.intlShape.isRequired
-      router: React.PropTypes.object.isRequired
+      history: React.PropTypes.object.isRequired
       route: React.PropTypes.object.isRequired
     <GenericMarker
       position={lat: @props.station.y, lon: @props.station.x}

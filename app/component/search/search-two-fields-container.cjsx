@@ -1,7 +1,7 @@
 React            = require 'react'
-EndpointActions  = require '../../action/endpoint-actions'
-PositionActions  = require '../../action/position-actions'
-SearchActions    = require '../../action/search-actions'
+EndpointActions  = require '../../action/endpoint-actions.coffee'
+PositionActions  = require '../../action/position-actions.coffee'
+SearchActions    = require '../../action/search-actions.coffee'
 {locationToOTP}  = require '../../util/otp-strings'
 SearchTwoFields  = require './search-two-fields'
 {getRoutePath}   = require '../../util/path'
@@ -15,7 +15,7 @@ class SearchTwoFieldsContainer extends React.Component
   @contextTypes:
     executeAction: React.PropTypes.func.isRequired
     getStore: React.PropTypes.func.isRequired
-    router: React.PropTypes.object.isRequired
+    history: React.PropTypes.object.isRequired
     intl: intl.intlShape.isRequired
 
   componentWillMount: =>
@@ -49,7 +49,7 @@ class SearchTwoFieldsContainer extends React.Component
   pushNonSearchState: () =>
     if location.pathname != "/"
       setTimeout(() =>
-        @context.router.push "/"
+        @context.history.pushState(null, "/")
       , 0)
 
   routeIfPossible: =>
@@ -78,7 +78,7 @@ class SearchTwoFieldsContainer extends React.Component
       # Then we can transition. We must do this in next
       # event loop in order to get blur finished.
       setTimeout(() =>
-        @context.router.push getRoutePath(from, to)
+        @context.history.pushState(null, getRoutePath(from, to))
       , 0)
 
   render: =>

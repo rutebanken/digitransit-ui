@@ -5,7 +5,7 @@ debounce   = require 'lodash/debounce'
 geolocator = (actionContext) ->
   actionContext.getStore('ServiceStore').geolocator()
 
-module.exports.reverseGeocodeAddress = reverseGeocodeAddress = (actionContext, location, done) ->
+reverseGeocodeAddress = (actionContext, location, done) ->
 
   xhrPromise.getJson(config.URL.PELIAS_REVERSE_GEOCODER,
       "point.lat": location.lat
@@ -20,7 +20,7 @@ module.exports.reverseGeocodeAddress = reverseGeocodeAddress = (actionContext, l
         city: match.locality
     done()
 
-module.exports.findLocation = (actionContext, payload, done) ->
+findLocation = (actionContext, payload, done) ->
   # First check if we have geolocation support
   if not geolocator(actionContext).geolocation
     actionContext.dispatch "GeolocationNotSupported"
@@ -44,7 +44,7 @@ broadcastCurrentLocation = (actionContext) =>
   if @position
     actionContext.dispatch "GeolocationFound", @position
 
-module.exports.startLocationWatch = (actionContext, payload, done) ->
+startLocationWatch = (actionContext, payload, done) ->
   # First check if we have geolocation support
   if not geolocator(actionContext).geolocation
     actionContext.dispatch "GeolocationNotSupported"
@@ -94,5 +94,11 @@ module.exports.startLocationWatch = (actionContext, payload, done) ->
     window.position.pos = null
   done()
 
-module.exports.removeLocation = (actionContext) ->
+removeLocation = (actionContext) ->
   actionContext.dispatch "GeolocationRemoved"
+
+module.exports =
+  'findLocation': findLocation
+  'removeLocation': removeLocation
+  'reverseGeocodeAddress': reverseGeocodeAddress
+  'startLocationWatch': startLocationWatch

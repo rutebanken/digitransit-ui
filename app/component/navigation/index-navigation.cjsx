@@ -16,7 +16,7 @@ class IndexNavigation extends React.Component
     executeAction: React.PropTypes.func.isRequired
     intl: intl.intlShape.isRequired
     piwik: React.PropTypes.object
-    router: React.PropTypes.object.isRequired
+    history: React.PropTypes.object.isRequired
     location: React.PropTypes.object.isRequired
 
   constructor: ->
@@ -75,11 +75,11 @@ class IndexNavigation extends React.Component
     @context.piwik?.trackEvent "Offcanvas", "Index", if newState then "open" else "close"
     if supportsHistory()
       if newState
-        @context.router.push
-          state: offcanvasVisible: newState
-          pathname: @context.location.pathname + if window.location.search?.indexOf('mock') > -1 then "?mock" else ""
+        @context.history.pushState
+          offcanvasVisible: newState
+        , @context.location.pathname + if window.location.search?.indexOf('mock') > -1 then "?mock" else ""
       else
-        @context.router.goBack()
+        @context.history.goBack()
 
   getOffcanvasState: =>
     if typeof window != 'undefined' and supportsHistory()

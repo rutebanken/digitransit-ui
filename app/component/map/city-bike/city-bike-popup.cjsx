@@ -1,5 +1,5 @@
 React                 = require 'react'
-Icon                  = require '../../icon/icon'
+Icon                  = require '../../icon/icon.cjsx'
 MarkerPopupBottom     = require '../marker-popup-bottom'
 NotImplementedLink    = require '../../util/not-implemented-link'
 {FormattedMessage}    = require('react-intl')

@@ -1,5 +1,5 @@
 React                 = require 'react'
-Icon                  = require '../icon/icon'
+Icon                  = require '../icon/icon.cjsx'
 groupBy               = require 'lodash/groupBy'
 uniq                  = require 'lodash/uniq'
 routeCompare          = require '../../util/route-compare'

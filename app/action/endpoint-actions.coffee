@@ -1,4 +1,4 @@
-module.exports.setEndpoint = (actionContext, {target, endpoint}) ->
+setEndpoint = (actionContext, {target, endpoint}) ->
   actionContext.dispatch "setEndpoint",
     target: target
     value:
@@ -6,17 +6,25 @@ module.exports.setEndpoint = (actionContext, {target, endpoint}) ->
       lon: endpoint.lon
       address: endpoint.address
 
-module.exports.setUseCurrent = (actionContext, target) ->
+setUseCurrent = (actionContext, target) ->
   actionContext.dispatch "useCurrentPosition", target
 
-module.exports.swapEndpoints = (actionContext) ->
+swapEndpoints = (actionContext) ->
   actionContext.dispatch "swapEndpoints"
 
-module.exports.clearOrigin = (actionContext) ->
+clearOrigin = (actionContext) ->
   actionContext.dispatch "clearOrigin"
 
-module.exports.clearDestination = (actionContext) ->
+clearDestination = (actionContext) ->
   actionContext.dispatch "clearDestination"
 
-module.exports.clearGeolocation = (actionContext) ->
+clearGeolocation = (actionContext) ->
   actionContext.dispatch "clearGeolocation"
+
+module.exports =
+  'setEndpoint': setEndpoint
+  'setUseCurrent': setUseCurrent
+  'swapEndpoints': swapEndpoints
+  'clearOrigin': clearOrigin
+  'clearDestination': clearDestination
+  'clearGeolocation': clearGeolocation

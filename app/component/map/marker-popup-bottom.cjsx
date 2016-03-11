@@ -1,6 +1,6 @@
 React       = require 'react'
 Link                  = require 'react-router/lib/Link'
-Icon                  = require '../icon/icon'
+Icon                  = require '../icon/icon.cjsx'
 {FormattedMessage} = require('react-intl')
 
 MarkerPopupBottom = (props) ->

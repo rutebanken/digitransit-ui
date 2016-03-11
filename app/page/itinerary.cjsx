@@ -17,7 +17,7 @@ class ItineraryPage extends React.Component
   @contextTypes:
     getStore: React.PropTypes.func.isRequired
     intl: intl.intlShape.isRequired
-    router: React.PropTypes.object.isRequired
+    history: React.PropTypes.object.isRequired
 
   constructor: ->
     super
@@ -54,7 +54,7 @@ class ItineraryPage extends React.Component
       else
         to = locationToOTP(destination)
       setTimeout(() =>
-        @context.router.replace getRoutePath(from, to) + "/" + index
+        @context.history.replaceState(null, getRoutePath(from, to) + "/" + index)
         itineraryTabState = @refs["itineraryTab" + index].getState()
         @focusMap(itineraryTabState.lat, itineraryTabState.lon)
       , 100)

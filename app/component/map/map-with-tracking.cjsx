@@ -3,7 +3,7 @@ timeUtils             = require '../../util/time-utils'
 cx                    = require 'classnames'
 ComponentUsageExample = require '../documentation/component-usage-example'
 Example               = require '../documentation/example-data'
-Map                   = require './map'
+Map                   = require './map.cjsx'
 ToggleMapTracking     = require '../navigation/toggle-map-tracking'
 config                = require '../../config'
 

@@ -1,5 +1,5 @@
 React                 = require 'react'
-Icon                  = require '../../icon/icon'
+Icon                  = require '../../icon/icon.cjsx'
 Link                  = require 'react-router/lib/Link'
 {FormattedMessage}    = require 'react-intl'
 RouteDestination      = require '../../departure/route-destination'

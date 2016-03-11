@@ -22,7 +22,7 @@ function getLoadersConfig(env) {
       { test: /\.jsx$/, loaders: ['react-hot', 'babel']},
       { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass']},
       { test: /\.(eot|png|ttf|woff|svg)$/, loader: 'file'},
-      { test: /app(\/|\\)queries\.js$/, loader: 'babel'},
+      { test: /app(\/|\\)queries\.js$/, loader: 'babel', query: {presets: ['es2015', 'react'], plugins: ['transform-class-properties', ['transform-es2015-classes', {loose: true}], './build/babelRelayPlugin']}},
     ])
   } else {
     return([
@@ -33,7 +33,7 @@ function getLoadersConfig(env) {
       { test: /\.jsx$/, loader: 'babel'},
       { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", 'css!postcss!sass')},
       { test: /\.(eot|png|ttf|woff|svg)$/, loader: 'file'},
-      { test: /app(\/|\\)queries\.js$/, loader: 'babel'},
+      { test: /app(\/|\\)queries\.js$/, loader: 'babel', query: {presets: ['es2015', 'react'], plugins: ['transform-class-properties', ['transform-es2015-classes', {loose: true}], './build/babelRelayPlugin']}},
     ])
   }
 }

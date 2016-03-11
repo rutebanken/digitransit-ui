@@ -1,22 +1,37 @@
 config     = require '../config'
 
-module.exports.toggleBusState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteBusState"
+module.exports =
+  toggleBusState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteBusState",
+      null,
+      null
 
-module.exports.toggleTramState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteTramState"
+  toggleTramState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteTramState",
+      null,
+      null
 
-module.exports.toggleRailState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteRailState"
+  toggleRailState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteRailState",
+      null,
+      null
 
-module.exports.toggleSubwayState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteSubwayState"
+  toggleSubwayState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteSubwayState",
+      null,
+      null
 
-module.exports.toggleFerryState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteFerryState"
+  toggleFerryState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteFerryState",
+      null,
+      null
 
-module.exports.toggleAirplaneState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteAirplaneState"
+  toggleAirplaneState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteAirplaneState",
+      null,
+      null
 
-module.exports.toggleCitybikeState = (actionContext)  ->
-  actionContext.dispatch "ToggleNearbyRouteCitybikeState"
+  toggleCitybikeState: (actionContext)  ->
+    actionContext.dispatch "ToggleNearbyRouteCitybikeState",
+      null,
+      null

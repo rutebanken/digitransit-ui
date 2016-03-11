@@ -55,11 +55,16 @@ module.exports =
     useRetinaTiles: true
     tileSize: 512
     zoomOffset: -1
+    genericMarker:
+      popup:
+        offset: [106, 3]
+        maxWidth: 250
+        minWidth: 250
   autoSuggest:
     sortOrder: currentPosition: 1, oldSearch: 2, locality: 3, address: 4, stop: 5
     sortOthers: 6
     # Let Pelias suggest based on current user location
-    locationAware: false
+    locationAware: true
   showCityBikes: false
   # Lowest level when stop or terminal markers are rendered at all
   stopsMinZoom: 15

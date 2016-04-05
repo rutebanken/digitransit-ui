@@ -10,6 +10,7 @@ EndpointActions    = require '../action/endpoint-actions.coffee'
 SummaryRow         = require '../component/summary/summary-row'
 NoRoutePopup       = require '../component/summary/no-route-popup'
 SearchTwoFieldsContainer = require '../component/search/search-two-fields-container'
+TimeNavigationButtons = require '../component/summary/time-navigation-buttons'
 ItineraryLine      = require '../component/map/itinerary-line'
 sortBy             = require 'lodash/sortBy'
 {otpToLocation, locationToCoords} = require '../util/otp-strings'
@@ -134,7 +135,7 @@ class SummaryPage extends React.Component
         <div className="spinner-loader"/>
       else
         <div>{rows}</div>}
-
+      <TimeNavigationButtons show={if plan then true else false} />
     </SummaryNavigation>
 
 module.exports = SummaryPage

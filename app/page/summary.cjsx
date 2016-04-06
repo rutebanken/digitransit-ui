@@ -135,7 +135,7 @@ class SummaryPage extends React.Component
         <div className="spinner-loader"/>
       else
         <div>{rows}</div>}
-      <TimeNavigationButtons show={if plan then true else false} />
+      <TimeNavigationButtons plan={plan} />
     </SummaryNavigation>
 
 module.exports = SummaryPage

@@ -30,6 +30,7 @@ class SummaryRow extends React.Component
       if leg.transitLeg or noTransitLegs
         if leg.realTime then realTimeAvailable = true
         legs.push <RouteNumber
+                    key={i}
                     mode={leg.mode}
                     text={legTextUtil.getLegText(leg)}
                     vertical={true}

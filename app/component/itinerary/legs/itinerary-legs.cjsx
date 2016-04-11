@@ -47,7 +47,7 @@ class ItineraryLegs extends React.Component
         legs.push <AirportCollectLuggageLeg key={j} index={j} leg={leg} focusAction={focus}/>
       else if leg.mode == 'WAIT'
         legs.push <WaitLeg key={j} index={j} leg={leg} legs={numberOfLegs} focusAction={focus}>
-          {@stopCode leg.from.stopCode}
+          {@stopCode leg.from.stop?.code}
         </WaitLeg>
       else if leg.rentedBike || leg.mode == 'BICYCLE' || leg.mode == 'CITYBIKE' || leg.mode == 'CITYBIKE_WALK'
         legs.push <BicycleLeg key={j} index={j} leg={leg} legs={numberOfLegs} focusAction={focus}/>
@@ -59,7 +59,7 @@ class ItineraryLegs extends React.Component
                     legs={numberOfLegs}
                     walkToDestination={if parseInt(j) == numberOfLegs - 1 then true else false}
                     focusAction={focus}>
-          {@stopCode leg.from.stopCode}
+          {@stopCode leg.from.stop?.code}
         </WalkLeg>
 
     legs.push <EndLeg
@@ -69,5 +69,6 @@ class ItineraryLegs extends React.Component
               focusAction={() => @props.focusMap(@props.itinerary.legs[numberOfLegs - 1].to.lat, @props.itinerary.legs[numberOfLegs - 1].to.lon)}
               to={@props.itinerary.legs[numberOfLegs - 1].to.name}/>
     <div>{legs}</div>
+
 
 module.exports = ItineraryLegs

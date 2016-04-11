@@ -6,7 +6,7 @@ inside     = require 'point-in-polygon'
 geolocator = (actionContext) ->
   actionContext.getStore('ServiceStore').geolocator()
 
-reverseGeocodeAddress = (actionContext, location, done) ->
+module.exports.reverseGeocodeAddress = reverseGeocodeAddress = (actionContext, location, done) ->
 
   xhrPromise.getJson(config.URL.PELIAS_REVERSE_GEOCODER,
       "point.lat": location.lat
@@ -21,7 +21,7 @@ reverseGeocodeAddress = (actionContext, location, done) ->
         city: match.locality
     done()
 
-findLocation = (actionContext, payload, done) ->
+module.exports.findLocation = (actionContext, payload, done) ->
   # First check if we have geolocation support
   if not geolocator(actionContext).geolocation
     actionContext.dispatch "GeolocationNotSupported"
@@ -51,7 +51,7 @@ broadcastCurrentLocation = (actionContext) =>
   if @position
     actionContext.dispatch "GeolocationFound", @position
 
-startLocationWatch = (actionContext, payload, done) ->
+module.exports.startLocationWatch = (actionContext, payload, done) ->
   # First check if we have geolocation support
   if not geolocator(actionContext).geolocation
     actionContext.dispatch "GeolocationNotSupported"
@@ -101,11 +101,5 @@ startLocationWatch = (actionContext, payload, done) ->
     window.position.pos = null
   done()
 
-removeLocation = (actionContext) ->
+module.exports.removeLocation = (actionContext) ->
   actionContext.dispatch "GeolocationRemoved"
-
-module.exports =
-  'findLocation': findLocation
-  'removeLocation': removeLocation
-  'reverseGeocodeAddress': reverseGeocodeAddress
-  'startLocationWatch': startLocationWatch

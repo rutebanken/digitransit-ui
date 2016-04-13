@@ -59,16 +59,12 @@ class SearchTwoFieldsContainer extends React.Component
       selectedTab: tab.props.value
       () =>
         if tab.props.value == "origin"
-          @context.executeAction SearchActions.executeSearch, @context.getStore('EndpointStore').getOrigin()?.address || ""
+          @context.executeAction SearchActions.executeSearch, {input: @context.getStore('EndpointStore').getOrigin()?.address || "", type: "endpoint"}
         if tab.props.value == "destination"
-          @context.executeAction SearchActions.executeSearch, @context.getStore('EndpointStore').getDestination()?.address || ""
+          @context.executeAction SearchActions.executeSearch, {input: @context.getStore('EndpointStore').getDestination()?.address || "", type: "endpoint"}
+        if tab.props.value == "search"
+          @context.executeAction SearchActions.executeSearch, {input: "", type: "search"}
         setTimeout((() => @focusInput(tab.props.value)), 0) #try to focus, does not work on ios
-
-  pushNonSearchState: () =>
-    if location.pathname != "/"
-      setTimeout(() =>
-        @context.router.push "/"
-      , 0)
 
   closeModal: () =>
     @setState
@@ -119,6 +115,10 @@ class SearchTwoFieldsContainer extends React.Component
       id: 'destination'
       defaultMessage: 'destination'
 
+    searchTabLabel = @context.intl.formatMessage
+      id: 'search'
+      defaultMessage: 'SEARCH'
+
     originPlaceholder = @context.intl.formatMessage
       id: 'origin-placeholder'
       defaultMessage: 'From where? - address or stop'
@@ -137,7 +137,7 @@ class SearchTwoFieldsContainer extends React.Component
             modalIsOpen: true
             () =>
               @focusInput("origin")
-          @context.executeAction SearchActions.executeSearch, @context.getStore('EndpointStore').getOrigin()?.address || ""}
+          @context.executeAction SearchActions.executeSearch, {"input": @context.getStore('EndpointStore').getOrigin()?.address || "", type: "endpoint"}}
         autosuggestPlaceholder={originPlaceholder}
         id='origin'
       />
@@ -152,7 +152,7 @@ class SearchTwoFieldsContainer extends React.Component
             modalIsOpen: true
             () =>
               @focusInput("destination")
-          @context.executeAction SearchActions.executeSearch, @context.getStore('EndpointStore').getDestination()?.address || ""}
+          @context.executeAction SearchActions.executeSearch, {"input": @context.getStore('EndpointStore').getDestination()?.address || "", type: "endpoint"}}
         autosuggestPlaceholder={destinationPlaceholder}
         id='destination'
       />
@@ -174,6 +174,7 @@ class SearchTwoFieldsContainer extends React.Component
               ref="searchInputorigin"
               id="search-origin"
               initialValue = {@context.getStore('EndpointStore').getOrigin()?.address || ""}
+              type="endpoint"
               onSuggestionSelected = {(name, item) =>
                 if item.type == 'CurrentLocation'
                   @context.executeAction EndpointActions.setUseCurrent, "origin"
@@ -197,6 +198,7 @@ class SearchTwoFieldsContainer extends React.Component
             ref="searchInputdestination"
             initialValue = {@context.getStore('EndpointStore').getDestination()?.address || ""}
             id={"search-destination"}
+            type="endpoint"
             onSuggestionSelected = {(name, item) =>
               if item.type == 'CurrentLocation'
                 @context.executeAction EndpointActions.setUseCurrent, 'destination'
@@ -207,6 +209,22 @@ class SearchTwoFieldsContainer extends React.Component
                     lat: item.geometry.coordinates[1]
                     lon: item.geometry.coordinates[0]
                     address: name
+              @closeModal()
+          }/>
+        </Tab>
+        <Tab
+          className={"search-header__button" + if @state.selectedTab == "search" then "--selected" else ""}
+          label={searchTabLabel}
+          value={"search"}
+          ref="searchTab"
+          onActive={@onTabChange}>
+          <SearchInput
+            ref="searchInputsearch"
+            initialValue = ""}
+            id={"search"}
+            type="search"
+            onSuggestionSelected = {(name, item) =>
+              if item.properties.link then @context.router.push item.properties.link
               @closeModal()
           }/>
         </Tab>

@@ -19,7 +19,7 @@ CityBikeCard       = require '../component/city-bike/city-bike-card'
 CityBikeContent    = require '../component/city-bike/city-bike-content'
 CityBikeAvailability = require '../component/city-bike/city-bike-availability'
 CityBikeUse          = require '../component/city-bike/city-bike-use'
-CityBikePopup       = require '../component/map/city-bike/city-bike-popup'
+CityBikePopup       = require '../component/map/popups/city-bike-popup'
 FavouriteLocationsContainer = require '../component/favourites/favourite-locations-container'
 FavouriteLocation           = require '../component/favourites/favourite-location'
 
@@ -342,7 +342,6 @@ class StyleGuidelinesPage extends React.Component
       <ComponentDocumentation component=CityBikeAvailability />
       <ComponentDocumentation component=CityBikeUse />
       <ComponentDocumentation component=CityBikePopup />
-      <ComponentDocumentation component=FavouriteLocationsContainer />
       <ComponentDocumentation component=FavouriteLocation />
     </div>
 

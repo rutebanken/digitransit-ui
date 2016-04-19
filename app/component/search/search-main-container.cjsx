@@ -1,19 +1,16 @@
 React            = require 'react'
 EndpointActions  = require '../../action/endpoint-actions'
-PositionActions  = require '../../action/position-actions'
 SearchActions    = require '../../action/search-actions'
-{locationToOTP}  = require '../../util/otp-strings'
-SearchTwoFields  = require './search-two-fields'
-{getRoutePath}   = require '../../util/path'
-SearchField      = require './search-field'
+FakeSearchWithButton = require './fake-search-with-button'
 intl             = require 'react-intl'
 FormattedMessage = intl.FormattedMessage
 SearchModal      = require './search-modal'
 config           = require '../../config'
 SearchInput      = require './search-input'
 Tab              = require 'material-ui/lib/tabs/tab'
+FakeSearchBar    = require './fake-search-bar'
 
-class SearchTwoFieldsContainer extends React.Component
+class SearchMainContainer extends React.Component
 
   constructor: () ->
     @state =
@@ -25,34 +22,6 @@ class SearchTwoFieldsContainer extends React.Component
     getStore: React.PropTypes.func.isRequired
     router: React.PropTypes.object.isRequired
     intl: intl.intlShape.isRequired
-
-  componentWillMount: =>
-    @context.getStore('EndpointStore').addChangeListener @onEndpointChange
-    @context.getStore('PositionStore').addChangeListener @onGeolocationChange
-
-  componentWillUnmount: =>
-    @context.getStore('EndpointStore').removeChangeListener @onEndpointChange
-    @context.getStore('PositionStore').removeChangeListener @onGeolocationChange
-
-  onGeolocationChange: (statusChanged) =>
-    #We want to rerender only if position status changes,
-    #not if position changes
-    if statusChanged
-      if @context.getStore('PositionStore').getLocationState().status == 'found-address'
-        @routeIfPossible() #TODO: this should not be done here
-      else
-        @forceUpdate()
-
-  onEndpointChange: () =>
-    @forceUpdate()
-    @routeIfPossible() #TODO: this should not be done here
-
-  onSwitch: (e) =>
-    e.preventDefault()
-    if @context.getStore('EndpointStore').getOrigin().useCurrentPosition and @context.getStore('PositionStore').getLocationState().isLocationingInProgress
-      return
-
-    @context.executeAction EndpointActions.swapEndpoints
 
   onTabChange: (tab) =>
     @setState
@@ -73,37 +42,23 @@ class SearchTwoFieldsContainer extends React.Component
   focusInput: (value) =>
     @refs["searchInput" + value]?.refs.autowhatever?.refs.input?.focus()
 
-  routeIfPossible: =>
+  clickSearch: =>
     geolocation = @context.getStore('PositionStore').getLocationState()
     origin = @context.getStore('EndpointStore').getOrigin()
-    destination = @context.getStore('EndpointStore').getDestination()
 
-    if ((origin.lat or origin.useCurrentPosition and geolocation.hasLocation) and
-        (destination.lat or destination.useCurrentPosition and geolocation.hasLocation))
+    @setState
+      selectedTab: if origin.lat or origin.useCurrentPosition and geolocation.hasLocation then "destination" else "origin"
+      modalIsOpen: true
+      () =>
+        @focusInput if origin.lat or origin.useCurrentPosition and geolocation.hasLocation then "destination" else "origin"
 
-      # TODO: currently address gets overwritten by reverse from geolocation
-      # Swap the position of the two arguments to get "Oma sijainti"
-      geo_string = locationToOTP(
-        Object.assign({address: "Oma sijainti"}, geolocation))
+    if origin.lat or origin.useCurrentPosition and geolocation.hasLocation
+      @context.executeAction SearchActions.executeSearch, {input: @context.getStore('EndpointStore').getDestination()?.address || "", type: "endpoint"}
+    else
+      @context.executeAction SearchActions.executeSearch, {input: "", type: "endpoint"}
 
-      if origin.useCurrentPosition
-        from = geo_string
-      else
-        from = locationToOTP(origin)
-
-      if destination.useCurrentPosition
-        to = geo_string
-      else
-        to = locationToOTP(destination)
-
-      # Then we can transition. We must do this in next
-      # event loop in order to get blur finished.
-      setTimeout(() =>
-        @context.router.push getRoutePath(from, to)
-      , 0)
 
   render: =>
-    geolocation = @context.getStore('PositionStore').getLocationState()
     origin = @context.getStore('EndpointStore').getOrigin()
     destination = @context.getStore('EndpointStore').getDestination()
 
@@ -119,46 +74,19 @@ class SearchTwoFieldsContainer extends React.Component
       id: 'search'
       defaultMessage: 'SEARCH'
 
-    originPlaceholder = @context.intl.formatMessage
-      id: 'origin-placeholder'
-      defaultMessage: 'From where? - address or stop'
-
     destinationPlaceholder = @context.intl.formatMessage
       id: 'destination-placeholder'
       defaultMessage: 'Where to? - address or stop'
 
-    from =
-      <SearchField
-        endpoint={origin}
-        geolocation={geolocation}
-        onClick={(e) =>
-          @setState
-            selectedTab: "origin"
-            modalIsOpen: true
-            () =>
-              @focusInput("origin")
-          @context.executeAction SearchActions.executeSearch, {"input": @context.getStore('EndpointStore').getOrigin()?.address || "", type: "endpoint"}}
-        autosuggestPlaceholder={originPlaceholder}
-        id='origin'
-      />
-
-    to =
-      <SearchField
-        endpoint={destination}
-        geolocation={geolocation}
-        onClick={(e) =>
-          @setState
-            selectedTab: "destination"
-            modalIsOpen: true
-            () =>
-              @focusInput("destination")
-          @context.executeAction SearchActions.executeSearch, {"input": @context.getStore('EndpointStore').getDestination()?.address || "", type: "endpoint"}}
-        autosuggestPlaceholder={destinationPlaceholder}
-        id='destination'
+    fakeSearchBar =
+      <FakeSearchBar
+        onClick={@clickSearch}
+        placeholder={destinationPlaceholder}
+        id="front-page-search-bar"
       />
 
     <div>
-      <SearchTwoFields from={from} to={to} onSwitch={@onSwitch} routeIfPossible={@routeIfPossible} showSearchButton={config.search.showSearchButton}/>
+      <FakeSearchWithButton fakeSearchBar={fakeSearchBar} onClick={@clickSearch}/>
       <SearchModal
         ref="modal"
         selectedTab={@state.selectedTab}
@@ -168,7 +96,8 @@ class SearchTwoFieldsContainer extends React.Component
           className={"search-header__button" + if @state.selectedTab == "origin" then "--selected" else ""}
           label={originSearchTabLabel}
           ref="searchTab"
-          value={"origin"}
+          value="origin"
+          id="origin"
           onActive={@onTabChange}>
             <SearchInput
               ref="searchInputorigin"
@@ -191,13 +120,14 @@ class SearchTwoFieldsContainer extends React.Component
         <Tab
           className={"search-header__button" + if @state.selectedTab == "destination" then "--selected" else ""}
           label={destinationSearchTabLabel}
-          value={"destination"}
+          value="destination"
+          id="destination"
           ref="searchTab"
           onActive={@onTabChange}>
           <SearchInput
             ref="searchInputdestination"
             initialValue = {@context.getStore('EndpointStore').getDestination()?.address || ""}
-            id={"search-destination"}
+            id="search-destination"
             type="endpoint"
             onSuggestionSelected = {(name, item) =>
               if item.type == 'CurrentLocation'
@@ -215,13 +145,13 @@ class SearchTwoFieldsContainer extends React.Component
         <Tab
           className={"search-header__button" + if @state.selectedTab == "search" then "--selected" else ""}
           label={searchTabLabel}
-          value={"search"}
+          value="search"
           ref="searchTab"
           onActive={@onTabChange}>
           <SearchInput
             ref="searchInputsearch"
-            initialValue = ""}
-            id={"search"}
+            initialValue = ""
+            id="search"
             type="search"
             onSuggestionSelected = {(name, item) =>
               if item.properties.link then @context.router.push item.properties.link
@@ -231,4 +161,4 @@ class SearchTwoFieldsContainer extends React.Component
       </SearchModal>
     </div>
 
-module.exports = SearchTwoFieldsContainer
+module.exports = SearchMainContainer

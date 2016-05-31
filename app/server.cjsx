@@ -39,17 +39,13 @@ getStringOrArrayElement = (arrayOrString, index) ->
     arrayOrString
   else
     console.log arrayOrString
-    throw new Error("Not array or string: "+arrayOrString)
+    throw new Error("Not array or string: " + arrayOrString)
 
 # Look up paths for various asset files
 appRoot = process.cwd() + '/'
 if process.env.NODE_ENV != 'development'
   stats = require('../stats.json')
-
   manifestFile = getStringOrArrayElement(stats.assetsByChunkName.manifest, 0)
-  console.log manifestFile
-
-
   manifest = fs.readFileSync(appRoot + "_static/" + manifestFile)
 
 svgSprite = fs.readFileSync(appRoot + "static/svg-sprite.#{config.CONFIG}.svg").toString()

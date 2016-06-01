@@ -1,0 +1,22 @@
+.itinerary-feedback {
+  margin: 1em;
+  .form {
+    margin-right: 1em;
+    margin-left: 1em;
+    cursor: pointer;
+
+    &.submitted {
+      display: none;
+    }
+    input {
+      display: inline;
+      width: 30%;
+    }
+  }
+  .done {
+    display: none;
+    &.submitted {
+      display: inline-block;
+    }
+  }
+}

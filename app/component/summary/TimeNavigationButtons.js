@@ -4,7 +4,8 @@ import moment from 'moment';
 import { intlShape, FormattedMessage } from 'react-intl';
 import ComponentUsageExample from '../documentation/ComponentUsageExample';
 import { plan as examplePlan } from '../documentation/ExampleData';
-
+// import ItineraryFeedback from '../itinerary-feedback/itinerary-feedback';
+import Icon from '../icon/icon';
 
 function setEarlierSelectedTime(executeAction, plan) {
   const earliestArrivalTime = plan.itineraries.reduce((previous, current) => {
@@ -38,6 +39,10 @@ function setLaterSelectedTime(executeAction, plan) {
   return () => executeAction(setDepartureTime, latestDepartureTime);
 }
 
+function triggerItineraryFeedback() {
+
+}
+
 const setSelectedTimeToNow = (executeAction) =>
   () => executeAction(setDepartureTime, moment());
 
@@ -45,14 +50,31 @@ export default function TimeNavigationButtons({ plan }, { executeAction }) {
   if (plan == null) { return null; }
   return (
     <div className="time-navigation-buttons">
-      <button className="standalone-btn" onClick={setEarlierSelectedTime(executeAction, plan)}>
+      <button
+        className="standalone-btn itinerary-feedback-btn"
+        onClick={triggerItineraryFeedback()}
+      >
+        <Icon img="icon-icon_speach-bubble" />
+      </button>
+      <button
+        className="standalone-btn time-navigation-earlier-btn"
+        onClick={setEarlierSelectedTime(executeAction, plan)}
+      >
+        <Icon img={'icon-icon_arrow-left'} className="cursor-pointer back" />
         <FormattedMessage id="earlier" defaultMessage="Earlier" />
       </button>
-      <button className="standalone-btn" onClick={setSelectedTimeToNow(executeAction)}>
+      <button
+        className="standalone-btn time-navigation-now-btn"
+        onClick={setSelectedTimeToNow(executeAction)}
+      >
         <FormattedMessage id="now" defaultMessage="Now" />
       </button>
-      <button className="standalone-btn" onClick={setLaterSelectedTime(executeAction, plan)}>
+      <button
+        className="standalone-btn time-navigation-later-btn"
+        onClick={setLaterSelectedTime(executeAction, plan)}
+      >
         <FormattedMessage id="later" defaultMessage="Later" />
+        <Icon img={'icon-icon_arrow-right'} className="cursor-pointer back" />
       </button>
     </div>
   );

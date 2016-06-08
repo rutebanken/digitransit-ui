@@ -58,7 +58,10 @@ function addOldSearches(oldSearches, input) {
   return Promise.resolve(take(matchingOldSearches, 10).map(item =>
     ({
       type: 'OldSearch',
-      properties: { label: item.address, layer: 'oldSearch' },
+      properties: {
+        label: item.address,
+        layer: 'oldSearch',
+        mode: item.properties ? item.properties.mode : null },
       geometry: item.geometry,
     })
   ));
@@ -127,12 +130,18 @@ function mapRoutes(res) {
 function getStops(res) {
   if (res) {
     return res.map(item => {
+      const mode = item.routes
+              && item.routes.length > 0
+              ? item.routes[0].type.toLowerCase()
+              : null;
+
       const stop = {
         type: 'Stop',
 
         properties: {
           code: item.code,
           label: item.name,
+          mode,
           layer: 'stop',
           link: `/pysakit/${item.gtfsId}`,
         },
@@ -157,7 +166,7 @@ function searchStops(input) {
     return Promise.resolve([]);
   }
 
-  return queryGraphQL(`{stops(name:"${input}") {gtfsId lat lon name code}}`)
+  return queryGraphQL(`{stops(name:"${input}") {gtfsId lat lon name code routes{type}}}`)
     .then(response =>
       getStops(response != null && response.data != null ? response.data.stops : void 0)
     );
@@ -258,8 +267,8 @@ function executeSearchInternal(actionContext, { input, type }) {
       addCurrentPositionIfEmpty(input),
       addFavouriteLocations(favouriteLocations, input),
       addOldSearches(oldSearches, input),
-      getGeocodingResult(input, position, language),
       searchStops(input),
+      getGeocodingResult(input, position, language),
     ])
     .then(flatten)
     .then(uniq)

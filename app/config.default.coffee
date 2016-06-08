@@ -32,9 +32,6 @@ module.exports =
     fi: "Livin"
     default: "FTA's"
   searchParams: {}
-  search:
-    suggestions:
-      useTransportIcons: false
   nearbyRoutes:
     radius: 10000
     bucketSize: 1000
@@ -56,15 +53,10 @@ module.exports =
     delayThreshold: 180
     # Wait time to show "wait leg"? e.g. 180 means over 3 minutes are shown as wait time. Measured in seconds.
     waitThreshold: 180
-    enableFeedback: false
-    timeNavigation:
-      enableButtonArrows: false
   initialLocation:
     zoom: 11
     lat: 60.17332
     lon: 24.94102
-  search:
-    showSearchButton: true
   nearestStopDistance:
     maxShownDistance: 5000
   map:
@@ -84,7 +76,6 @@ module.exports =
       leg:
         weight: 3
         thinWeight: 2
-    useModeIconsInNonTileLayer: false
   stopCard:
     header:
       showDescription: true

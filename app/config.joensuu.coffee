@@ -48,7 +48,8 @@ module.exports =
   maxBikingDistance: 40000
   availableLanguages: ['fi', 'sv', 'en']
   defaultLanguage: 'en'
-  timezone: 'Europe/Helsinki'
+  # This timezone data will expire on 31.12.2020
+  timezoneData: "Europe/Helsinki|EET EEST|-20 -30|01010101010101010101010|1BWp0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|35e5"
   enableDesktopWrapper: true
   mainMenu:
     # Whether to show the left menu toggle button at all
@@ -126,13 +127,13 @@ module.exports =
     showInfoButton: true
   socialMedia:
     title: "Uusi Reittiopas - Joensuu"
-    description: "#{APP_DESCRIPTION}"
+    description: APP_DESCRIPTION
     locale: "fi_FI"
     twitter:
       site: '@hsldevcom'
-    meta:
-      description: "#{APP_DESCRIPTION}"
-      keywords: "reitti,reitit,opas,reittiopas,joukkoliikenne"
+  meta:
+    description: APP_DESCRIPTION
+    keywords: "reitti,reitit,opas,reittiopas,joukkoliikenne"
   # Ticket information feature toggle
   showTicketInformation: false
   showRouteInformation: false
@@ -188,3 +189,18 @@ module.exports =
     address: "Keskusta, Joensuu"
     lat: 62.6024263
     lon: 29.7569847
+  desktopWrapperText: '''<h2>
+                        Reittiopas<sup>BETA</sup>
+                      </h2>
+                      <h1>Kokeile uutta Reittiopasta!</h1>
+                      Reittiopas uudistuu pian. Uusi Reittiopas tuo mukanaan liudan kauan
+                      kaivattuja parannuksia:
+                      <ul>
+                        <li>Reaaliaikatiedot kaikista liikennevälineistä</li>
+                        <li>Entistä parempi kartta</li>
+                        <li>Ennakoiva haku</li>
+                        <li>Näet lähialueesi lähdöt helposti</li>
+                      </ul>
+                      Uusi Reittiopas on suunniteltu erityisesti mobiililaitteet huomioiden, mutta se tulee toki
+                      toimimaan erinomaisesti myös tietokoneella. Voit tutustua jo nyt mobiilioptimoituun
+                      versioon. Valmista on loppuvuodesta 2016.'''

@@ -48,7 +48,10 @@ div.below-map {
  * Note that only checking if we are on mobile device using Leaflet.Browser.touch is not enough.
  */
 div.leaflet-control-container div.leaflet-top {
-  display: none;
+  // display: none;
+  .leaflet-control-zoom.leaflet-bar.leaflet-control:nth-child(2) {
+      display: none;
+  }
 }
 
 div.leaflet-container {

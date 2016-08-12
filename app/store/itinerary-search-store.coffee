@@ -70,7 +70,7 @@ class ItinerarySearchStore extends Store
     if @getCitybikeState() then mode.push "BICYCLE_RENT"
     if @getWalkState() then mode.push "WALK"
     if @getBicycleState() then mode.push "BICYCLE"
-    if @getCarState() then mode.push "CAR"
+    if @getCarState() then mode.push "CAR_PARK"
     return mode.join(",")
 
 

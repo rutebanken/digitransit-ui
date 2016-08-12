@@ -267,7 +267,7 @@ function executeSearchInternal(actionContext, { input, type }) {
       addCurrentPositionIfEmpty(input),
       addFavouriteLocations(favouriteLocations, input),
       addOldSearches(oldSearches, input),
-      // searchStops(input),
+      searchStops(input),
       getGeocodingResult(input, position, language),
     ])
     .then(flatten)

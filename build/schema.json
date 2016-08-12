@@ -4232,6 +4232,12 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "CAR_PARK",
+                        "description": "CAR_PARK",
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "FERRY",
                         "description": "FERRY",
                         "isDeprecated": false,

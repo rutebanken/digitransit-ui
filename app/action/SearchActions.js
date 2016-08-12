@@ -10,8 +10,38 @@ import flatten from 'lodash/flatten';
 import { getLabel } from '../util/suggestionUtils';
 import geoUtils from '../util/geo-utils';
 
+/*
+ * #fixme NRP-529
+ * Look up county and municipality from Pelias to be
+ * able to show in which municipality the stop place is located.
+*/
+function lookupCountyAndMunicipality(item) {
+  if (item.type === 'Stop') {
+    const parameters = Object.assign({ text: item.properties.label }, {
+      'focus.point.lat': item.geometry.coordinates[1],
+      'focus.point.lon': item.geometry.coordinates[0],
+      size: 1 });
+
+    return XhrPromise.getJson(config.URL.PELIAS, parameters)
+      .then(peliasResult => {
+        const stop = item;
+        stop.properties.county = peliasResult.features[0].properties.county;
+        stop.properties.localadmin = peliasResult.features[0].properties.localadmin;
+        stop.properties.name = item.properties.label;
+        return stop;
+      });
+  }
+  return Promise.resolve(item);
+}
+
 function processResults(actionContext, result) {
-  actionContext.dispatch('SuggestionsResult', result);
+  const promises = [];
+  for (const item of result) {
+    promises.push(lookupCountyAndMunicipality(item));
+  }
+  Promise.all(promises).then(results => {
+    actionContext.dispatch('SuggestionsResult', results);
+  });
 }
 
 export function saveSearch(actionContext, endpoint) {

@@ -49,6 +49,9 @@ div.below-map {
  */
 div.leaflet-control-container div.leaflet-top {
   // display: none;
+  .leaflet-control-zoom.leaflet-bar.leaflet-control:nth-child(1) {
+      top: 54px;
+  }
   .leaflet-control-zoom.leaflet-bar.leaflet-control:nth-child(2) {
       display: none;
   }

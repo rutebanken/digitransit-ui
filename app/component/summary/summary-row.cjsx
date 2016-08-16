@@ -35,7 +35,7 @@ class SummaryRow extends React.Component
         continue
       lastLegRented = leg.rentedBike
 
-      if leg.transitLeg or leg.rentedBike or noTransitLegs
+      if leg.transitLeg or leg.rentedBike or leg.mode == 'CAR' or leg.mode == 'BICYCLE' or noTransitLegs
         mode = leg.mode
         if leg.rentedBike
           mode = "CITYBIKE"

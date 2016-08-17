@@ -143,6 +143,7 @@ class ItineraryPlanContainer extends React.Component {
               scrollWheelZoom: false,
               doubleClickZoom: false,
               boxZoom: false,
+              disableZoom: true,
             }}
           >
             <div

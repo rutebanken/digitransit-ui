@@ -47,6 +47,10 @@ div.below-map {
  * Leaflet top bar icons are always in a way of something.
  * Note that only checking if we are on mobile device using Leaflet.Browser.touch is not enough.
  */
+div.leaflet-control-container div.leaflet-bottom .leaflet-control {
+  margin-bottom: 20px;
+}
+
 div.leaflet-control-container div.leaflet-top {
   // display: none;
   .leaflet-control-zoom.leaflet-bar.leaflet-control:nth-child(1) {

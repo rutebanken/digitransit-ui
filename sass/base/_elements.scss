@@ -171,8 +171,8 @@ $border-radius-rounded: 30px;
   height: 2em;
   background: rgba(0, 0, 0, 0.5);
   width: 2em;
-  bottom: 0px;
-  right: 1em;
+  bottom: 20px;
+  right: 3em;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   z-index: 802;
@@ -184,7 +184,6 @@ $border-radius-rounded: 30px;
 
 .smallscreen-toggle {
   @extend .fullscreen-toggle;
-  bottom: -1px;
 }
 
 

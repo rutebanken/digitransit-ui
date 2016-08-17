@@ -53,8 +53,9 @@ class Map extends React.Component
       position: 'bottomleft'
       prefix: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
     ).addTo @refs.map.getLeafletElement()
+    console.log @props.disableZoom
     if not @props.disableZoom or L.Browser.touch
-      L.control.zoom(position: 'topleft').addTo @refs.map.getLeafletElement()
+      L.control.zoom(position: 'bottomright').addTo @refs.map.getLeafletElement()
 
   startMeasuring: =>
     startMeasuring()

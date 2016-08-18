@@ -58,7 +58,7 @@ class CustomizeSearch extends React.Component
             icon="park_and_ride"
             onBtnClick={() => @context.executeAction ItinerarySearchActions.toggleCarState}
             state={@context.getStore('ItinerarySearchStore').getCarState()}
-            checkedClass="park_and_ride"
+            checkedClass="park-and-ride"
             className="last-btn small-4"
           />
         </div>

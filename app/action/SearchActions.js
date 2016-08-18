@@ -91,6 +91,7 @@ function addOldSearches(oldSearches, input) {
       properties: {
         label: item.address,
         layer: 'oldSearch',
+        localadmin: item.localadmin,
         mode: item.properties ? item.properties.mode : null },
       geometry: item.geometry,
     })

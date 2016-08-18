@@ -55,10 +55,10 @@ class CustomizeSearch extends React.Component
             className=" small-4"
           />
           <ToggleButton
-            icon="car"
+            icon="park_and_ride"
             onBtnClick={() => @context.executeAction ItinerarySearchActions.toggleCarState}
             state={@context.getStore('ItinerarySearchStore').getCarState()}
-            checkedClass="car"
+            checkedClass="park_and_ride"
             className="last-btn small-4"
           />
         </div>

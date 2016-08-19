@@ -29,6 +29,8 @@ class SummaryRow extends React.Component
         noTransitLegs = false
         break
 
+    realTimeIcon  = if realTimeAvailable then <Icon img="icon-icon_realtime" className="realtime-icon realtime" /> else false
+
     lastLegRented = false
     for leg, i in data.legs
       if leg.rentedBike && lastLegRented # No sense rendering two citybikes when walking with bike in between
@@ -63,6 +65,7 @@ class SummaryRow extends React.Component
         </div>
       </div>
       <div className={cx "itinerary-start-time", "realtime-available": realTimeAvailable}>
+        {realTimeIcon}
         {startTime.format("HH:mm")}
       </div>
       <div className="itinerary-legs">{legs}</div>

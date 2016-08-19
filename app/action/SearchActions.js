@@ -16,32 +16,33 @@ import geoUtils from '../util/geo-utils';
  * able to show in which municipality the stop place is located.
 */
 function lookupCountyAndMunicipality(item) {
-  if (item.type === 'Stop') {
+  if (item.type === 'Stop' && !item.properties.localadmin) {
     const parameters = Object.assign({ text: item.properties.label }, {
       'focus.point.lat': item.geometry.coordinates[1],
       'focus.point.lon': item.geometry.coordinates[0],
       size: 1 });
-
     return XhrPromise.getJson(config.URL.PELIAS, parameters)
       .then(peliasResult => {
         const stop = item;
         stop.properties.county = peliasResult.features[0].properties.county;
         stop.properties.localadmin = peliasResult.features[0].properties.localadmin;
         stop.properties.name = item.properties.label;
-        return stop;
+        return Promise.resolve(stop);
       });
   }
   return Promise.resolve(item);
 }
 
-function processResults(actionContext, result) {
+function lookupMunicipalities(actionContext, result) {
   const promises = [];
   for (const item of result) {
     promises.push(lookupCountyAndMunicipality(item));
   }
-  Promise.all(promises).then(results => {
-    actionContext.dispatch('SuggestionsResult', results);
-  });
+  return Promise.all(promises);
+}
+
+function processResults(actionContext, results) {
+  actionContext.dispatch('SuggestionsResult', results);
 }
 
 export function saveSearch(actionContext, endpoint) {
@@ -88,11 +89,7 @@ function addOldSearches(oldSearches, input) {
   return Promise.resolve(take(matchingOldSearches, 10).map(item =>
     ({
       type: 'OldSearch',
-      properties: {
-        label: item.address,
-        layer: 'oldSearch',
-        localadmin: item.localadmin,
-        mode: item.properties ? item.properties.mode : null },
+      properties: item.properties,
       geometry: item.geometry,
     })
   ));
@@ -302,6 +299,7 @@ function executeSearchInternal(actionContext, { input, type }) {
       getGeocodingResult(input, position, language),
     ])
     .then(flatten)
+    .then(suggestions => lookupMunicipalities(actionContext, suggestions))
     .then(uniq)
     .then(suggestions => processResults(actionContext, suggestions))
     .catch(err => console.error(err)); // eslint-disable-line no-console

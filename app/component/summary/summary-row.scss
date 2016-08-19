@@ -48,8 +48,9 @@
   & .itinerary-start-time {
     text-align: right;
     padding-right: 10px;
-    width: 75px;
+    width: 159px;
     margin-top: 4px;
+    white-space: nowrap;
   }
 
   & .realtime-available {

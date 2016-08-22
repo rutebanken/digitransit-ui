@@ -314,7 +314,19 @@ function executeSearchInternal(actionContext, { input, type }) {
     .catch(err => console.error(err)); // eslint-disable-line no-console
 }
 
-export const executeSearch = debounce(executeSearchInternal, 300);
+let ongoingSearch;
+
+function executeSearchWhenReady(actionContext, { input, type }) {
+  if (ongoingSearch) {
+    ongoingSearch.then(() => {
+      ongoingSearch = executeSearchInternal(actionContext, { input, type });
+    });
+  } else {
+    ongoingSearch = executeSearchInternal(actionContext, { input, type });
+  }
+}
+
+export const executeSearch = debounce(executeSearchWhenReady, 600);
 
 export function openDialog(actionContext, tab) {
   return actionContext.dispatch('OpenDialog', tab);

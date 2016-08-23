@@ -40,13 +40,12 @@ class SummaryRow extends React.Component
       if leg.transitLeg or leg.rentedBike or leg.mode == 'CAR' or noTransitLegs
         mode = leg.mode
 
-      hasPickupDropoff = false
 
       if leg.trip
         if leg.trip.stoptimes
           for stopTime in leg.trip.stoptimes
-            hasPickupDropoff = true if stopTime.dropoffType == "CALL_AGENCY" or stopTime.dropoffType == "COORDINATE_WITH_DRIVER" or stopTime.pickupType == "CALL_AGENCY" or stopTime.pickupType == "COORDINATE_WITH_DRIVER"
-
+            leg.hasPickupDropoff = true if stopTime.dropoffType == "CALL_AGENCY" or stopTime.dropoffType == "COORDINATE_WITH_DRIVER" or stopTime.pickupType == "CALL_AGENCY" or stopTime.pickupType == "COORDINATE_WITH_DRIVER"
+            console.log leg
         if leg.rentedBike
           mode = "CITYBIKE"
         legs.push <RouteNumber
@@ -54,7 +53,7 @@ class SummaryRow extends React.Component
                     mode={mode}
                     text={legTextUtil.getLegText(leg)}
                     vertical={true}
-                    className={cx "line", mode.toLowerCase(), "pickup-dropoff": hasPickupDropoff} />
+                    className={cx "line", mode.toLowerCase(), "pickup-dropoff": leg.hasPickupDropoff} />
 
 
     classes = cx [

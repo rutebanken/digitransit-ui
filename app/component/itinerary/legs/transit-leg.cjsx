@@ -17,7 +17,17 @@ class TransitLeg extends React.Component
     else
       undefined
 
+
   render: ->
+    if @props.leg.trip and @props.leg.trip.stoptimes
+      for stopTime in @props.leg.trip.stoptimes
+        @props.leg.hasPickupDropoff = true if stopTime.dropoffType == "CALL_AGENCY" or stopTime.dropoffType == "COORDINATE_WITH_DRIVER" or stopTime.pickupType == "CALL_AGENCY" or stopTime.pickupType == "COORDINATE_WITH_DRIVER"
+    dropoffInfo = if @props.leg.hasPickupDropoff then [
+      <div className="dropoff-pickup-info">
+        <FormattedMessage id={'dropoff-pickup-info'} defaultMessage="This route may require you to call the agency or coordinate with the driver"} />
+        </div>
+      ] else null
+
     originalTime = if @props.leg.realTime and @props.leg.departureDelay >= config.itinerary.delayThreshold then [
       <br/>,
       <span className="original-time">
@@ -54,6 +64,7 @@ class TransitLeg extends React.Component
         <div className='itinerary-transit-leg-route'>
           {@props.children}
         </div>
+        {dropoffInfo}
         <div className='itinerary-leg-intermediate-stops'>
           <FormattedMessage
             id={'number-of-intermediate-stops'}

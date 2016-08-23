@@ -430,6 +430,7 @@ translations =
     'itinerary-feedback-message': "Fant du ikke det du lette etter?"
     'itinerary-feedback-placeholder': "Beskrivelse (valgfritt)"
     'itinerary-feedback-button': "Send tilbakemelding"
+    'dropoff-pickup-info': 'NB: Denne ruten kan kreve bestilling på telefon'
   'fr':
     'stop-page.title': "Arrêt {stop_name} - {stop_code}"
     'stop-page.description': "Arrêt {stop_name} - {stop_code}"

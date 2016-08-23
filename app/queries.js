@@ -701,6 +701,10 @@ export const SummaryPlanContainerFragments = {
             }
             trip {
               gtfsId
+              stoptimes {
+                dropoffType
+                pickupType
+              }
             }
           }
 
@@ -728,6 +732,12 @@ export const ItinerarySummaryListContainerFragments = {
         rentedBike
         route {
           shortName
+        }
+        trip {
+          stoptimes {
+            dropoffType
+            pickupType
+          }
         }
       }
     }

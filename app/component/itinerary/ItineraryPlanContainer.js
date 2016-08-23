@@ -273,6 +273,10 @@ export const ItineraryPlanContainerFragments = {
             trip {
               gtfsId
               tripHeadsign
+              stoptimes {
+                dropoffType
+                pickupType
+              }
             }
           }
           ${ItinerarySummaryListContainer.getFragment('itineraries')}

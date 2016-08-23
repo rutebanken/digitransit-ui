@@ -24,6 +24,17 @@
     }
   }
 
+  .pickup-dropoff:before {
+    content: "B";
+    position: absolute;
+    font-size: 10px;
+    left: -6px;
+    top: 0px;
+    color: black;
+    transform: rotate(-30deg);
+  }
+
+
   &.passive {
     border-left-color: $background-color;
     background-color: $background-color;

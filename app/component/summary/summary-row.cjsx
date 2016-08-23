@@ -45,7 +45,6 @@ class SummaryRow extends React.Component
         if leg.trip.stoptimes
           for stopTime in leg.trip.stoptimes
             leg.hasPickupDropoff = true if stopTime.dropoffType == "CALL_AGENCY" or stopTime.dropoffType == "COORDINATE_WITH_DRIVER" or stopTime.pickupType == "CALL_AGENCY" or stopTime.pickupType == "COORDINATE_WITH_DRIVER"
-            console.log leg
         if leg.rentedBike
           mode = "CITYBIKE"
         legs.push <RouteNumber

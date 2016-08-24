@@ -40,9 +40,7 @@ class SummaryRow extends React.Component
       if leg.transitLeg or leg.rentedBike or leg.mode == 'CAR' or noTransitLegs
         mode = leg.mode
 
-
-      if leg.trip
-        if leg.trip.stoptimes
+        if leg.trip and leg.trip.stoptimes
           for stopTime in leg.trip.stoptimes
             leg.hasPickupDropoff = true if stopTime.dropoffType == "CALL_AGENCY" or stopTime.dropoffType == "COORDINATE_WITH_DRIVER" or stopTime.pickupType == "CALL_AGENCY" or stopTime.pickupType == "COORDINATE_WITH_DRIVER"
         if leg.rentedBike
@@ -53,7 +51,6 @@ class SummaryRow extends React.Component
                     text={legTextUtil.getLegText(leg)}
                     vertical={true}
                     className={cx "line", mode.toLowerCase(), "pickup-dropoff": leg.hasPickupDropoff} />
-
 
     classes = cx [
       "itinerary-summary-row"

@@ -24,10 +24,10 @@ class XhrPromise
       method: 'GET'
       headers:
         "Accept": "application/json"
-    ).then (res) ->
+    ).then (res) =>
       res.json()
-     .catch (e) =>
-       @tattle e, url
+        .catch (e) =>
+          @tattle e, url
 
 # Return Promise for post request
   postJson: (url, params, payload) ->
@@ -38,10 +38,10 @@ class XhrPromise
       headers:
         "Accept": "application/json"
         "Content-Type": "application/json"
-    ).then (res) ->
+    ).then (res) =>
       res.json()
-     .catch (e) =>
-      return @tattle e, url
+        .catch (e) =>
+          return @tattle e, url
 
 
 # Return Promise for array of url json get requests

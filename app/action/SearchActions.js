@@ -17,11 +17,11 @@ import geoUtils from '../util/geo-utils';
 */
 function lookupCountyAndMunicipality(item) {
   if (item.type === 'Stop' && !item.properties.localadmin) {
-    const parameters = Object.assign({ text: item.properties.label }, {
-      'focus.point.lat': item.geometry.coordinates[1],
-      'focus.point.lon': item.geometry.coordinates[0],
+    const parameters = Object.assign({
+      'point.lat': item.geometry.coordinates[1],
+      'point.lon': item.geometry.coordinates[0],
       size: 1 });
-    return XhrPromise.getJson(config.URL.PELIAS, parameters)
+    return XhrPromise.getJson(config.URL.PELIAS_REVERSE_GEOCODER, parameters)
       .then(peliasResult => {
         const stop = item;
         stop.properties.county = peliasResult.features[0].properties.county;

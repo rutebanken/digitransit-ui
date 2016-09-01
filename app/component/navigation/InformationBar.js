@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
+import Icon from '../icon/icon';
 
 class InformationBar extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      visible: true
+      visible: true,
     };
   }
 
   render = () =>
-    <div className="information-bar">Testteskst</div>
+    <div className="information-bar">
+      <Icon id="information-bar-close-icon" img="icon-icon_close" />
+
+    </div>
 
 }
 

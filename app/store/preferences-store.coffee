@@ -24,20 +24,37 @@ class PreferencesStore extends Store
 
     @emitChange(language)
 
-  loadPreferences: ->
-    if window?
-      preferences = storage.getPreferencesStorage()
-      if typeof preferences.language == undefined
-        return {}
-      else
-        language: if window.locale then window.locale else config.defaultLanguage
+  setShowFirstTimeMessage: (showFirstTimeMessage) ->
+    @preferences.showFirstTimeMessage = showFirstTimeMessage
+    @storePreferences()
+    @emitChange("showFirstTimeMessage")
+
+  getShowFirstTimeMessage: ->
+    if @preferences.showFirstTimeMessage != undefined
+      @preferences.showFirstTimeMessage
     else
-      language: config.defaultLanguage
+      true
+
+  loadPreferences: ->
+    preferences = storage.getPreferencesStorage()
+    language =
+      if preferences.language
+        preferences.language
+      else if window? && window.locale
+        window.locale
+      else
+        config.defaultLanguage
+
+    {
+      language: language,
+      showFirstTimeMessage: preferences.showFirstTimeMessage
+    }
 
   storePreferences: () ->
     storage.setPreferencesStorage(@preferences)
 
   @handlers:
-    "SetLanguage": 'setLanguage'
+    "SetLanguage": 'setLanguage',
+    "SetShowFirstTimeMessage": 'setShowFirstTimeMessage'
 
 module.exports = PreferencesStore

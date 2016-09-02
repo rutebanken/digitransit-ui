@@ -3,8 +3,10 @@ import { FormattedMessage } from 'react-intl';
 
 import config from '../../config';
 import DisruptionInfoButtonContainer from '../disruption/DisruptionInfoButtonContainer';
+import InformationPageActions from '../../action/InformationPageActions';
 import Icon from '../icon/icon';
 import LangSelect from './lang-select';
+
 
 function MainMenu(props) {
   const inquiry = (
@@ -15,6 +17,12 @@ function MainMenu(props) {
       </a>
     </p>);
 
+  const informationPageToggle = (
+    <a onClick={() => context.executeAction(InformationPageActions.openInformationPage)} >
+      About this page
+    </a>
+  );
+
   return (
     <div className="main-menu">
       <a onClick={props.toggleVisibility} className="close-button cursor-pointer">
@@ -23,6 +31,7 @@ function MainMenu(props) {
       <header className="offcanvas-section">
         <LangSelect />
         {config.mainMenu.showInquiry ? inquiry : void 0}
+        {informationPageToggle}
       </header>
       <div className="offcanvas-section">
         {config.mainMenu.showDisruptions ? <DisruptionInfoButtonContainer /> : void 0}
@@ -38,6 +47,7 @@ MainMenu.propTypes = {
 
 MainMenu.contextTypes = {
   getStore: PropTypes.func.isRequired,
+  executeAction: React.PropTypes.func.isRequired,
 };
 
 

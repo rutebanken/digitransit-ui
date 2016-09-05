@@ -380,7 +380,7 @@ translations =
     'platform-num': 'Plattform {platformCode}'
     'departures': 'Avganger'
     'show-departures': 'Vis avganger'
-    'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute. Forsøk å endre adresse'
+    'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute.'
     'close': 'Steng'
     'likely-to-recommend': 'Hvor sannsynlig er det at du anbefaler vår tjeneste til en venn eller kollega?'
     'likely-to-use': 'Hvor sannsynlig er det at du vil bruke denne tjenesten fremfor tjenesten du allerede bruker?'

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Icon from '../icon/icon';
 import config from '../../config';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import UserPreferencesActions from '../../action/user-preferences-actions';
 import PreferencesStore from '../../store/preferences-store';
+import SiteInformation from '../information-page/SiteInformation';
 
 class InformationBar extends Component {
 
@@ -27,18 +27,13 @@ class InformationBar extends Component {
 
   render = () => {
     if (this.props.showFirstTimeMessage) {
-      return (<div className="information-bar" onClick={() => this.close()} >
-        <Icon id="information-bar-close-icon" img="icon-icon_close" />
-        <div className="information-body">
-          <p>{this.messages[this.props.currentLanguage].intro}
-            <span className="bold"> {this.messages[this.props.currentLanguage].siteName}</span>
-          </p>
-          <p>{this.messages[this.props.currentLanguage].about}</p>
-
-        </div>
+      return (<div className="information-bar" onClick={this.close}>
+        <SiteInformation
+          currentLanguage={this.props.currentLanguage}
+          showCookieInfo={false}
+        />
       </div>);
     }
-
     return (null);
   };
 

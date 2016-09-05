@@ -15,9 +15,12 @@ function InformationPage(props, context) {
         className="information-page"
         onClick={() => context.executeAction(closeInformationPage)}
       >
-        <Icon id="information-bar-close-icon" img="icon-icon_close" />
-        <p>{aboutThisService[props.currentLanguage].about}</p>
-        <p>{aboutThisService[props.currentLanguage].cookies}</p>
+        <Icon id="information-page-close-icon" img="icon-icon_close" />
+        <div className="information-body">
+          <p>{aboutThisService[props.currentLanguage].intro} <span className="bold">{aboutThisService[props.currentLanguage].siteName}</span></p>
+          <p>{aboutThisService[props.currentLanguage].about}</p>
+          <p>{aboutThisService[props.currentLanguage].cookies}</p>
+        </div>
       </div>);
   }
   return (null);

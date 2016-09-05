@@ -1,8 +1,17 @@
 .information-bar {
-
-  height: 100%;
-
-
+  height: auto;
+  bottom: 61px;
+  opacity: 0.8;
+  position: absolute;
+  z-index: 1001;
+  background-color: $black;
+  color: $secondary-font-color;
+  & .information-body {
+    margin: 4%;
+  }
+  & p {
+    color: $secondary-font-color;
+  }
 }
 
 #information-bar-close-icon {

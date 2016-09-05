@@ -1,10 +1,9 @@
 import React from 'react';
-import Icon from '../icon/icon';
-import { aboutThisService } from '../../config';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import PreferencesStore from '../../store/preferences-store';
 import InformationPageStore from '../../store/InformationPageStore';
 import { closeInformationPage } from '../../action/InformationPageActions';
+import SiteInformation from './SiteInformation';
 
 function InformationPage(props, context) {
   if (props.open) {
@@ -13,15 +12,9 @@ function InformationPage(props, context) {
         className="information-page"
         onClick={() => context.executeAction(closeInformationPage)}
       >
-        <Icon id="information-page-close-icon" img="icon-icon_close" />
-        <div className="information-body">
-          <p>{aboutThisService[props.currentLanguage].intro}
-            <span className="bold"> {aboutThisService[props.currentLanguage].siteName}</span>
-          </p>
-          <p>{aboutThisService[props.currentLanguage].about}</p>
-          <p>{aboutThisService[props.currentLanguage].cookies}</p>
-        </div>
-      </div>);
+        <SiteInformation showCookieInfo currentLanguage={props.currentLanguage} />
+      </div>
+      );
   }
   return (null);
 }

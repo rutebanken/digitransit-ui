@@ -1,25 +1,6 @@
-
 .information-page {
-  position: absolute;
-  top: 0px;
-  z-index: 1001;
-  height: 100%;
-  width: 100%;
-  background-color: $black;
-  color: $secondary-font-color;
-
-  & .information-body {
-    margin: 4%;
-  }
-  & p {
-    color: $secondary-font-color;
-  }
-}
-
-#information-page-close-icon {
-  margin: 10px 10px 0 0;
-  float: right;
-  &:hover {
-    cursor: pointer;
+  & .site-information {
+    opacity: 1;
+    height: 100%;
   }
 }

@@ -4,7 +4,7 @@ import Icon from '../icon/icon';
 import MainMenu from './MainMenu';
 import Drawer from 'material-ui/Drawer';
 import FeedbackActions from '../../action/feedback-action';
-
+import { openInformationPage } from '../../action/InformationPageActions';
 import { supportsHistory } from 'history/lib/DOMUtils';
 
 class MainMenuContainer extends Component {
@@ -67,6 +67,11 @@ class MainMenuContainer extends Component {
     this.toggleOffcanvas();
   }
 
+  toggleInformationPage = () => {
+    this.context.executeAction(openInformationPage);
+    this.toggleOffcanvas();
+  }
+
   render() {
     return (
       <div>
@@ -83,6 +88,7 @@ class MainMenuContainer extends Component {
             openFeedback={this.openFeedback}
             showDisruptionInfo={this.props.showDisruptionInfo}
             toggleVisibility={this.toggleOffcanvas}
+            toggleInformationPage={this.toggleInformationPage}
           />
         </Drawer>
         {config.mainMenu.show ?

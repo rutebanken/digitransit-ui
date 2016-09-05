@@ -7,3 +7,11 @@
   width: 100%;
   background: #EEF1F3;
 }
+
+#information-page-close-icon {
+  margin: 10px 10px 0 0;
+  float: right;
+  &:hover {
+    cursor: pointer;
+  }
+}

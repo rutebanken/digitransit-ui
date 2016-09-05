@@ -16,8 +16,11 @@ function InformationPage(props, context) {
         onClick={() => context.executeAction(closeInformationPage)}
       >
         <Icon id="information-page-close-icon" img="icon-icon_close" />
-        <p>{aboutThisService[props.currentLanguage].about}</p>
-        <p>{aboutThisService[props.currentLanguage].cookies}</p>
+        <div className="information-body">
+          <p>{aboutThisService[props.currentLanguage].intro} <span className="bold">{aboutThisService[props.currentLanguage].siteName}</span></p>
+          <p>{aboutThisService[props.currentLanguage].about}</p>
+          <p>{aboutThisService[props.currentLanguage].cookies}</p>
+        </div>
       </div>);
   }
   return (null);

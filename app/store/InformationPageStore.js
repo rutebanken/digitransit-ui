@@ -1,6 +1,8 @@
 import Store from 'fluxible/addons/BaseStore';
 
 class InformationPageStore extends Store {
+  static storeName = 'InformationPageStore';
+
   static handlers = {
     openInformationPage: 'open',
     closeInformationPage: 'close',
@@ -10,8 +12,6 @@ class InformationPageStore extends Store {
     super(args);
     this.isOpen = false;
   }
-
-  static storeName = 'InformationPageStore';
 
   open = () => {
     this.isOpen = true;

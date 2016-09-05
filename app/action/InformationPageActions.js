@@ -1,7 +1,7 @@
-export function open(actionContext) {
+export function openInformationPage(actionContext) {
   actionContext.dispatch('openInformationPage');
 }
 
-export function close(actionContext) {
+export function closeInformationPage(actionContext) {
   actionContext.dispatch('closeInformationPage');
 }

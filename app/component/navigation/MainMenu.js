@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 
 import config from '../../config';
 import DisruptionInfoButtonContainer from '../disruption/DisruptionInfoButtonContainer';
-import InformationPageActions from '../../action/InformationPageActions';
+
 import Icon from '../icon/icon';
 import LangSelect from './lang-select';
 
@@ -18,7 +18,7 @@ function MainMenu(props) {
     </p>);
 
   const informationPageToggle = (
-    <a onClick={() => context.executeAction(InformationPageActions.openInformationPage)} >
+    <a onClick={props.toggleInformationPage} >
       About this page
     </a>
   );
@@ -43,12 +43,7 @@ MainMenu.propTypes = {
   openFeedback: PropTypes.func.isRequired,
   showDisruptionInfo: PropTypes.bool,
   toggleVisibility: PropTypes.func.isRequired,
+  toggleInformationPage: PropTypes.func.isRequired,
 };
-
-MainMenu.contextTypes = {
-  getStore: PropTypes.func.isRequired,
-  executeAction: React.PropTypes.func.isRequired,
-};
-
 
 export default MainMenu;

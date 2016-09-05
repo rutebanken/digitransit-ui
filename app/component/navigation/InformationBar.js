@@ -29,8 +29,13 @@ class InformationBar extends Component {
     if (this.props.showFirstTimeMessage) {
       return (<div className="information-bar" onClick={() => this.close()} >
         <Icon id="information-bar-close-icon" img="icon-icon_close" />
-        <p>{this.messages[this.props.currentLanguage].about}</p>
-        <p>{this.messages[this.props.currentLanguage].cookies}</p>
+        <div className="information-body">
+          <p>{this.messages[this.props.currentLanguage].intro}
+            <span className="bold"> {this.messages[this.props.currentLanguage].siteName}</span>
+          </p>
+          <p>{this.messages[this.props.currentLanguage].about}</p>
+
+        </div>
       </div>);
     }
 

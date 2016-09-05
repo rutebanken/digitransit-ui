@@ -6,8 +6,6 @@ import PreferencesStore from '../../store/preferences-store';
 import InformationPageStore from '../../store/InformationPageStore';
 import { closeInformationPage } from '../../action/InformationPageActions';
 
-import FormattedMessage from 'react-intl';
-
 function InformationPage(props, context) {
   if (props.open) {
     return (
@@ -17,7 +15,9 @@ function InformationPage(props, context) {
       >
         <Icon id="information-page-close-icon" img="icon-icon_close" />
         <div className="information-body">
-          <p>{aboutThisService[props.currentLanguage].intro} <span className="bold">{aboutThisService[props.currentLanguage].siteName}</span></p>
+          <p>{aboutThisService[props.currentLanguage].intro}
+            <span className="bold"> {aboutThisService[props.currentLanguage].siteName}</span>
+          </p>
           <p>{aboutThisService[props.currentLanguage].about}</p>
           <p>{aboutThisService[props.currentLanguage].cookies}</p>
         </div>

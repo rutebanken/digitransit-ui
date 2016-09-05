@@ -27,14 +27,19 @@ class InformationBar extends Component {
 
   render = () => {
     if (this.props.showFirstTimeMessage) {
+      let lang;
+      if (!this.messages[this.props.currentLanguage]) {
+        lang = this.messages.defaultLanguage;
+      } else {
+        lang = this.props.currentLanguage;
+      }
       return (<div className="information-bar" onClick={() => this.close()} >
         <Icon id="information-bar-close-icon" img="icon-icon_close" />
         <div className="information-body">
-          <p>{this.messages[this.props.currentLanguage].intro}
-            <span className="bold"> {this.messages[this.props.currentLanguage].siteName}</span>
+          <p>{this.messages[lang].intro}
+            <span className="bold"> {this.messages[lang].siteName}</span>
           </p>
-          <p>{this.messages[this.props.currentLanguage].about}</p>
-
+          <p>{this.messages[lang].about}</p>
         </div>
       </div>);
     }

@@ -5,10 +5,14 @@
   z-index: 1001;
   height: 100%;
   width: 100%;
-  background: #EEF1F3;
+  background-color: $black;
+  color: $secondary-font-color;
 
   & .information-body {
     margin: 4%;
+  }
+  & p {
+    color: $secondary-font-color;
   }
 }
 

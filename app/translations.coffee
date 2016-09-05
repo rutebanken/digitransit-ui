@@ -276,6 +276,7 @@ translations =
     'itinerary-feedback-message': "Hittade du inte vad du sökte?"
     'itinerary-feedback-placeholder': "Beskrivning (valfri)"
     'itinerary-feedback-button': "Skicka feedback"
+    'about-this-site': "Om webbplatsen"
   'nb':
     'stop-page.title': "Holdeplass {stop_name}"
     'stop-page.description': "Holdeplass {stop_name} - {stop_code}"
@@ -380,7 +381,7 @@ translations =
     'platform-num': 'Plattform {platformCode}'
     'departures': 'Avganger'
     'show-departures': 'Vis avganger'
-    'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute. Forsøk å endre adresse'
+    'no-route-msg': 'Vi finner dessverre ingen reiseforslag til angitt rute.'
     'close': 'Steng'
     'likely-to-recommend': 'Hvor sannsynlig er det at du anbefaler vår tjeneste til en venn eller kollega?'
     'likely-to-use': 'Hvor sannsynlig er det at du vil bruke denne tjenesten fremfor tjenesten du allerede bruker?'
@@ -431,6 +432,7 @@ translations =
     'itinerary-feedback-placeholder': "Beskrivelse (valgfritt)"
     'itinerary-feedback-button': "Send tilbakemelding"
     'dropoff-pickup-info': 'Avgangen må forhåndsbestilles fra operatør'
+    'about-this-site': "Om dette nettstedet"
   'fr':
     'stop-page.title': "Arrêt {stop_name} - {stop_code}"
     'stop-page.description': "Arrêt {stop_name} - {stop_code}"

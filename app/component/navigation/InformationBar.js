@@ -40,7 +40,7 @@ class InformationBar extends Component {
   };
 
 }
-export default connectToStores(InformationBar, [PreferencesStore], (context) => ({
+export default connectToStores(InformationBar, [PreferencesStore, PositionStore], (context) => ({
   currentLanguage: context.getStore(PreferencesStore).getLanguage(),
   showFirstTimeMessage: context.getStore(PreferencesStore).getShowFirstTimeMessage(),
   getLocationState: context.getStore(PositionStore).getLocationState(),

@@ -4,6 +4,7 @@ Config              = require '../../config'
 DefaultNavigation   = require('../navigation/DefaultNavigation').default
 FrontPagePanel      = require('../front-page/FrontPagePanel').default
 EndpointActions     = require('../../action/EndpointActions')
+PositionActions     = require('../../action/PositionActions')
 {intlShape}         = require 'react-intl'
 FormattedMessage    = require('react-intl').FormattedMessage
 OneTabSearchModal   = require '../search/one-tab-search-modal'
@@ -23,6 +24,10 @@ class Splash extends React.Component
   closeModal: () =>
     @setState
       searchModalIsOpen: false
+
+  skipPositioning: () =>
+    @context.executeAction PositionActions.geoLocationDenied
+    @context.executeAction EndpointActions.setOriginToDefault
 
   render: ->
     ownPosition = @context.intl.formatMessage
@@ -67,8 +72,9 @@ class Splash extends React.Component
                 <FormattedMessage id="give-origin"  defaultMessage="Type in your origin"/><br/><br/>
               </span>
               <span className="cursor-pointer dotted-link medium" onClick={() =>
-                @context.executeAction EndpointActions.setOriginToDefault
-              }><FormattedMessage id='skip-positioning' defaultMessage='Skip' /></span>
+                @skipPositioning()}>
+                <FormattedMessage id='skip-positioning' defaultMessage='Skip' />
+              </span>
             </div>
           }
         </div>

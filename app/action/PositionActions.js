@@ -62,6 +62,10 @@ const setCurrentLocation = (actionContext, pos) => {
   }
 };
 
+export function geoLocationDenied(actionContext) {
+  actionContext.dispatch('GeolocationDenied');
+}
+
 export function startLocationWatch(actionContext, payload, done) {
   if (!geolocator(actionContext).geolocation) {
     actionContext.dispatch('GeolocationNotSupported');

@@ -3,6 +3,7 @@ import config from '../../config';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import UserPreferencesActions from '../../action/user-preferences-actions';
 import PreferencesStore from '../../store/preferences-store';
+import PositionStore from '../../store/PositionStore';
 import SiteInformation from '../information-page/SiteInformation';
 
 class InformationBar extends Component {
@@ -10,6 +11,7 @@ class InformationBar extends Component {
   static propTypes = {
     currentLanguage: React.PropTypes.string.isRequired,
     showFirstTimeMessage: React.PropTypes.bool.isRequired,
+    getLocationState: React.PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -26,7 +28,7 @@ class InformationBar extends Component {
   }
 
   render = () => {
-    if (this.props.showFirstTimeMessage) {
+    if (this.props.showFirstTimeMessage && !this.props.getLocationState.isLocationingInProgress) {
       return (<div className="information-bar" onClick={this.close}>
         <SiteInformation
           currentLanguage={this.props.currentLanguage}
@@ -41,4 +43,5 @@ class InformationBar extends Component {
 export default connectToStores(InformationBar, [PreferencesStore], (context) => ({
   currentLanguage: context.getStore(PreferencesStore).getLanguage(),
   showFirstTimeMessage: context.getStore(PreferencesStore).getShowFirstTimeMessage(),
+  getLocationState: context.getStore(PositionStore).getLocationState(),
 }));

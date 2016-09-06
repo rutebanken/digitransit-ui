@@ -99,15 +99,14 @@ export function startLocationWatch(actionContext, payload, done) {
           actionContext.getStore('PositionStore').getLocationState().hasLocation)
       ) {
         if (error.code < 10) {
-          actionContext.executeAction(setOriginToDefault).then(() => {
-            if (error.code === 1) {
-              actionContext.dispatch('GeolocationDenied');
-            } else if (error.code === 2) {
-              actionContext.dispatch('GeolocationNotSupported');
-            } else if (error.code === 3) {
-              actionContext.dispatch('GeolocationTimeout');
-            }
-          });
+          actionContext.executeAction(setOriginToDefault);
+          if (error.code === 1) {
+            actionContext.dispatch('GeolocationDenied');
+          } else if (error.code === 2) {
+            actionContext.dispatch('GeolocationNotSupported');
+          } else if (error.code === 3) {
+            actionContext.dispatch('GeolocationTimeout');
+          }
         } else if (error.code === 100001) {
           actionContext.dispatch('GeolocationWatchTimeout');
         }

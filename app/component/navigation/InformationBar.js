@@ -11,7 +11,7 @@ class InformationBar extends Component {
   static propTypes = {
     currentLanguage: React.PropTypes.string.isRequired,
     showFirstTimeMessage: React.PropTypes.bool.isRequired,
-    getLocationState: React.PropTypes.object.isRequired,
+    getLocationState: React.PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -40,7 +40,7 @@ class InformationBar extends Component {
   };
 
 }
-export default connectToStores(InformationBar, [PreferencesStore], (context) => ({
+export default connectToStores(InformationBar, [PreferencesStore, PositionStore], (context) => ({
   currentLanguage: context.getStore(PreferencesStore).getLanguage(),
   showFirstTimeMessage: context.getStore(PreferencesStore).getShowFirstTimeMessage(),
   getLocationState: context.getStore(PositionStore).getLocationState(),

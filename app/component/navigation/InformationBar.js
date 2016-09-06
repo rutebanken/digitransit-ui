@@ -11,7 +11,7 @@ class InformationBar extends Component {
   static propTypes = {
     currentLanguage: React.PropTypes.string.isRequired,
     showFirstTimeMessage: React.PropTypes.bool.isRequired,
-    getLocationState: React.PropTypes.object.isRequired,
+    getLocationState: React.PropTypes.func.isRequired,
   };
 
   static contextTypes = {

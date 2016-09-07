@@ -17,6 +17,21 @@ function SiteInformation(props) {
     cookieInfo = null;
   }
 
+  let dataSourceInfo;
+  if (props.showDataSourceInfo) {
+    dataSourceInfo = <p>{messages.dataSourceInfo}</p>;
+  } else {
+    dataSourceInfo = null;
+  }
+
+  let aboutProject;
+  if (props.showDataSourceInfo) {
+    aboutProject = <p>{messages.aboutProject}</p>;
+  } else {
+    aboutProject = null;
+  }
+
+
   return (<div className="site-information" >
     <Icon id="site-information-close-icon" img="icon-icon_close" />
     <div className="information-body">
@@ -24,7 +39,9 @@ function SiteInformation(props) {
         <span className="bold"> {messages.siteName}</span>
       </p>
       <p>{messages.about}</p>
+      {dataSourceInfo}
       {cookieInfo}
+      {aboutProject}
     </div>
   </div>);
 }
@@ -32,6 +49,8 @@ function SiteInformation(props) {
 SiteInformation.propTypes = {
   currentLanguage: React.PropTypes.string.isRequired,
   showCookieInfo: React.PropTypes.bool.isRequired,
+  showDataSourceInfo: React.PropTypes.bool.isRequired,
+  showAboutProject: React.PropTypes.bool.isRequired,
 };
 
 export default SiteInformation;

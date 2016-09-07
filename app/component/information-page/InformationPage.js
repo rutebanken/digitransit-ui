@@ -12,7 +12,12 @@ function InformationPage(props, context) {
         className="information-page"
         onClick={() => context.executeAction(closeInformationPage)}
       >
-        <SiteInformation showCookieInfo currentLanguage={props.currentLanguage} />
+        <SiteInformation
+          currentLanguage={props.currentLanguage}
+          showCookieInfo
+          showDataSourceInfo
+          showAboutProject
+        />
       </div>
       );
   }

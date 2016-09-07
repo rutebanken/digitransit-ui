@@ -11,7 +11,7 @@ class InformationBar extends Component {
   static propTypes = {
     currentLanguage: React.PropTypes.string.isRequired,
     showFirstTimeMessage: React.PropTypes.bool.isRequired,
-    getLocationState: React.PropTypes.object.isRequired,
+    locationState: React.PropTypes.object.isRequired,
   };
 
   static contextTypes = {
@@ -28,7 +28,7 @@ class InformationBar extends Component {
   }
 
   render = () => {
-    if (this.props.showFirstTimeMessage && !this.props.getLocationState.isLocationingInProgress) {
+    if (this.props.showFirstTimeMessage && !this.props.locationState.isLocationingInProgress) {
       return (<div className="information-bar" onClick={this.close}>
         <SiteInformation
           currentLanguage={this.props.currentLanguage}
@@ -43,5 +43,5 @@ class InformationBar extends Component {
 export default connectToStores(InformationBar, [PreferencesStore, PositionStore], (context) => ({
   currentLanguage: context.getStore(PreferencesStore).getLanguage(),
   showFirstTimeMessage: context.getStore(PreferencesStore).getShowFirstTimeMessage(),
-  getLocationState: context.getStore(PositionStore).getLocationState(),
+  locationState: context.getStore(PositionStore).getLocationState(),
 }));

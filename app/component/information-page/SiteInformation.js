@@ -26,7 +26,9 @@ function SiteInformation(props) {
 
   let aboutProject;
   if (props.showDataSourceInfo) {
-    aboutProject = <p>{messages.aboutProject}</p>;
+    aboutProject = (<p>{messages.aboutProject}
+      <a href={messages.aboutProjectLink}> {messages.aboutProjectLink}</a>
+    </p>);
   } else {
     aboutProject = null;
   }

@@ -33,6 +33,8 @@ class InformationBar extends Component {
         <SiteInformation
           currentLanguage={this.props.currentLanguage}
           showCookieInfo={false}
+          showDataSourceInfo={false}
+          showAboutProject={false}
         />
       </div>);
     }

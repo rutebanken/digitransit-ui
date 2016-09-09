@@ -24,7 +24,7 @@ class InformationBar extends Component {
   }
 
   close = () => {
-    this.context.executeAction(UserPreferencesActions.setShowFirstTimeMessage, false);
+    this.context.executeAction(UserPreferencesActions.closeFirstTimeMessage);
   }
 
   render = () => {

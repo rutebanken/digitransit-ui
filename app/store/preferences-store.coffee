@@ -8,6 +8,7 @@ class PreferencesStore extends Store
   constructor: (dispatcher) ->
     super(dispatcher)
     @preferences = @loadPreferences()
+    @showFirstTimeMessage = true
 
   getLanguage: ->
     @preferences.language || config.defaultLanguage
@@ -24,16 +25,24 @@ class PreferencesStore extends Store
 
     @emitChange(language)
 
-  setShowFirstTimeMessage: (showFirstTimeMessage) ->
-    @preferences.showFirstTimeMessage = showFirstTimeMessage
+  closeFirstTimeMessage: () ->
+    @showFirstTimeMessage = false
+    if @preferences.firstTimeMessageClosedCount != undefined
+      @preferences.firstTimeMessageClosedCount += 1
+    else
+      @preferences.firstTimeMessageClosedCount = 1
+
     @storePreferences()
     @emitChange("showFirstTimeMessage")
 
   getShowFirstTimeMessage: ->
-    if @preferences.showFirstTimeMessage != undefined
-      @preferences.showFirstTimeMessage
+    if @showFirstTimeMessage
+      if @preferences.firstTimeMessageClosedCount != undefined
+        @preferences.firstTimeMessageClosedCount < 5
+      else if @preferences.firstTimeMessageClosedCount == undefined
+        true
     else
-      true
+      false
 
   loadPreferences: ->
     preferences = storage.getPreferencesStorage()
@@ -47,7 +56,7 @@ class PreferencesStore extends Store
 
     {
       language: language,
-      showFirstTimeMessage: preferences.showFirstTimeMessage
+      firstTimeMessageClosedCount: preferences.firstTimeMessageClosedCount
     }
 
   storePreferences: () ->
@@ -55,6 +64,6 @@ class PreferencesStore extends Store
 
   @handlers:
     "SetLanguage": 'setLanguage',
-    "SetShowFirstTimeMessage": 'setShowFirstTimeMessage'
+    "CloseFirstTimeMessage": 'closeFirstTimeMessage'
 
 module.exports = PreferencesStore

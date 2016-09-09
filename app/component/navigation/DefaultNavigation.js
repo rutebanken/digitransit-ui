@@ -28,7 +28,10 @@ class DefaultNavigation extends Component {
             <Link to="/">
               {this.props.showLogo ?
                 <div className="logo" /> :
-                <span className="title">{this.props.title}</span>
+                <span>
+                  <span className="title">{this.props.title}</span>
+                  <span className="title-suffix">BETA</span>
+                </span>
               }
             </Link>
           </section>

@@ -19,7 +19,7 @@ function MainMenu(props) {
 
   const informationPageToggle = (
     <a onClick={props.toggleInformationPage} >
-      <FormattedMessage id="about-this-site" defaultMessage="About this site" />
+      <FormattedMessage id="about-this-site" defaultMessage="About service" />
     </a>
   );
 

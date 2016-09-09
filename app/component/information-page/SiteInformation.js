@@ -15,7 +15,7 @@ function SiteInformation(props) {
   if (props.showCookieInfo) {
     cookieInfo = (
       <div>
-        <h2>{messages.cookiesHeader}</h2>
+        <h3>{messages.cookiesHeader}</h3>
         <p>{messages.cookies}</p>
       </div>);
   } else {
@@ -24,23 +24,32 @@ function SiteInformation(props) {
 
   let dataSourceInfo;
   if (props.showDataSourceInfo) {
-    dataSourceInfo = <p>{messages.dataSources}</p>;
+    dataSourceInfo = (<div>
+      <h3>{messages.dataSourcesHeader}</h3>
+      <p>{messages.dataSources}</p>
+    </div>);
   } else {
     dataSourceInfo = null;
   }
 
   let aboutProject;
   if (props.showAboutProject) {
-    aboutProject = (<p>{messages.aboutProject}
-      <a href={messages.aboutProjectLink}> {messages.aboutProjectLink}</a>
-    </p>);
+    aboutProject = (<div>
+      <h3>{messages.aboutProjectHeader}</h3>
+      <p>{messages.aboutProject}
+        <a href={messages.aboutProjectLink}> {messages.aboutProjectLink}</a>
+      </p>
+    </div>);
   } else {
     aboutProject = null;
   }
 
   let aboutService;
   if (props.showAboutService) {
-    aboutService = <p>{messages.about}</p>;
+    aboutService = (<div>
+      <h3>{messages.aboutHeader}</h3>
+      <p>{messages.about}</p>
+    </div>);
   } else {
     aboutService = null;
   }

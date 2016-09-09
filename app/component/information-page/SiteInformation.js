@@ -3,6 +3,7 @@ import Icon from '../icon/icon';
 import { aboutThisService } from '../../config';
 
 function SiteInformation(props) {
+  // TODO avoid reusing this. Use separate components.
   let messages;
   if (!aboutThisService[props.currentLanguage]) {
     messages = aboutThisService[aboutThisService.defaultLanguage];
@@ -19,13 +20,13 @@ function SiteInformation(props) {
 
   let dataSourceInfo;
   if (props.showDataSourceInfo) {
-    dataSourceInfo = <p>{messages.dataSourceInfo}</p>;
+    dataSourceInfo = <p>{messages.dataSources}</p>;
   } else {
     dataSourceInfo = null;
   }
 
   let aboutProject;
-  if (props.showDataSourceInfo) {
+  if (props.showAboutProject) {
     aboutProject = (<p>{messages.aboutProject}
       <a href={messages.aboutProjectLink}> {messages.aboutProjectLink}</a>
     </p>);
@@ -33,6 +34,19 @@ function SiteInformation(props) {
     aboutProject = null;
   }
 
+  let aboutService;
+  if (props.showAboutService) {
+    aboutService = <p>{messages.about}</p>;
+  } else {
+    aboutService = null;
+  }
+
+  let aboutShort;
+  if (props.showAboutShort) {
+    aboutShort = <p>{messages.aboutShort}</p>;
+  } else {
+    aboutShort = null;
+  }
 
   return (<div className="site-information" >
     <Icon id="site-information-close-icon" img="icon-icon_close" />
@@ -40,7 +54,8 @@ function SiteInformation(props) {
       <p>{messages.intro}
         <span className="bold"> {messages.siteName}</span>
       </p>
-      <p>{messages.about}</p>
+      {aboutShort}
+      {aboutService}
       {dataSourceInfo}
       {cookieInfo}
       {aboutProject}
@@ -53,6 +68,8 @@ SiteInformation.propTypes = {
   showCookieInfo: React.PropTypes.bool.isRequired,
   showDataSourceInfo: React.PropTypes.bool.isRequired,
   showAboutProject: React.PropTypes.bool.isRequired,
+  showAboutService: React.PropTypes.bool.isRequired,
+  showAboutShort: React.PropTypes.bool.isRequired,
 };
 
 export default SiteInformation;

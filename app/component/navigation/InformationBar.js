@@ -32,6 +32,8 @@ class InformationBar extends Component {
       return (<div className="information-bar" onClick={this.close}>
         <SiteInformation
           currentLanguage={this.props.currentLanguage}
+          showAboutShort
+          showAboutService={false}
           showCookieInfo={false}
           showDataSourceInfo={false}
           showAboutProject={false}

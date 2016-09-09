@@ -14,6 +14,8 @@ function InformationPage(props, context) {
       >
         <SiteInformation
           currentLanguage={props.currentLanguage}
+          showAboutService
+          showAboutShort={false}
           showCookieInfo
           showDataSourceInfo
           showAboutProject

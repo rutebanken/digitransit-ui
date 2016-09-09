@@ -13,7 +13,11 @@ function SiteInformation(props) {
 
   let cookieInfo;
   if (props.showCookieInfo) {
-    cookieInfo = <p>{messages.cookies}</p>;
+    cookieInfo = (
+      <div>
+        <h2>{messages.cookiesHeader}</h2>
+        <p>{messages.cookies}</p>
+      </div>);
   } else {
     cookieInfo = null;
   }

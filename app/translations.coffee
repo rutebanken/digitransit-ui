@@ -432,7 +432,7 @@ translations =
     'itinerary-feedback-placeholder': "Beskrivelse (valgfritt)"
     'itinerary-feedback-button': "Send tilbakemelding"
     'dropoff-pickup-info': 'Avgangen må forhåndsbestilles fra operatør'
-    'about-this-site': "Om dette nettstedet"
+    'about-this-site': "Om tjenesten"
   'fr':
     'stop-page.title': "Arrêt {stop_name} - {stop_code}"
     'stop-page.description': "Arrêt {stop_name} - {stop_code}"

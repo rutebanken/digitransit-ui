@@ -190,6 +190,16 @@ export default function (req, res, next) {
 
   const location = createHistory({ basename: config.APP_PATH }).createLocation(req.url);
 
+  if (location.search === '?gc') {
+    console.log('gc flag detected');
+    if (global.gc) {
+      console.log('Calling gc');
+      global.gc();
+    } else {
+      console.error('Cannot find global.gc. Start node with --expose-gc');
+    }
+  }
+
   match({
     routes: context.getComponent(),
     location,

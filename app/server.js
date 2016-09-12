@@ -22,6 +22,10 @@ import config from './config';
 import translations from './translations';
 import ApplicationHtml from './html';
 
+/*eslint-disable */
+import heapdump from 'heapdump';
+/*eslint-enable */
+
 const port = process.env.HOT_LOAD_PORT || 9000;
 
 function getStringOrArrayElement(arrayOrString, index) {

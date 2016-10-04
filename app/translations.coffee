@@ -431,7 +431,7 @@ translations =
     'itinerary-feedback-message': "Fant du ikke det du lette etter?"
     'itinerary-feedback-placeholder': "Beskrivelse (valgfritt)"
     'itinerary-feedback-button': "Send tilbakemelding"
-    'dropoff-pickup-info': 'Avgangen må forhåndsbestilles fra operatør'
+    'dropoff-pickup-info': 'Avgangen må forhåndsbestilles fra operatør (www.flexx.no/tlf.:03177)'
     'about-this-site': "Om tjenesten"
   'fr':
     'stop-page.title': "Arrêt {stop_name} - {stop_code}"

@@ -24,7 +24,7 @@ class TransitLeg extends React.Component
         @props.leg.hasPickupDropoff = true if stopTime.dropoffType == "CALL_AGENCY" or stopTime.dropoffType == "COORDINATE_WITH_DRIVER" or stopTime.pickupType == "CALL_AGENCY" or stopTime.pickupType == "COORDINATE_WITH_DRIVER"
     dropoffInfo = if @props.leg.hasPickupDropoff then [
       <div className="dropoff-pickup-info">
-        <FormattedMessage id={'dropoff-pickup-info'} defaultMessage="This route may require you to call the agency or coordinate with the driver"} />
+        <FormattedMessage id={'dropoff-pickup-info'} defaultMessage="This route require booking from operator (www.flexx.no/tel.:03177)"} />
         </div>
       ] else null
 

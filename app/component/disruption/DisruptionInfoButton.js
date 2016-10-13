@@ -11,7 +11,7 @@ class DisruptionInfoButton extends React.Component {
   };
 
   render() {
-    if (true) {
+    if (!config.disruption || config.disruption.showInfoButton) {
       return (
         <div
           className={'cursor-pointer disruption-info'}

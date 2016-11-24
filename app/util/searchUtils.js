@@ -303,7 +303,7 @@ export function executeSearchImmediate(getStore, { input, type }, callback) {
     .then(uniqByLabel)
     .catch(err => console.error(err)); // eslint-disable-line no-console
 
-    if (type === 'search') {
+    if (type === 'search' || type === 'all') {
       searchSearches.then(callback);
       return;
     }

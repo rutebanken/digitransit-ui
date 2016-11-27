@@ -46,6 +46,7 @@ export default {
     suggestions: {
       useTransportIcons: false,
     },
+    useOTPEndPoints: false,
   },
 
   nearbyRoutes: {

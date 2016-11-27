@@ -207,7 +207,7 @@ function getRoutes(input) {
       viewer {
         routes(name: $name ) {
           gtfsId
-          agency {name}
+          agency {name} 
           shortName
           mode
           longName
@@ -258,9 +258,53 @@ function getStops(input, origin) {
   )).then(suggestions => take(suggestions, 10));
 }
 
+const lookupCountyAndMunicipality = (item) => {
+  if (!item.properties.localadmin) {
+    const parameters = {
+      'point.lat': item.geometry.coordinates[1],
+      'point.lon': item.geometry.coordinates[0],
+      size: 1,
+    };
+    return getJson(config.URL.PELIAS_REVERSE_GEOCODER, parameters)
+            .then((peliasResult) => {
+              const stop = { ...item };
+              const firstFeature = peliasResult.features[0];
+              if (firstFeature) {
+                stop.properties.county = firstFeature.properties.county;
+                stop.properties.localadmin = firstFeature.properties.localadmin;
+                stop.properties.name = firstFeature.properties.label;
+                stop.properties.label = stop.properties.name;
+              }
+              return Promise.resolve(stop);
+            });
+  }
+  return Promise.resolve(item);
+};
+
+const formatOptionalStops = (optionalStops) => {
+  const promises = [];
+  optionalStops.forEach((item) => {
+    if (item.type === 'Stop' && item.properties) {
+      /* Remove link in order to use this as an endpoint */
+      delete item.properties.link; // eslint-disable-line no-param-reassign
+      promises.push(lookupCountyAndMunicipality(item));
+    }
+  });
+  return Promise.all(promises);
+};
+
+const getOptionalStops = (input, origin) => new Promise((resolve, reject) => {
+  if (!config.search.useOTPEndPoints) {
+    return resolve([]);
+  }
+  return getStops(input, origin).then(stops => resolve(formatOptionalStops(stops))).catch((err) => {
+    reject(err);
+  });
+});
+
 export function executeSearchImmediate(getStore, { input, type }, callback) {
   const position = getStore('PositionStore').getLocationState();
-  let endpoitSearches = [];
+  let endPointSearches = [];
   let searchSearches = [];
 
   if (type === 'endpoint' || type === 'all') {
@@ -269,10 +313,11 @@ export function executeSearchImmediate(getStore, { input, type }, callback) {
     const oldSearches = getStore('OldSearchesStore').getOldSearches('endpoint');
     const language = getStore('PreferencesStore').getLanguage();
 
-    endpoitSearches = Promise.all([
+    endPointSearches = Promise.all([
       getCurrentPositionIfEmpty(input, origin.useCurrentPosition),
       getFavouriteLocations(favouriteLocations, input),
       getOldSearches(oldSearches, input),
+      getOptionalStops(input, position),
       getGeocodingResult(input, position, language),
     ])
     .then(flatten)
@@ -280,7 +325,7 @@ export function executeSearchImmediate(getStore, { input, type }, callback) {
     .catch(err => console.error(err)); // eslint-disable-line no-console
 
     if (type === 'endpoint') {
-      endpoitSearches.then(callback);
+      endPointSearches.then(callback);
       return;
     }
   }
@@ -309,7 +354,7 @@ export function executeSearchImmediate(getStore, { input, type }, callback) {
     }
   }
 
-  Promise.all([endpoitSearches, searchSearches])
+  Promise.all([endPointSearches, searchSearches])
     .then(([endpoints, search]) => callback([
       { name: 'endpoint', items: endpoints },
       { name: 'search', items: search },

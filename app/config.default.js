@@ -258,16 +258,25 @@ export default {
     walk: {
       availableForSelection: true,
       defaultValue: true,
+      icon: 'walk',
     },
 
     bicycle: {
       availableForSelection: true,
       defaultValue: false,
+      icon: 'bicycle-withoutBox',
     },
 
     car: {
       availableForSelection: true,
       defaultValue: false,
+      icon: 'car-withoutBox',
+    },
+
+    car_park: {
+      availableForSelection: false,
+      defaultValue: false,
+      icon: 'car_park-withoutBox',
     },
   },
 
@@ -369,6 +378,15 @@ export default {
     [18.7454, 60.1305],
     [18.776, 60.3316],
   ],
+
+  footer: {
+    content: [
+      { label: (function () { return `© Liikennevirasto ${(1900 + new Date().getYear())}`; }()) },
+      {},
+      { name: 'footer-feedback', nameEn: 'Send feedback', href: 'http://www.liikennevirasto.fi/yhteystiedot/palaute', icon: 'icon-icon_speech-bubble' },
+      { name: 'about-this-service', nameEn: 'About this service', route: '/tietoja-palvelusta', icon: 'icon-icon_info' },
+    ],
+  },
 
   // Default origin endpoint to use when user is outside of area
   defaultEndpoint: {

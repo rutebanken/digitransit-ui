@@ -131,7 +131,11 @@ function getGeocodingResult(input, geolocation, language) {
   const opts = { text: input, ...config.searchParams, ...focusPoint, lang: language };
 
   return getJson(config.URL.PELIAS, opts)
-    .then(res => orderBy(res.features, feature => feature.properties.confidence, 'desc'));
+    .then(res => orderBy(res.features.map((feature) => {
+      /* eslint no-param-reassign: ["error", { "props": false }] */
+      feature.properties.label = `${feature.properties.name}, ${feature.properties.localadmin}`;
+      return feature;
+    }), feature => feature.properties.confidence, 'desc'));
 }
 
 function getFavouriteRoutes(favourites, input) {

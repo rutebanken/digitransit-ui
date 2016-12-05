@@ -546,6 +546,7 @@ const translations = {
     'main-mode': 'Jeg reiser med',
     'edit-favourites': 'Rediger favorittsted',
     'dropoff-pickup-info': 'Avgangen må forhåndsbestilles fra operatør (www.flexx.no/tlf.:03177)',
+    'splash-locating': 'Søker etter din posisjon',
   },
 
   'fr': {

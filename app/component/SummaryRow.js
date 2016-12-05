@@ -47,6 +47,17 @@ export default function SummaryRow(props, { breakpoint }) {
         mode = 'CITYBIKE';
       }
 
+      let legHasPickupDropOff = false;
+
+      if (leg.trip && leg.trip.stoptimes) {
+        leg.trip.stoptimes.forEach((stopTime) => {
+          if (stopTime.dropoffType === 'CALL_AGENCY' || stopTime.dropoffType === 'COORDINATE_WITH_DRIVER'
+              || stopTime.pickupType === 'CALL_AGENCY' || stopTime.pickupType === 'COORDINATE_WITH_DRIVER') {
+            legHasPickupDropOff = true;
+          }
+        });
+      }
+
       legs.push(
         <div key={i} className="leg">
           {breakpoint === 'large' &&
@@ -57,7 +68,7 @@ export default function SummaryRow(props, { breakpoint }) {
           <RouteNumber
             mode={mode}
             text={legTextUtil.getLegText(leg)}
-            className={cx('line', mode.toLowerCase())}
+            className={cx('line', mode.toLowerCase(), { 'pickup-dropoff': legHasPickupDropOff })}
             vertical
           />
         </div>

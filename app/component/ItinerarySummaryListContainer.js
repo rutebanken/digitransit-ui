@@ -71,6 +71,12 @@ export default Relay.createContainer(ItinerarySummaryListContainer, {
           from {
             name
           }
+          trip {
+            stoptimes {
+              dropoffType
+              pickupType
+            }
+          }
         }
       }
     `,

@@ -25,6 +25,20 @@ class TransitLeg extends React.Component {
     const modeClassName =
       `${this.props.mode.toLowerCase()}${this.props.index === 0 ? ' from' : ''}`;
 
+    let pickupDropInformation = null;
+
+    if (this.props.leg.trip && this.props.leg.trip.stoptimes) {
+      this.props.leg.trip.stoptimes.forEach((stopTime) => {
+        if (stopTime.dropoffType === 'CALL_AGENCY' || stopTime.dropoffType === 'COORDINATE_WITH_DRIVER'
+          || stopTime.pickupType === 'CALL_AGENCY' || stopTime.pickupType === 'COORDINATE_WITH_DRIVER') {
+          pickupDropInformation = (
+            <div className="dropoff-pickup-info">
+              <FormattedMessage id={'dropoff-pickup-info'} defaultMessage="This route require booking from operator (www.flexx.no/tel.:03177)" />
+            </div>
+          );
+        }
+      });
+    }
 
     return (<div
       key={this.props.index}
@@ -71,6 +85,7 @@ class TransitLeg extends React.Component {
         <div className="itinerary-transit-leg-route">
           {this.props.children}
         </div>
+        { pickupDropInformation }
         <div className="itinerary-leg-intermediate-stops">
           <FormattedMessage
             id="number-of-intermediate-stops"

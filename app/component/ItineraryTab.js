@@ -150,6 +150,10 @@ export default Relay.createContainer(ItineraryTab, {
             pattern {
               code
             }
+            stoptimes {
+              dropoffType
+              pickupType
+            }
           }
         }
       }

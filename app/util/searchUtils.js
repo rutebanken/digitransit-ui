@@ -276,7 +276,7 @@ const lookupCountyAndMunicipality = (item) => {
               if (firstFeature) {
                 stop.properties.county = firstFeature.properties.county;
                 stop.properties.localadmin = firstFeature.properties.localadmin;
-                stop.properties.name = firstFeature.properties.label;
+                stop.properties.name = `${stop.properties.name}, ${firstFeature.properties.localadmin}`;
                 stop.properties.label = stop.properties.name;
               }
               return Promise.resolve(stop);

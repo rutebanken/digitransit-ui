@@ -9,9 +9,7 @@ import GenericMarker from '../GenericMarker';
 import Icon from '../../Icon';
 import config from '../../../config';
 import { getCaseRadius, getStopRadius, getHubRadius } from '../../../util/mapIconUtils';
-
-
-const isBrowser = typeof window !== 'undefined' && window !== null;
+import { isBrowser } from '../../../util/browser';
 
 let L;
 
@@ -131,7 +129,7 @@ class StopMarker extends React.Component {
             date: this.context.getStore('TimeStore').getCurrentTime().format('YYYYMMDD'),
           })}
           renderLoading={() =>
-            <div className="card" style={{ height: 150 }}><div className="spinner-loader" /></div>
+            <div className="card" style={{ height: '12rem' }}><div className="spinner-loader" /></div>
           }
           renderFetched={data =>
             <StopMarkerPopupWithContext {...data} context={this.context} />

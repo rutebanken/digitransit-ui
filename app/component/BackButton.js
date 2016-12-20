@@ -1,6 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Icon from './Icon';
+import { hasHistoryEntries } from '../util/browser';
 
 export default class BackButton extends React.Component {
   static contextTypes = {
@@ -15,7 +16,7 @@ export default class BackButton extends React.Component {
   // When react-tap-plugin works better
   goBack = () => {
     setTimeout(() => {
-      if (window.history.length > 1) {
+      if (hasHistoryEntries()) {
         this.context.router.goBack();
       } else {
         this.context.router.push('/');
@@ -30,9 +31,7 @@ export default class BackButton extends React.Component {
         style={{
           minWidth: '40px',
           height: '40px',
-          position: 'absolute',
-          top: 0,
-          left: 0,
+          alignSelf: 'stretch',
         }}
         icon={<Icon img="icon-icon_arrow-left" className="cursor-pointer back" />}
       />

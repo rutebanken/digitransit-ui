@@ -15,7 +15,34 @@ html {
   /* Disable touch delay on ms-devices */
   -ms-touch-action: manipulation;
   touch-action: manipulation;
+  font-size: 15px !important;
 }
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(14px + 7 * (100vw - 320px) / 500) !important;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 16px !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+  }
+
+  /* TODO: Remove after foundation is removed */
+  @for $i from 1 through 12 {
+    div.small-#{$i} {
+      width: calc(#{$i} * 100% / 12);
+    }
+  }
+}
+
 body {
   background-color: $background-color !important;
   font-family: $font-family;
@@ -24,9 +51,19 @@ body {
   /* Remove Mobile Safari automatic font size adjustments */
   -webkit-text-size-adjust: 100%;
 }
+
 #main {
   background-color: $background-color;
 }
+
+#app {
+  height: 100%;
+
+  @media print {
+    height: auto;
+  }
+}
+
 p {
   font-family: $font-family;
   font-weight: $font-weight-book;
@@ -71,7 +108,7 @@ h4,
 .h4  {
   font-family: $font-family;
   font-weight: $font-weight-bold;
-  font-size: 12px;
+  font-size: $font-size-xsmall;
   text-transform: uppercase;
   line-height: $line-height-normal;
   color: $gray;

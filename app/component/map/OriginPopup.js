@@ -4,8 +4,7 @@ import { intlShape } from 'react-intl';
 import config from '../../config';
 import { openDialog } from '../../action/SearchActions';
 import Icon from '../Icon';
-
-const isBrowser = typeof window !== 'undefined' && window !== null;
+import { isBrowser } from '../../util/browser';
 
 const Popup = isBrowser ?
   require('react-leaflet/lib/Popup').default : null; // eslint-disable-line global-require
@@ -26,7 +25,7 @@ class OriginPopup extends React.Component {
   };
 
   componentDidMount() {
-    return this.props.shouldOpen && setImmediate(this.display);
+    return this.props.shouldOpen && setTimeout(this.display);
   }
 
   display = () => this.context.popupContainer.openPopup();

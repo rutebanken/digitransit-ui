@@ -3,7 +3,7 @@ import moment from 'moment';
 import cx from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import legTextUtil from '../util/leg-text-util';
+import getLegText from '../util/leg-text-util';
 import { displayDistance } from '../util/geo-utils';
 import RouteNumber from './RouteNumber';
 import Icon from './Icon';
@@ -21,15 +21,14 @@ export default function SummaryRow(props, { breakpoint }) {
   let realTimeAvailable = false;
   let noTransitLegs = true;
 
-  for (const leg of data.legs) {
+  data.legs.forEach((leg) => {
     if (leg.transitLeg || leg.rentedBike) {
       if (noTransitLegs && leg.realTime) {
         realTimeAvailable = true;
       }
       noTransitLegs = false;
-      break;
     }
-  }
+  });
 
   let lastLegRented = false;
 
@@ -67,11 +66,11 @@ export default function SummaryRow(props, { breakpoint }) {
           }
           <RouteNumber
             mode={mode}
-            text={legTextUtil.getLegText(leg)}
+            text={getLegText(leg)}
             className={cx('line', mode.toLowerCase(), { 'pickup-dropoff': legHasPickupDropOff })}
             vertical
           />
-        </div>
+        </div>,
       );
     }
   });

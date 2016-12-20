@@ -10,8 +10,7 @@ import { station as exampleStation } from '../../ExampleData';
 import ComponentUsageExample from '../../ComponentUsageExample';
 import CityBikeRoute from '../../../route/CityBikeRoute';
 import config from '../../../config';
-
-const isBrowser = typeof window !== 'undefined' && window !== null;
+import { isBrowser } from '../../../util/browser';
 
 let L;
 
@@ -94,7 +93,7 @@ class CityBikeMarker extends React.Component {
           Component={CityBikePopup}
           route={new CityBikeRoute({ stationId: this.props.station.stationId })}
           renderLoading={() => (
-            <div className="card" style={{ height: 150 }}>
+            <div className="card" style={{ height: '12rem' }}>
               <div className="spinner-loader" />
             </div>
           )}

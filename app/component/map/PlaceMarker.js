@@ -3,8 +3,7 @@ import { intlShape } from 'react-intl';
 
 import OriginPopup from './OriginPopup';
 import Icon from '../Icon';
-
-const isBrowser = typeof window !== 'undefined' && window !== null;
+import { isBrowser } from '../../util/browser';
 
 let L;
 let Marker;
@@ -26,6 +25,7 @@ export default function PlaceMarker({ displayOriginPopup, position }, { intl, po
         header={intl.formatMessage({ id: 'origin', defaultMessage: 'From' })}
         popupContainer={popupContainer}
         text={position.address}
+        keyboard={false}
         yOffset={14}
       />
     );
@@ -36,6 +36,7 @@ export default function PlaceMarker({ displayOriginPopup, position }, { intl, po
       <Marker
         zIndexOffset={10}
         position={position}
+        keyboard={false}
         icon={L.divIcon({
           html: Icon.asString('icon-icon_mapMarker-point'),
           className: 'place halo',
@@ -43,6 +44,7 @@ export default function PlaceMarker({ displayOriginPopup, position }, { intl, po
         })}
       />
       <Marker
+        keyboard={false}
         zIndexOffset={10}
         position={position}
         icon={L.divIcon({

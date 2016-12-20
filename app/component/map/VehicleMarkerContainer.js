@@ -8,7 +8,7 @@ import RouteMarkerPopup from './route/RouteMarkerPopup';
 import FuzzyTripRoute from '../../route/FuzzyTripRoute';
 import { asString as iconAsString } from '../IconWithTail';
 
-const isBrowser = typeof window !== 'undefined' && window !== null;
+import { isBrowser } from '../../util/browser';
 
 const MODES_WITH_ICONS = ['bus', 'tram', 'rail', 'subway', 'ferry'];
 
@@ -89,7 +89,7 @@ export default class VehicleMarkerContainer extends React.Component {
       this.props.startRealTimeClient && this.context.getStore('RealTimeInformationStore').client
     ) {
       this.context.executeAction(stopRealTimeClient(
-        this.context.getStore('RealTimeInformationStore').client
+        this.context.getStore('RealTimeInformationStore').client,
       ));
     }
     this.context.getStore('RealTimeInformationStore').removeChangeListener(this.onChange);
@@ -115,7 +115,7 @@ export default class VehicleMarkerContainer extends React.Component {
             (message.tripStartTime.substring(2, 4) * 60),
         })}
         renderLoading={() => (
-          <div className="card" style={{ height: 150 }}><div className="spinner-loader" /></div>
+          <div className="card" style={{ height: '12rem' }}><div className="spinner-loader" /></div>
         )}
         renderFetched={data => (
           <RouteMarkerPopupWithContext {...data} message={message} context={this.context} />

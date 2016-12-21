@@ -1,4 +1,4 @@
-FROM node:6.2-wheezy
+FROM node:7.2.1-alpine
 # https://hub.docker.com/_/node/
 # https://github.com/nodejs/docker-node/
 
@@ -6,7 +6,7 @@ FROM node:6.2-wheezy
 RUN wget --quiet https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb
 RUN dpkg -i dumb-init_*.deb
 RUN npm set progress=false
-
+RUN npm install -g yarn
 EXPOSE 8000
 
 # Forcing reset of source:

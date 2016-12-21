@@ -14,6 +14,7 @@ if (typeof window !== 'undefined') {
   slides = {
     hsl: require('./IntroHsl').default, // eslint-disable-line global-require
     matka: require('./IntroMatka').default, // eslint-disable-line global-require
+    rutebanken: require('./IntroRutebanken').default, // eslint-disable-line global-require
   };
 }
 

@@ -14,7 +14,7 @@ export default [
       nb: 'Din posisjon gir ny funksjonalitet. Gi nettleseren din tilgang til posisjonering!',
     },
   }, {
-    image: require('../../static/img/hsl-origin.png'), // eslint-disable-line global-require
+    image: require('../../static/img/rutebanken-icons/rutebanken-origin.png'), // eslint-disable-line
     header: {
       fi: 'Missä oletkin',
       en: 'Wherever you are',
@@ -28,7 +28,7 @@ export default [
       nb: 'Din posisjon fungerer som avreisested. Få reiseforslag ved å skrive inn desitinasjon.',
     },
   }, {
-    image: require('../../static/img/hsl-nearyou.png'), // eslint-disable-line global-require
+    image: require('../../static/img/rutebanken-icons/rutebanken-nearyou.png'), // eslint-disable-line
     header: {
       fi: 'Milloin lähden?',
       en: 'When will I go?',

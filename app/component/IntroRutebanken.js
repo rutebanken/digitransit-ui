@@ -1,6 +1,6 @@
 export default [
   {
-    image: require('../../static/img/rutebanken-icons/intro-rutebanken.png'), // eslint-disable-line global-require
+    image: require('../../static/img/rutebanken-icons/intro-rutebanken.png'),  // eslint-disable-line
     header: {
       fi: 'Tervetuloa käyttämään uutta reittiopasta',
       en: 'Welcome to new Journey planner',

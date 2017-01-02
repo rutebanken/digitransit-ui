@@ -131,18 +131,6 @@ class TransitLeg extends React.Component {
           {this.props.children}
         </div>
         { pickupDropInformation }
-        <div className="itinerary-leg-intermediate-stops">
-          <FormattedMessage
-            id="number-of-intermediate-stops"
-            values={{
-              number: (this.props.leg.intermediateStops
-                && this.props.leg.intermediateStops.length) || 0,
-              duration: durationToString(this.props.leg.duration * 1000),
-            }}
-            defaultMessage="{number, plural, =0 {No intermediate stops}
-              other {{number} stops} } ({duration})"
-          />
-        </div>
         <LegAgencyInfo leg={this.props.leg} />
         <div >
           <StopInfo

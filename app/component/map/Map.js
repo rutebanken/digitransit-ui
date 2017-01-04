@@ -106,6 +106,10 @@ class Map extends React.Component {
     () => importLazy(System.import('./non-tile-layer/CityBikeMarkerContainer')),
   }
 
+  parkAndRideMarkerContainerModules = { ParkAndRideMarkerContainer:
+    () => importLazy(System.import('./non-tile-layer/ParkAndRideMarkerContainer')),
+  };
+
   renderVectorTileLayerContainer = ({ VectorTileLayerContainer }) => (
     <VectorTileLayerContainer
       hilightedStops={this.props.hilightedStops}
@@ -123,6 +127,8 @@ class Map extends React.Component {
   )
 
   renderCityBikeMarkerContainer = ({ CityBikeMarkerContainer }) => (<CityBikeMarkerContainer />)
+
+  renderParkAndRideMarkerContainer = ({ ParkAndRideMarkerContainer }) => (<ParkAndRideMarkerContainer />);
 
   render = () => {
     let map;
@@ -150,6 +156,13 @@ class Map extends React.Component {
           leafletObjs.push(
             <LazilyLoad key="citybikes" modules={this.cityBikeMarkerContainerModules}>
               {this.renderCityBikeMarkerContainer}
+            </LazilyLoad>);
+        }
+
+        if (config.parkAndRide.showParkAndRide) {
+          leafletObjs.push(
+            <LazilyLoad key="parkAndRide" modules={this.parkAndRideMarkerContainerModules}>
+              {this.renderParkAndRideMarkerContainer}
             </LazilyLoad>);
         }
       }

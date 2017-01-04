@@ -5,7 +5,6 @@ import { intlShape } from 'react-intl';
 import ParkAndRideFacilityPopup from '../popups/ParkAndRideFacilityPopup';
 import Icon from '../../Icon';
 import GenericMarker from '../GenericMarker';
-import { station as exampleStation } from '../../ExampleData';
 import ComponentUsageExample from '../../ComponentUsageExample';
 import ParkAndRideFacilityRoute from '../../../route/ParkAndRideFacilityRoute';
 import config from '../../../config';
@@ -42,9 +41,9 @@ const smallIconSvg = `
 export default class ParkAndRideMarker extends React.Component {
   static description = (
     <div>
-      <p>Renders a ParkAndRide marker</p>$
+      <p>Renders a ParkAndRide marker</p>
       <ComponentUsageExample description="">
-        <ParkAndRideMarker key={exampleStation.id} map="leaflet map here" station={exampleStation} />
+        <ParkAndRideMarker carPark={{ }} />
       </ComponentUsageExample>
     </div>
   );
@@ -52,7 +51,7 @@ export default class ParkAndRideMarker extends React.Component {
   static displayName = 'ParkAndRideMarker';
 
   static propTypes = {
-    station: React.PropTypes.object.isRequired,
+    carPark: React.PropTypes.object.isRequired,
     transit: React.PropTypes.bool,
   };
 
@@ -82,20 +81,23 @@ export default class ParkAndRideMarker extends React.Component {
 
   render() {
     if (!isBrowser) return false;
+
+    const { carPark } = this.props;
+
     return (
       <GenericMarker
         position={{
-          lat: this.props.station.lat,
-          lon: this.props.station.lon,
+          lat: carPark.lat,
+          lon: carPark.lon,
         }}
         getIcon={this.getIcon}
-        id={this.props.station.carParkId}
+        id={carPark.carParkId}
       >
         <Relay.RootContainer
           Component={ParkAndRideFacilityPopup}
           route={new ParkAndRideFacilityRoute({
-            id: this.props.station.carParkId,
-            name: this.props.station.name,
+            id: carPark.carParkId,
+            name: carPark.name,
           })}
           renderLoading={() => (
             <div className="card" style={{ height: '12rem' }}>
@@ -104,9 +106,9 @@ export default class ParkAndRideMarker extends React.Component {
           )}
           renderFetched={data => (
             <ParkAndRideFacilityPopupWithContext
-              name={this.props.station.name}
-              lat={this.props.station.lat}
-              lon={this.props.station.lon}
+              name={carPark.name}
+              lat={carPark.lat}
+              lon={carPark.lon}
               {...data}
               context={this.context}
             />

@@ -9,7 +9,7 @@ const ParkAndRideMarkerWrapper = Relay.createContainer((({ alerts }) => (
   <div>
     {alerts && alerts.carParks.map(carPark => (
       <ParkAndRideMarker
-        station={carPark}
+        carPark={carPark}
         key={`carpark-${carPark.carParkId}`}
       />
     ))}

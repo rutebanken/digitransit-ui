@@ -2,13 +2,12 @@ import React from 'react';
 import Relay from 'react-relay';
 import provideContext from 'fluxible-addons-react/provideContext';
 import { intlShape } from 'react-intl';
-
 import ParkAndRideFacilityPopup from '../popups/ParkAndRideFacilityPopup';
 import Icon from '../../Icon';
 import GenericMarker from '../GenericMarker';
 import { station as exampleStation } from '../../ExampleData';
 import ComponentUsageExample from '../../ComponentUsageExample';
-import ParkAndRideFacilityRoute from '../../../route/ParkAndRideFacilityRoute'; //TODO
+import ParkAndRideFacilityRoute from '../../../route/ParkAndRideFacilityRoute';
 import config from '../../../config';
 import { isBrowser } from '../../../util/browser';
 
@@ -40,8 +39,7 @@ const smallIconSvg = `
   </svg>
 `;
 
-export default
-class ParkAndRideMarker extends React.Component {
+export default class ParkAndRideMarker extends React.Component {
   static description = (
     <div>
       <p>Renders a ParkAndRide marker</p>$
@@ -95,7 +93,10 @@ class ParkAndRideMarker extends React.Component {
       >
         <Relay.RootContainer
           Component={ParkAndRideFacilityPopup}
-          route={new ParkAndRideFacilityRoute({ id: this.props.station.carParkId, name: this.props.station.name })}
+          route={new ParkAndRideFacilityRoute({
+            id: this.props.station.carParkId,
+            name: this.props.station.name,
+          })}
           renderLoading={() => (
             <div className="card" style={{ height: '12rem' }}>
               <div className="spinner-loader" />

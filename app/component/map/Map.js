@@ -128,7 +128,9 @@ class Map extends React.Component {
 
   renderCityBikeMarkerContainer = ({ CityBikeMarkerContainer }) => (<CityBikeMarkerContainer />)
 
-  renderParkAndRideMarkerContainer = ({ ParkAndRideMarkerContainer }) => (<ParkAndRideMarkerContainer />);
+  renderParkAndRideMarkerContainer = ({ ParkAndRideMarkerContainer }) => (
+    <ParkAndRideMarkerContainer />
+  );
 
   render = () => {
     let map;

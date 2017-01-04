@@ -1,17 +1,16 @@
 import React from 'react';
 import Relay from 'react-relay';
 import ViewerRoute from '../../../route/ViewerRoute';
-
 import config from '../../../config';
-import ParkAndRideMarker from './ParkAndRideMarker'
+import ParkAndRideMarker from './ParkAndRideMarker';
 import ComponentUsageExample from '../../ComponentUsageExample';
 
 const ParkAndRideMarkerWrapper = Relay.createContainer((({ alerts }) => (
   <div>
     {alerts && alerts.carParks.map(carPark => (
       <ParkAndRideMarker
-          station={carPark}
-          key={`carpark-${carPark.carParkId}`}
+        station={carPark}
+        key={`carpark-${carPark.carParkId}`}
       />
     ))}
   </div>
@@ -35,7 +34,7 @@ const ParkAndRideMarkerWrapper = Relay.createContainer((({ alerts }) => (
 class ParkAndRideMarkerContainer extends React.Component {
   static description = (
     <div>
-      <p>Renders all park-and-ride if zoom is over configured value. Requires map to be found in props.</p>
+      <p>Renders all park-and-ride if zoom is over configured value.</p>
       <ComponentUsageExample description="">
         <ParkAndRideMarkerContainer />
       </ComponentUsageExample>

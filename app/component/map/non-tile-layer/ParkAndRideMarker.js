@@ -51,7 +51,12 @@ export default class ParkAndRideMarker extends React.Component {
   static displayName = 'ParkAndRideMarker';
 
   static propTypes = {
-    carPark: React.PropTypes.object.isRequired,
+    carPark: React.PropTypes.objectOf({
+      carParkId: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
+      lat: React.PropTypes.number.isRequired,
+      lon: React.PropTypes.number.isRequired,
+    }).isRequired,
     transit: React.PropTypes.bool,
   };
 

@@ -19,7 +19,6 @@ const ParkAndRideMarkerWrapper = Relay.createContainer((({ alerts }) => (
     alerts: () => Relay.QL`
       fragment on QueryType {
           carParks {
-            id
             carParkId
             name
             lat

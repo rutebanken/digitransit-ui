@@ -78,7 +78,7 @@ export default class ParkAndRideMarker extends React.Component {
       })
     :
       L.divIcon({
-        html: Icon.asString('icon-icon_park-and-ride', 'park-and-ride-medium-size'),
+        html: Icon.asString('icon-icon_car_park-withoutBox', 'park-and-ride-medium-size'),
         iconSize: [20, 20],
         className: 'park-and-ride cursor-pointer',
       })

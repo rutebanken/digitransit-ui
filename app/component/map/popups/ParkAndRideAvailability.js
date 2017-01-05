@@ -5,6 +5,20 @@ import { FormattedMessage } from 'react-intl';
 import Availability from '../../Availability';
 import ComponentUsageExample from '../../ComponentUsageExample';
 
+import config from '../../../config';
+
+const maxCapacityCalc = (maxCapacity) => {
+  if (isNaN(maxCapacity)) {
+    return 0;
+  }
+  const maxCapcityThreshold = (config.parkAndRide.maxCapacityThreshold) ?
+    config.parkAndRide.maxCapacityThreshold : (2 ** 31) - 1;
+  if (maxCapacity >= maxCapcityThreshold) {
+    return <FormattedMessage id="park-and-ride-unknown" defaultMessage="Unknown capacity" />;
+  }
+  return maxCapacity;
+};
+
 const ParkAndRideAvailability = mapProps(({ realtime, maxCapacity, spacesAvailable }) => ({
   available: realtime ? spacesAvailable : 0,
   total: maxCapacity,
@@ -14,7 +28,7 @@ const ParkAndRideAvailability = mapProps(({ realtime, maxCapacity, spacesAvailab
       <FormattedMessage id="park-and-ride-availability" defaultMessage="Spaces available" />
       {'\u00a0'}
       ({!realtime || isNaN(spacesAvailable) ? '?' : spacesAvailable}/
-      {isNaN(maxCapacity) ? 0 : maxCapacity})
+      {maxCapacityCalc(maxCapacity)})
     </p>
   ),
 }))(Availability);

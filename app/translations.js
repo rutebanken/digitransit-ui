@@ -385,6 +385,7 @@ const translations = {
     'back-to-front-page': 'Tillbaka till framsidan',
     'park-and-ride': 'Infartsparkering',
     'park-and-ride-availability': 'Lediga parkeringsplatser',
+    'park-and-ride-unknown': 'okänd kapacitet',
     'platform-short': 'Plat.',
     'footer-feedback': 'Skicka feedback',
     'footer-link-to-old': 'Använd den gamla reseplaneraren',
@@ -588,6 +589,7 @@ const translations = {
     'main-menu-label-open': 'Åpen hovedmenyen',
     'park-and-ride': 'Innfartsparkering',
     'park-and-ride-availability': 'Tilgjengelighet',
+    'park-and-ride-unknown': 'Ukjent kapasitet',
     'using-modes': 'Transportform',
   },
 

@@ -5,13 +5,13 @@ export default [
       fi: 'Tervetuloa käyttämään uutta reittiopasta',
       en: 'Welcome to new Journey planner',
       sv: 'Välkommen till den nya reseplaneraren',
-      nb: 'Velkommen til den nye reiseplanlegger',
+      nb: 'Velkommen til den nye reiseplanleggeren',
     },
     text: {
       fi: 'Nykyinen sijaintisi on avain uusiin ominaisuuksiin. Sallithan paikannuksen!',
       en: 'Your current location enables new features. Please allow browser to know your location!',
       sv: 'Din position är nyckeln till nya egenskaper. Tillåt gärna att dela din plats!',
-      nb: 'Din posisjon gir ny funksjonalitet. Gi nettleseren din tilgang til posisjonering!',
+      nb: 'Gi tilgang til din posisjon for en bedre brukeropplevelse.',
     },
   }, {
     image: require('../../static/img/rutebanken-icons/rutebanken-origin.png'), // eslint-disable-line
@@ -19,7 +19,7 @@ export default [
       fi: 'Missä oletkin',
       en: 'Wherever you are',
       sv: 'Där du är',
-      nb: 'Der du er',
+      nb: 'Min posisjon',
     },
     text: {
       fi: 'Nykyinen sijaintisi toimii lähtöpaikkana. Saat reitityksen kertomalla määränpään.',
@@ -39,7 +39,7 @@ export default [
       fi: 'Tarkista nopeasti, mitä lähtee seuraavaksi lähipysäkeiltäsi.',
       en: 'Efficiently check what public transport is available near you.',
       sv: 'Kolla snabbt och enkelt vilka förbindelser som är nära dig.',
-      nb: 'Sjekk kollektivetilbud nær deg.',
+      nb: 'Sjekk kollektivetilbudet nær deg.',
     },
   },
 ];

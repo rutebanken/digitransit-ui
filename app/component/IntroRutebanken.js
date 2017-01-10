@@ -25,7 +25,7 @@ export default [
       fi: 'Nykyinen sijaintisi toimii lähtöpaikkana. Saat reitityksen kertomalla määränpään.',
       en: 'Your current location works as a starting point. You get route suggestions by writing your destination.',
       sv: 'Din position fungerar som avfärdsplats. Resan planerar du genom att berätta vart du är på väg.',
-      nb: 'Din posisjon fungerer som avreisested. Få reiseforslag ved å skrive inn desitinasjon.',
+      nb: 'Din posisjon fungerer som avreisested. Få reiseforslag ved å skrive inn destinasjon.',
     },
   }, {
     image: require('../../static/img/rutebanken-icons/rutebanken-nearyou.png'), // eslint-disable-line

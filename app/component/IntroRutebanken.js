@@ -39,7 +39,7 @@ export default [
       fi: 'Tarkista nopeasti, mitä lähtee seuraavaksi lähipysäkeiltäsi.',
       en: 'Efficiently check what public transport is available near you.',
       sv: 'Kolla snabbt och enkelt vilka förbindelser som är nära dig.',
-      nb: 'Sjekk kollektivetilbudet nær deg.',
+      nb: 'Sjekk kollektivtilbudet nær deg.',
     },
   },
 ];

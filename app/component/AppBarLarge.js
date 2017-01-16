@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import config from '../config';
-import NotImplemented from './NotImplemented';
 import ExternalLink from './ExternalLink';
 import DisruptionInfo from './DisruptionInfo';
 import { open } from '../action/DisruptionInfoAction';
@@ -23,13 +22,14 @@ const AppBarLarge = ({ titleClicked }, context) =>
         <ExternalLink {...config.appBarLink} />
       </div>
     </div>
-    <NotImplemented />
     <DisruptionInfo />
   </div>;
 
 AppBarLarge.propTypes = {
   titleClicked: PropTypes.func.isRequired,
 };
+
+AppBarLarge.displayName = 'AppBarLarge';
 
 AppBarLarge.contextTypes = {
   executeAction: React.PropTypes.func.isRequired,

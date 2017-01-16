@@ -3,16 +3,16 @@ import moment from 'moment';
 import cx from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import getLegText from '../util/leg-text-util';
 import { displayDistance } from '../util/geo-utils';
 import RouteNumber from './RouteNumber';
+import RouteNumberContainer from './RouteNumberContainer';
 import Icon from './Icon';
 import RelativeDuration from './RelativeDuration';
 import ComponentUsageExample from './ComponentUsageExample';
 
-
 export default function SummaryRow(props, { breakpoint }) {
   let mode;
+  let routeNumber;
   const data = props.data;
   const startTime = moment(data.startTime);
   const endTime = moment(data.endTime);
@@ -56,6 +56,25 @@ export default function SummaryRow(props, { breakpoint }) {
           }
         });
       }
+      if (leg.route) {
+        const route = leg.route; route.mode = route.mode || mode;// NRP TODO fix due to missing data
+        routeNumber = (
+          <RouteNumberContainer
+            route={route}
+            className={cx('line', mode.toLowerCase(), { 'pickup-dropoff': legHasPickupDropOff })}
+            vertical
+          />
+        );
+      } else {
+        routeNumber = (
+          <RouteNumber
+            mode={mode}
+            text={''}
+            className={cx('line', mode.toLowerCase(), { 'pickup-dropoff': legHasPickupDropOff })}
+            vertical
+          />
+        );
+      }
 
       legs.push(
         <div key={i} className="leg">
@@ -64,12 +83,7 @@ export default function SummaryRow(props, { breakpoint }) {
               &nbsp;{(leg.transitLeg || leg.rentedBike) && leg.from.name}
             </div>
           }
-          <RouteNumber
-            mode={mode}
-            text={getLegText(leg)}
-            className={cx('line', mode.toLowerCase(), { 'pickup-dropoff': legHasPickupDropOff })}
-            vertical
-          />
+          {routeNumber}
         </div>,
       );
     }
@@ -206,7 +220,7 @@ const exampleData = {
       distance: 586.4621425755712,
       duration: 120,
       rentedBike: false,
-      route: { shortName: '57' },
+      route: { shortName: '57', mode: 'BUS' },
       from: { name: 'Ilmattarentie' },
     },
     {
@@ -224,7 +238,7 @@ const exampleData = {
   ],
 };
 
-SummaryRow.description = (
+SummaryRow.description = () =>
   <div>
     <p>
       Displays a summary of an itinerary.
@@ -255,5 +269,4 @@ SummaryRow.description = (
         hash={1}
       />
     </ComponentUsageExample>
-  </div>
-);
+  </div>;

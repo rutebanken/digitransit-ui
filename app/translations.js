@@ -591,6 +591,8 @@ const translations = {
     'park-and-ride-availability': 'Tilgjengelighet',
     'park-and-ride-unknown': 'Ukjent kapasitet',
     'using-modes': 'Transportform',
+    'platform-short': 'Plat.',
+    'agency': 'Operatør',
   },
 
   'fr': {

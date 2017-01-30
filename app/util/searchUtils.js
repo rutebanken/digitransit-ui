@@ -269,7 +269,7 @@ function getStops(input, origin) {
   )).then(suggestions => take(suggestions, 10));
 }
 
-const lookupCountyAndMunicipality = (item) => {
+const lookupCountyAndMunicipality = (item, config) => {
   if (!item.properties.localadmin) {
     const parameters = {
       'point.lat': item.geometry.coordinates[1],
@@ -292,25 +292,28 @@ const lookupCountyAndMunicipality = (item) => {
   return Promise.resolve(item);
 };
 
-const formatOptionalStops = (optionalStops) => {
+const formatOptionalStops = (optionalStops, config) => {
   const promises = [];
   optionalStops.forEach((item) => {
     if (item.type === 'Stop' && item.properties) {
       /* Remove link in order to use this as an endpoint */
       delete item.properties.link; // eslint-disable-line no-param-reassign
-      promises.push(lookupCountyAndMunicipality(item));
+      promises.push(lookupCountyAndMunicipality(item, config));
     }
   });
   return Promise.all(promises);
 };
 
-const getOptionalStops = (input, origin) => new Promise((resolve, reject) => {
+const getOptionalStops = (input, origin, config) => new Promise((resolve, reject) => {
   if (!config.search.useOTPEndPoints) {
     return resolve([]);
   }
-  return getStops(input, origin).then(stops => resolve(formatOptionalStops(stops))).catch((err) => {
-    reject(err);
-  });
+  return getStops(input, origin).then(stops =>
+    resolve(formatOptionalStops(stops, config))).catch(
+    (err) => {
+      reject(err);
+    },
+  );
 });
 
 export const getAllEndpointLayers = () => (
@@ -345,7 +348,7 @@ export function executeSearchImmediate(getStore, { input, type, layers, config }
       searchComponents.push(getOldSearches(oldSearches, input, dropLayers));
     }
     // NRP-836: Retrieve stop places with municipality / NO PR made
-    searchComponents.push(getOptionalStops(input, position));
+    searchComponents.push(getOptionalStops(input, position, config));
 
     if (endpointLayers.includes('Geocoding')) {
       searchComponents.push(getGeocodingResult(input, position, language, config));

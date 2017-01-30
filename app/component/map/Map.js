@@ -58,6 +58,8 @@ class Map extends React.Component {
   };
 
   componentDidMount = () => {
+    const config = this.context.config;
+
     L.control.attribution({
       position: 'bottomleft',
       prefix: '&copy; <a tabindex="-1" href="http://osm.org/copyright">OpenStreetMap</a>',

@@ -494,4 +494,10 @@ export default {
     { id: '12', expr: 'dev-turku' },
     { id: '13', expr: 'turku' },
   ],
+
+  parkAndRide: {
+    showParkAndRide: false,
+    parkAndRideMinZoom: 15,
+    maxCapacityThreshold: 2000,
+  },
 };

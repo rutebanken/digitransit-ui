@@ -5,9 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Availability from '../../Availability';
 import ComponentUsageExample from '../../ComponentUsageExample';
 
-import config from '../../../config';
-
-const maxCapacityCalc = (maxCapacity) => {
+const maxCapacityCalc = (maxCapacity, config) => {
   if (isNaN(maxCapacity)) {
     return 0;
   }
@@ -28,7 +26,7 @@ const ParkAndRideAvailability = mapProps(({ realtime, maxCapacity, spacesAvailab
       <FormattedMessage id="park-and-ride-availability" defaultMessage="Spaces available" />
       {'\u00a0'}
       ({!realtime || isNaN(spacesAvailable) ? '?' : spacesAvailable}/
-      {maxCapacityCalc(maxCapacity)})
+      {maxCapacityCalc(maxCapacity, this.context)})
     </p>
   ),
 }))(Availability);

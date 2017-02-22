@@ -7,7 +7,6 @@ import Icon from '../../Icon';
 import GenericMarker from '../GenericMarker';
 import ComponentUsageExample from '../../ComponentUsageExample';
 import ParkAndRideFacilityRoute from '../../../route/ParkAndRideFacilityRoute';
-import config from '../../../config';
 import { isBrowser } from '../../../util/browser';
 
 let L;
@@ -28,6 +27,7 @@ const ParkAndRideFacilityPopupWithContext = provideContext(ParkAndRideFacilityPo
   location: React.PropTypes.object.isRequired,
   route: React.PropTypes.object.isRequired,
   getStore: React.PropTypes.func.isRequired,
+  config: React.PropTypes.object.isRequired,
 });
 
 
@@ -67,10 +67,11 @@ export default class ParkAndRideMarker extends React.Component {
     location: React.PropTypes.object.isRequired,
     route: React.PropTypes.object.isRequired,
     intl: intlShape.isRequired,
+    config: React.PropTypes.object.isRequired,
   };
 
   getIcon = zoom => (
-    (!this.props.transit && zoom <= config.stopsSmallMaxZoom) ?
+    (!this.props.transit && zoom <= this.context.config.stopsSmallMaxZoom) ?
       L.divIcon({
         html: smallIconSvg,
         iconSize: [8, 8],

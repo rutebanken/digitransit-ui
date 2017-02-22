@@ -865,6 +865,7 @@ const translations = {
     'disruptions': 'Avvik',
     'distance-between': 'Avstand {distance1} m — {distance2} m',
     'distance-under': 'Avstand mindre enn {distance} m',
+    'dropoff-pickup-info': 'Bestillingsrute (avgangen må forhåndsbestilles fra operatør)',
     'earlier': 'Tidligere',
     'edit-favourites': 'Rediger favorittsted',
     'extra-info': 'Mer info',

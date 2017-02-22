@@ -13,6 +13,7 @@ const OfflinePlugin = require('offline-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const GzipCompressionPlugin = require('compression-webpack-plugin');
 const BrotliCompressionPlugin = require('brotli-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const fs = require('fs');
 
 require('babel-core/register')({
@@ -93,14 +94,62 @@ function getRulesConfig(env) {
   ]);
 }
 
-function getAllPossibleLanguages() {
-  const srcDirectory = 'app';
+function getAllConfigs() {
+  const srcDirectory = 'app/configurations';
   return fs.readdirSync(srcDirectory)
     .filter(file => /^config\.\w+\.js$/.test(file))
-    .filter(file => !/^config\.client\.js$/.test(file))
-    .map(file => require('./' + srcDirectory + '/' + file).default.availableLanguages)
+    .map((file) => {
+      const theme = file.replace('config.', '').replace('.js', '');
+      return require('./app/config').getNamedConfiguration(theme);
+    });
+}
+
+function getAllPossibleLanguages() {
+  return getAllConfigs().map(config => config.availableLanguages)
     .reduce((languages, languages2) => languages.concat(languages2))
     .filter((language, position, languages) => languages.indexOf(language) === position);
+}
+
+function faviconPluginFromConfig(config) {
+  let logo = config.favicon || './sass/themes/' + config.CONFIG + '/favicon.png';
+  if (!fs.existsSync(logo)) {
+    logo = './sass/themes/default/favicon.png';
+  }
+
+  return new FaviconsWebpackPlugin({
+    // Your source logo
+    logo,
+    // The prefix for all image files (might be a folder or a name)
+    prefix: `icons-${config.CONFIG}-[hash]/`,
+    // Emit all stats of the generated icons
+    emitStats: true,
+    // The name of the json containing all favicon information
+    statsFilename: 'iconstats-' + config.CONFIG + '.json',
+    // favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+    background: config.colors ? config.colors.primary : '#ffffff',
+      // favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+    title: config.title,
+    appName: config.title,
+    appDescription: config.meta.description,
+
+    // which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+    icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      coast: true,
+      favicons: true,
+      firefox: true,
+      opengraph: true,
+      twitter: true,
+      yandex: true,
+      windows: true,
+    },
+  });
+}
+
+function getAllFaviconPlugins() {
+  return getAllConfigs().map(faviconPluginFromConfig);
 }
 
 function getSourceMapPlugin(testPattern, prefix) {
@@ -176,12 +225,16 @@ function getPluginsConfig(env) {
     // new OptimizeJsPlugin({
     //   sourceMap: true,
     // }),
+    ...getAllFaviconPlugins(),
     new ExtractTextPlugin({
       filename: 'css/[name].[contenthash].css',
       allChunks: true,
     }),
     new OfflinePlugin({
-      excludes: ['**/.*', '**/*.map', '../stats.json', '**/*.gz', '**/*.br'],
+      excludes: [
+        '**/.*', '**/*.map', '../stats.json', '**/*.gz', '**/*.br',
+        'js/*_theme.*.js', 'js/*_sprite.*.js', 'iconstats-*.json',
+      ],
       // TODO: Can be enabled after cors headers have been added
       // externals: ['https://dev.hsl.fi/tmp/452925/86FC9FC158618AB68.css'],
       caches: {
@@ -189,13 +242,10 @@ function getPluginsConfig(env) {
         additional: [
           ':externals:',
           'js/+([a-z0-9]).js',
-          // TODO: move the ones below back to optional after caching has been fixed.
-          'css/*.css',
-          '*.svg',
         ],
-        optional: ['js/*_theme.*.js', 'js/*_sprite.*.js', '*.png'],
+        optional: ['*.png', 'css/*.css', '*.svg'],
       },
-      externals: ['/'],
+      externals: [/* '/' Can be re-added later when we want to cache index page */],
       safeToUseOptionalCaches: true,
       ServiceWorker: {
         entry: './app/util/font-sw.js',
@@ -207,12 +257,12 @@ function getPluginsConfig(env) {
     new GzipCompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'zopfli',
-      test: /\.(js|css|html|svg)$/,
+      test: /\.(js|css|html|svg|ico)$/,
       minRatio: 0.95,
     }),
     new BrotliCompressionPlugin({
       asset: '[path].br[query]',
-      test: /\.(js|css|html|svg)$/,
+      test: /\.(js|css|html|svg|ico)$/,
       minRatio: 0.95,
     }),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -247,15 +297,20 @@ function getEntry() {
     main: './app/client',
   };
 
-  const directories = getDirectories('./sass/themes');
-  directories.forEach((theme) => {
-    const entryPath = './sass/themes/' + theme + '/main.scss';
-    entry[theme + '_theme'] = [entryPath];
+  const spriteMap = {};
+  getAllConfigs().forEach((config) => {
+    if (config.sprites) {
+      spriteMap[config.CONFIG] = config.sprites;
+    }
   });
 
+  const directories = getDirectories('./sass/themes');
   directories.forEach((theme) => {
-    const entryPath = './static/svg-sprite.' + theme + '.svg';
-    entry[theme + '_sprite'] = [entryPath];
+    const sassEntryPath = './sass/themes/' + theme + '/main.scss';
+    entry[theme + '_theme'] = [sassEntryPath];
+    const svgEntryPath = spriteMap[theme] ? './static/' + spriteMap[theme] :
+          './static/svg-sprite.' + theme + '.svg';
+    entry[theme + '_sprite'] = [svgEntryPath];
   });
 
   return entry;
@@ -279,6 +334,7 @@ module.exports = {
     mainFields: ['browser', 'module', 'jsnext:main', 'main'],
     alias: {
       'lodash.merge': 'lodash/merge',
+      'lodash.keys': 'lodash/keys',
       'history/lib/Actions': 'history/es6/Actions',
       'history/lib/createBrowserHistory': 'history/es6/createBrowserHistory',
       'history/lib/createHashHistory': 'history/es6/createHashHistory',
@@ -287,6 +343,7 @@ module.exports = {
       'history/lib/useQueries': 'history/es6/useQueries',
       'react-router/lib/getRouteParams': 'react-router/es6/getRouteParams',
       moment$: 'moment/moment.js',
+      'core-js/library/fn/weak-map': path.join(__dirname, 'app/util/WeakMap'),
     },
   },
   resolveLoader: {
@@ -299,25 +356,7 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
   },
-  externals: {
-    'core-js/library/fn/symbol': 'var Symbol',
-    'core-js/library/fn/object/assign': 'var Object.assign',
-    'core-js/library/fn/weak-map': 'var WeakMap',
-    'core-js/library/es6/map': 'var Map',
-    'core-js/library/fn/promise': 'var Promise',
-    'core-js/library/fn/array/from': 'var Array.from',
-    'core-js/library/fn/object/keys': 'var Object.keys',
-    'core-js/library/fn/object/freeze': 'var Object.freeze',
-    'core-js/library/fn/object/get-prototype-of': 'var Object.getPrototypeOf',
-    'core-js/library/fn/object/set-prototype-of': 'var Object.setPrototypeOf',
-    'core-js/library/fn/object/define-property': 'var Object.defineProperty',
-    'core-js/library/fn/json/stringify': 'var JSON.stringify',
-    'core-js/library/fn/object/create': 'var Object.create',
-    'core-js/library/fn/symbol/iterator': 'var Symbol.iterator',
-    'fbjs/lib/fetch': 'var fetch',
-    './fetch': 'var fetch',
-    'object-assign': 'var Object.assign',
-  },
+  externals: {},
   performance: {
     hints: (process.env.NODE_ENV === 'development') ? false : 'warning',
   },

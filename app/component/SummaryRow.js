@@ -104,7 +104,8 @@ const SummaryRow = (props, { intl: { formatMessage } }) => {
     }
     if (firstDeparture) {
       firstLegStartTime = (
-        <div className="itinerary-first-leg-start-time">
+        <div className={cx('itinerary-first-leg-start-time', { realtime: realTimeAvailable })}>
+          {realTimeAvailable && <Icon img="icon-icon_realtime" className="realtime-icon realtime" />}
           {moment(firstDeparture).format('HH:mm')}
         </div>);
     }
@@ -134,9 +135,8 @@ const SummaryRow = (props, { intl: { formatMessage } }) => {
         </div>
       </div>
       {props.open || props.children ? [
-        <div className="flex-grow itinerary-heading">
+        <div className="flex-grow itinerary-heading" key="title">
           <FormattedMessage
-            key="title"
             id="itinerary-page.title"
             defaultMessage="Itinerary"
             tagName="h2"
@@ -155,10 +155,11 @@ const SummaryRow = (props, { intl: { formatMessage } }) => {
             <Icon img="icon-icon_arrow-collapse--right" />
           </div>
         </button>,
-        props.children,
+        props.children &&
+          React.cloneElement(React.Children.only(props.children), { searchTime: props.refTime }),
       ] : [
         <div
-          className={cx('itinerary-start-time', { 'realtime-available': realTimeAvailable })}
+          className="itinerary-start-time"
           key="startTime"
         >
           <span className={cx('itinerary-start-date', { nobg: sameDay(startTime, refTime) })} >

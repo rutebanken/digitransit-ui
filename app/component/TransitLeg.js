@@ -74,10 +74,9 @@ class TransitLeg extends React.Component {
         || (<FormattedMessage
           id="number-of-intermediate-stops"
           values={{
-            number: (stops
-         && stops.length) || 0,
+            number: (stops && stops.length) || 0,
           }}
-          defaultMessage="{number, plural, =0 {No intermediate stops} one {1 stop} other {{number} stops} }"
+          defaultMessage="{number, plural, =0 {No stops} one {1 stop} other {{number} stops} }"
         />);
       return (
         <div className="intermediate-stop-info-container">{stopCount === 0 ? <span className="intermediate-stop-no-stops">{message}</span> :
@@ -103,6 +102,8 @@ class TransitLeg extends React.Component {
         <div className="small-2 columns itinerary-time-column">
           <div className="itinerary-time-column-time">
             <span className={this.props.leg.realTime ? 'realtime' : ''}>
+              {this.props.leg.realTime &&
+                <Icon img="icon-icon_realtime" className="realtime-icon realtime" />}
               {moment(this.props.leg.startTime).format('HH:mm')}
             </span>{originalTime}
           </div>

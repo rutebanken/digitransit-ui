@@ -12,7 +12,7 @@ import SearchInputContainer from './SearchInputContainer';
 import SearchModal from './SearchModal';
 import SearchModalLarge from './SearchModalLarge';
 import Icon from './Icon';
-import { getAllEndpointLayers } from '../util/searchUtils';
+import { getAllEndpointLayers, withCurrentTime } from '../util/searchUtils';
 
 
 class SearchMainContainer extends React.Component {
@@ -52,13 +52,19 @@ class SearchMainContainer extends React.Component {
       return this.context.router.replace(newLocation);
     }
 
+    const locationWithTime = withCurrentTime(this.context.getStore, this.context.location);
+
     if (item.type === 'CurrentLocation') {
       this.context.executeAction(setUseCurrent, {
         target: this.props.selectedTab,
+        router: this.context.router,
+        location: locationWithTime,
       });
     } else {
       this.context.executeAction(setEndpoint, {
         target: this.props.selectedTab,
+        router: this.context.router,
+        location: locationWithTime,
         endpoint: {
           lat: item.geometry.coordinates[1],
           lon: item.geometry.coordinates[0],
@@ -133,7 +139,7 @@ class SearchMainContainer extends React.Component {
   render() {
     const destinationPlaceholder = this.context.intl.formatMessage({
       id: 'destination-placeholder',
-      defaultMessage: 'Where to? - address or stop',
+      defaultMessage: 'Enter destination, route or stop',
     });
 
     const fakeSearchBar = (

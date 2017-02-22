@@ -22,7 +22,7 @@ function testVariation(componentName, variationName = 'normal', captureOrExample
             capture = captureOrExampleNumber;
           }
           suite
-            .setUrl(`/styleguide/component/${componentName}`)
+            .setUrl(`/styleguide/component/${componentName}?en`)
             .setCaptureElements(capture)
             .ignoreElements(ignoreElements || [])
             .capture(variationName, {}, fn);
@@ -109,7 +109,7 @@ testVariation('TimeNavigationButtons', 'hovered', 1, [], (actions) => {
       ).wait(400); // Wait for animation to happen
 });
 
-testVariation('TimeSelectors').then(skip(['ie11', 'safari10'])); // TODO figure out why time differs when run locally & snap
+testVariation('TimeSelectors');
 
 testVariation('RightOffcanvasToggle', 'default');
 testVariation('RightOffcanvasToggle', 'adjusted', 2);
@@ -138,6 +138,7 @@ testVariation('FakeSearchWithButton', 'large', 2);
 testVariation('FrontPagePanelLarge');
 testVariation('FrontPagePanelSmall');
 testVariation('ExternalLink');
+testVariation('ExternalLink', 'with-icon-and-text', 2);
 testVariation('LangSelect');
 
 testVariation('ModeFilter', 'grey-buttons');

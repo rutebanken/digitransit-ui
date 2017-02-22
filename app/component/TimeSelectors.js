@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import { intlShape } from 'react-intl';
-import Icon from './Icon';
+import cx from 'classnames';
 
+import Icon from './Icon';
 import ComponentUsageExample from './ComponentUsageExample';
 import supportsInputType from '../util/supportsInputType';
 import TimeInput from './TimeInput';
@@ -17,13 +18,13 @@ export default function TimeSelectors(
           <option value="false">
             {intl.formatMessage({
               id: 'leaving-at',
-              defaultMessage: 'Leaving at',
+              defaultMessage: 'Leaving',
             })}
           </option>
           <option value="true">
             {intl.formatMessage({
               id: 'arriving-at',
-              defaultMessage: 'Arriving at',
+              defaultMessage: 'Arriving',
             })}
           </option>
         </select>
@@ -43,11 +44,13 @@ export default function TimeSelectors(
         <div className="select-wrapper">
           <input
             type="time"
-            className="time-selector"
+            className={cx('time-selector', { desktop: !navigator.userAgent.match(/Mobile/) })}
             value={time.format('HH:mm')}
             onChange={changeTime}
           />
-          <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
+          {navigator.userAgent.match(/Mobile/) &&
+            <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" key="caret" />
+          }
         </div> :
         <div className="select-wrapper">
           <TimeInput value={time.format('HH:mm')} changeTime={changeTime} />

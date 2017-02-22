@@ -1,7 +1,7 @@
 import React from 'react';
 import Relay from 'react-relay';
 import ViewerRoute from '../../../route/ViewerRoute';
-import config from '../../../config';
+
 import ParkAndRideMarker from './ParkAndRideMarker';
 import ComponentUsageExample from '../../ComponentUsageExample';
 
@@ -42,6 +42,7 @@ class ParkAndRideMarkerContainer extends React.Component {
 
   static contextTypes = {
     map: React.PropTypes.object.isRequired,
+    config: React.PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -55,7 +56,7 @@ class ParkAndRideMarkerContainer extends React.Component {
   onMapZoom = () => this.forceUpdate();
 
   render() {
-    if (this.context.map.getZoom() < config.parkAndRide.parkAndRideMinZoom) {
+    if (this.context.map.getZoom() < this.context.config.parkAndRide.parkAndRideMinZoom) {
       return false;
     }
     return (

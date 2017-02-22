@@ -27,6 +27,7 @@ const ParkAndRideFacilityPopupWithContext = provideContext(ParkAndRideFacilityPo
   location: React.PropTypes.object.isRequired,
   route: React.PropTypes.object.isRequired,
   getStore: React.PropTypes.func.isRequired,
+  config: React.PropTypes.object.isRequired,
 });
 
 export default class ParkAndRideMarker extends React.Component {
@@ -58,6 +59,7 @@ export default class ParkAndRideMarker extends React.Component {
     location: React.PropTypes.object.isRequired,
     route: React.PropTypes.object.isRequired,
     intl: intlShape.isRequired,
+    config: React.PropTypes.object.isRequired,
   };
 
   getIcon = () => (

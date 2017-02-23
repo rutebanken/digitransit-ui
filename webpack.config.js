@@ -305,7 +305,8 @@ function getEntry() {
   });
 
   const directories = getDirectories('./sass/themes');
-  directories.forEach((theme) => {
+  // TODO - Friesgaard: TEMPORARY FIX to avoid reading unwanted/missing sprites
+  directories.filter(theme => (theme === 'default' || theme === 'rutebanken')).forEach((theme) => {
     const sassEntryPath = './sass/themes/' + theme + '/main.scss';
     entry[theme + '_theme'] = [sassEntryPath];
     const svgEntryPath = spriteMap[theme] ? './static/' + spriteMap[theme] :

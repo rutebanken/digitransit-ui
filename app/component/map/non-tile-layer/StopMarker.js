@@ -37,6 +37,7 @@ class StopMarker extends React.Component {
     renderName: React.PropTypes.bool,
     disableModeIcons: React.PropTypes.bool,
     selected: React.PropTypes.bool,
+    fakeLargeIcon: React.PropTypes.bool,
   };
 
   static contextTypes = {
@@ -54,7 +55,10 @@ class StopMarker extends React.Component {
     const iconId = `icon-icon_${this.props.mode}`;
     const icon = Icon.asString(iconId, 'mode-icon');
     let size;
-    if (zoom <= this.context.config.stopsSmallMaxZoom) {
+    if (this.props.fakeLargeIcon) {
+      // NRP-1214: show larger icons for terminal like stops
+      size = 18;
+    } else if (zoom <= this.context.config.stopsSmallMaxZoom) {
       size = 8;
     } else if (this.props.selected) {
       size = 28;

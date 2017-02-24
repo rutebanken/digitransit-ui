@@ -7,7 +7,6 @@ import Icon from '../../Icon';
 import GenericMarker from '../GenericMarker';
 import ComponentUsageExample from '../../ComponentUsageExample';
 import ParkAndRideFacilityRoute from '../../../route/ParkAndRideFacilityRoute';
-import config from '../../../config';
 import { isBrowser } from '../../../util/browser';
 
 let L;
@@ -29,14 +28,6 @@ const ParkAndRideFacilityPopupWithContext = provideContext(ParkAndRideFacilityPo
   route: React.PropTypes.object.isRequired,
   getStore: React.PropTypes.func.isRequired,
 });
-
-
-// Small icon for zoom levels <= 15
-const smallIconSvg = `
-  <svg viewBox="0 0 8 8">
-    <circle class="stop-small" cx="4" cy="4" r="3" stroke-width="1"/>
-  </svg>
-`;
 
 export default class ParkAndRideMarker extends React.Component {
   static description = (
@@ -69,20 +60,13 @@ export default class ParkAndRideMarker extends React.Component {
     intl: intlShape.isRequired,
   };
 
-  getIcon = zoom => (
-    (!this.props.transit && zoom <= config.stopsSmallMaxZoom) ?
-      L.divIcon({
-        html: smallIconSvg,
-        iconSize: [8, 8],
-        className: 'park-and-ride cursor-pointer',
-      })
-    :
-      L.divIcon({
-        html: Icon.asString('icon-icon_car_park-withoutBox', 'park-and-ride-medium-size'),
-        iconSize: [20, 20],
-        className: 'park-and-ride cursor-pointer',
-      })
-    )
+  getIcon = () => (
+    L.divIcon({
+      html: Icon.asString('icon-icon_car_park-withoutBox', 'park-and-ride-medium-size'),
+      iconSize: [20, 20],
+      className: 'park-and-ride cursor-pointer',
+    })
+  )
 
   render() {
     if (!isBrowser) return false;

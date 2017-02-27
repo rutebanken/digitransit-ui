@@ -298,11 +298,13 @@ function getEntry() {
   };
 
   if (process.env.CONFIG !== '') {
-    const configName = process.env.CONFIG;
-    const config = require('./app/config').getNamedConfiguration(configName);
-    entry.default_theme = ['./sass/themes/default/main.scss'];
-    entry[configName + '_theme'] = ['./sass/themes/' + configName + '/main.scss'];
-    entry[configName + '_sprite'] = [config.sprites ? config.sprites : './static/svg-sprite.' + configName + '.svg'];
+    const config = require('./app/config').getNamedConfiguration(process.env.CONFIG);
+    const addEntry = (theme, sprites) => {
+      entry[theme + '_theme'] = ['./sass/themes/' + theme + '/main.scss'];
+      entry[theme + '_sprite'] = ['./static/' + (sprites || '/svg-sprite.' + theme + '.svg')];
+    };
+    addEntry('default');
+    addEntry(process.env.CONFIG, config.sprites);
     return entry;
   }
 

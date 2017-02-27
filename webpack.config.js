@@ -297,6 +297,15 @@ function getEntry() {
     main: './app/client',
   };
 
+  if (process.env.CONFIG !== '') {
+    const configName = process.env.CONFIG;
+    const config = require('./app/config').getNamedConfiguration(configName);
+    entry.default_theme = ['./sass/themes/default/main.scss'];
+    entry[configName + '_theme'] = ['./sass/themes/' + configName + '/main.scss'];
+    entry[configName + '_sprite'] = [config.sprites ? config.sprites : './static/svg-sprite.' + configName + '.svg'];
+    return entry;
+  }
+
   const spriteMap = {};
   getAllConfigs().forEach((config) => {
     if (config.sprites) {
@@ -305,8 +314,7 @@ function getEntry() {
   });
 
   const directories = getDirectories('./sass/themes');
-  // TODO - Friesgaard: TEMPORARY FIX to avoid reading unwanted/missing sprites
-  directories.filter(theme => (theme === 'default' || theme === 'rutebanken')).forEach((theme) => {
+  directories.forEach((theme) => {
     const sassEntryPath = './sass/themes/' + theme + '/main.scss';
     entry[theme + '_theme'] = [sassEntryPath];
     const svgEntryPath = spriteMap[theme] ? './static/' + spriteMap[theme] :

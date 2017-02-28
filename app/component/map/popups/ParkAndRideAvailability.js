@@ -17,7 +17,7 @@ const maxCapacityCalc = (maxCapacity, config) => {
   return maxCapacity;
 };
 
-const ParkAndRideAvailability = mapProps(({ realtime, maxCapacity, spacesAvailable }) => ({
+const ParkAndRideAvailability = mapProps(({ realtime, maxCapacity, spacesAvailable, config }) => ({
   available: realtime ? spacesAvailable : 0,
   total: maxCapacity,
   fewAvailableCount: maxCapacity * 0.2,
@@ -26,7 +26,7 @@ const ParkAndRideAvailability = mapProps(({ realtime, maxCapacity, spacesAvailab
       <FormattedMessage id="park-and-ride-availability" defaultMessage="Spaces available" />
       {'\u00a0'}
       ({!realtime || isNaN(spacesAvailable) ? '?' : spacesAvailable}/
-      {maxCapacityCalc(maxCapacity, this.context)})
+      {maxCapacityCalc(maxCapacity, config)})
     </p>
   ),
 }))(Availability);
@@ -49,6 +49,7 @@ ParkAndRideAvailability.propTypes = {
   realtime: React.PropTypes.bool,
   maxCapacity: React.PropTypes.number.isRequired,
   spacesAvailable: React.PropTypes.number.isRequired,
+  config: React.PropTypes.object.isRequired,
 };
 
 export default ParkAndRideAvailability;

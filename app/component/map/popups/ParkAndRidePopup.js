@@ -11,6 +11,7 @@ export default class ParkAndRidePopup extends React.Component {
   static contextTypes = {
     getStore: React.PropTypes.func.isRequired,
     intl: intlShape,
+    config: React.PropTypes.object.isRequired,
   };
 
   static description = (
@@ -51,6 +52,7 @@ export default class ParkAndRidePopup extends React.Component {
             realtime={this.props.realtime}
             maxCapacity={this.props.maxCapacity}
             spacesAvailable={this.props.spacesAvailable}
+            config={this.context.config}
           />
         </Card>
         <MarkerPopupBottom

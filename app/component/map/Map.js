@@ -193,6 +193,8 @@ class Map extends React.Component {
         mapUrl = mapUrl[this.context.getStore('PreferencesStore').getLanguage()] || config.URL.MAP.default;
       }
 
+      const alwaysShowZoom = true; // NRP-1068 always show zoom buttons
+
       map = (
         <LeafletMap
           keyboard={false}
@@ -220,7 +222,7 @@ class Map extends React.Component {
             prefix='&copy; <a tabindex="-1" href="http://osm.org/copyright">OpenStreetMap</a>'
           />
           {this.props.showScaleBar && <ScaleControl imperial={false} position="bottomright" />}
-          {this.context.breakpoint === 'large' && (
+          {(this.context.breakpoint === 'large' || alwaysShowZoom) && (
             <ZoomControl
               position="bottomleft"
               zoomInText={Icon.asString('icon-icon_plus')}

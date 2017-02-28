@@ -72,6 +72,8 @@ class DepartureListContainer extends Component {
     const departures = asDepartures(this.props.stoptimes)
       .filter(departure => !(this.props.isTerminal && departure.isArrival))
       .filter(departure => currentTime < departure.stoptime)
+      // NRP-1218 filter arriving airplanes from list
+      .filter(departure => !(departure.pattern.route.mode.toLowerCase() === 'airplane' && departure.isArrival))
       .slice(0, this.props.limit);
 
     departures.forEach((departure) => {

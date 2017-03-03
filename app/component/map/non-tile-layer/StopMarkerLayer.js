@@ -83,7 +83,8 @@ class StopMarkerLayer extends React.Component {
       if (!isTerminal && this.context.map.getZoom() < this.context.config.stopsSmallMaxZoom) {
         return;
       }
-      if (isTerminal && this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass]) {
+      if (isTerminal &&
+        this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass]) {
         return;
       }
 

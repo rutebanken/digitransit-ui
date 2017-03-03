@@ -181,6 +181,14 @@ export default {
   terminalStopsMinZoom: 12,
   terminalNamesZoom: 16,
 
+  // NRP-1214: show larger icons for terminal like stops
+  stopsVariableZoom: {
+    rail: -1,
+    airplane: -1,
+    subway: 13,
+    tram: 14,
+  },
+
   appBarLink: { name: 'Digitransit', href: 'https://www.digitransit.fi/' },
 
   colors: {

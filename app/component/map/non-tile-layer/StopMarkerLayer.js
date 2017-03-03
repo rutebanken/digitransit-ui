@@ -79,12 +79,11 @@ class StopMarkerLayer extends React.Component {
       }
 
       // NRP-1214: show larger icons for terminal like stops
-      const isTerminal = ['rail', 'airplane', 'subway', 'tram'].includes(modeClass);
+      const isTerminal = modeClass in this.context.config.stopsVariableZoom;
       if (!isTerminal && this.context.map.getZoom() < this.context.config.stopsSmallMaxZoom) {
         return;
       }
-      const isPrimary = ['subway', 'tram'].includes(modeClass);
-      if (isPrimary && this.context.map.getZoom() < this.context.config.stopsSmallMaxZoom - 1) {
+      if (isTerminal && this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass]) {
         return;
       }
 

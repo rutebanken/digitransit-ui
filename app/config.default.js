@@ -513,6 +513,10 @@ export default {
   parkAndRide: {
     showParkAndRide: false,
     parkAndRideMinZoom: 15,
+    iconSize: {
+      small: 14,
+      large: 18
+    },
     maxCapacityThreshold: 2000,
   },
 };

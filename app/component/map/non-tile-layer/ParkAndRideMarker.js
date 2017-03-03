@@ -62,15 +62,16 @@ export default class ParkAndRideMarker extends React.Component {
     config: React.PropTypes.object.isRequired,
   };
 
-  getIcon = zoom => {
-    let size = (!this.props.transit && zoom <= this.context.config.stopsSmallMaxZoom) ?
-      this.context.config.parkAndRide.iconSize.small : this.context.config.parkAndRide.iconSize.large;
+  getIcon = (zoom) => {
+    const config = this.context.config;
+    const size = (!this.props.transit && zoom <= config.stopsSmallMaxZoom) ?
+      config.parkAndRide.iconSize.small : config.parkAndRide.iconSize.large;
 
     return L.divIcon({
       html: Icon.asString('icon-icon_car_park-withoutBox', 'park-and-ride-medium-size'),
       iconSize: [size, size],
       className: 'park-and-ride cursor-pointer',
-    })
+    });
   };
 
   render() {

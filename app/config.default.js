@@ -515,7 +515,7 @@ export default {
     parkAndRideMinZoom: 15,
     iconSize: {
       small: 14,
-      large: 18
+      large: 18,
     },
     maxCapacityThreshold: 2000,
   },

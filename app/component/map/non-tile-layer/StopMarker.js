@@ -61,8 +61,6 @@ class StopMarker extends React.Component {
       size = this.context.config.stopsIconSize.default;
     } else if (zoom <= this.context.config.stopsSmallMaxZoom) {
       size = this.context.config.stopsIconSize.small;
-    if (zoom <= this.context.config.stopsSmallMaxZoom) {
-      size = this.context.config.stopsIconSize.small;
     } else if (this.props.selected) {
       size = this.context.config.stopsIconSize.selected;
     } else {

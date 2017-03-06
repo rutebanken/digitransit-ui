@@ -180,6 +180,11 @@ export default {
   terminalStopsMaxZoom: 17,
   terminalStopsMinZoom: 12,
   terminalNamesZoom: 16,
+  stopsIconSize: {
+    small: 8,
+    selected: 28,
+    default: 18,
+  },
 
   // NRP-1214: show larger icons for terminal like stops
   stopsVariableZoom: {

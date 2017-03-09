@@ -135,6 +135,7 @@ export function getGeocodingResult(input, geolocation, language, config) {
     .then(res => orderBy(res.features.map((feature) => {
       /* eslint no-param-reassign: ["error", { "props": false }] */
       feature.properties.label = `${feature.properties.name}, ${feature.properties.localadmin}`;
+      feature.mode = 'BUS';
       return feature;
     }), feature => feature.properties.confidence, 'desc'));
 }
@@ -213,7 +214,7 @@ function getRoutes(input, config) {
       viewer {
         routes(name: $name ) {
           gtfsId
-          agency {name} 
+          agency {name}
           shortName
           mode
           longName
@@ -348,7 +349,7 @@ export function executeSearchImmediate(getStore, { input, type, layers, config }
       searchComponents.push(getOldSearches(oldSearches, input, dropLayers));
     }
     // NRP-836: Retrieve stop places with municipality / NO PR made
-    searchComponents.push(getOptionalStops(input, position, config));
+    // searchComponents.push(getOptionalStops(input, position, config));
 
     if (endpointLayers.includes('Geocoding')) {
       searchComponents.push(getGeocodingResult(input, position, language, config));
@@ -377,7 +378,7 @@ export function executeSearchImmediate(getStore, { input, type, layers, config }
       getFavouriteStops(favouriteStops, input, origin),
       getOldSearches(oldSearches, input),
       getRoutes(input, config),
-      getStops(input, location),
+      // getStops(input, location),
     ])
     .then(flatten)
     .then(uniqByLabel)

@@ -35,3 +35,9 @@ app/configurations/config.*.js
 !app/configurations/config.oulu.js
 
 tags
+
+static/img/*/
+
+static/svg-sprite.*.svg
+!static/svg-sprite.default.svg
+!static/svg-sprite.hsl.svg

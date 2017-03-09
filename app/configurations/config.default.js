@@ -102,6 +102,8 @@ export default {
     useRetinaTiles: true,
     tileSize: 512,
     zoomOffset: -1,
+    minZoom: 1,
+    maxZoom: 18,
     useVectorTiles: true,
     controls: {
       zoom: {

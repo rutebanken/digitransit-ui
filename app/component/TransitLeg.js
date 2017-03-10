@@ -50,6 +50,7 @@ class TransitLeg extends React.Component {
         }
       </span>];
 
+    const firstLegClassName = this.props.index === 0 ? ' start' : '';
     const modeClassName =
       `${this.props.mode.toLowerCase()}${this.props.index === 0 ? ' from' : ''}`;
 
@@ -118,7 +119,7 @@ class TransitLeg extends React.Component {
       </Link>
       <div
         onClick={this.props.focusAction}
-        className={`small-10 columns itinerary-instruction-column ${modeClassName}`}
+        className={`small-10 columns itinerary-instruction-column ${firstLegClassName} ${modeClassName}`}
       >
         <div className="itinerary-leg-first-row">
           <div>{this.props.leg.from.name}{this.stopCode(

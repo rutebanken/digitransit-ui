@@ -787,6 +787,18 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "serviceTimeRange",
+                        "description": "Get start and end time for publict transit services present in the graph",
+                        "args": [],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "serviceTimeRange",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "bikeRentalStations",
                         "description": null,
                         "args": [],
@@ -3513,6 +3525,18 @@
                             "name": "String",
                             "ofType": null
                         },
+                        "isDeprecated": true,
+                        "deprecationReason": "Use headsign instead, will be removed in the future"
+                    },
+                    {
+                        "name": "headsign",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
                         "isDeprecated": false,
                         "deprecationReason": null
                     }
@@ -4527,6 +4551,41 @@
             },
             {
                 "kind": "OBJECT",
+                "name": "serviceTimeRange",
+                "description": "Time range covered by the routing graph",
+                "fields": [
+                    {
+                        "name": "start",
+                        "description": "Beginning of service time range",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Long",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "end",
+                        "description": "End of service time range",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Long",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    }
+                ],
+                "inputFields": null,
+                "interfaces": [],
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "OBJECT",
                 "name": "BikeRentalStation",
                 "description": null,
                 "fields": [
@@ -5521,6 +5580,18 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+                    },
+                    {
+                        "name": "intermediatePlace",
+                        "description": "Do we continue from a specified intermediate place",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Boolean",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -5743,6 +5814,16 @@
                                 "name": "Float",
                                 "ofType": null
                             }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "address",
+                        "description": "The name of the place.",
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "defaultValue": null
                     }

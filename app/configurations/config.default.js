@@ -1,10 +1,10 @@
 const CONFIG = process.env.CONFIG || 'default';
 const API_URL = process.env.API_URL || 'https://dev-api.digitransit.fi';
-const MAP_URL = process.env.MAP_URL || 'https://{s}-dev-api.digitransit.fi';
+const MAP_URL = process.env.MAP_URL || 'https://digitransit-dev-cdn-origin.azureedge.net';
 const APP_PATH = process.env.APP_CONTEXT || '';
-const PIWIK_ADDRESS = process.env.PIWIK_ADDRESS || '';
-const PIWIK_ID = process.env.PIWIK_ID || '';
-const SENTRY_DSN = process.env.SENTRY_DSN || '';
+const PIWIK_ADDRESS = process.env.PIWIK_ADDRESS;
+const PIWIK_ID = process.env.PIWIK_ID;
+const SENTRY_DSN = process.env.SENTRY_DSN;
 const PORT = process.env.PORT || 8080;
 const APP_DESCRIPTION = 'Digitransit journey planning UI';
 
@@ -22,8 +22,8 @@ export default {
       default: `${MAP_URL}/map/v1/hsl-map/`,
       sv: `${MAP_URL}/map/v1/hsl-map-sv/`,
     },
-    STOP_MAP: `${API_URL}/map/v1/finland-stop-map/`,
-    CITYBIKE_MAP: `${API_URL}/map/v1/hsl-citybike-map/`,
+    STOP_MAP: `${MAP_URL}/map/v1/finland-stop-map/`,
+    CITYBIKE_MAP: `${MAP_URL}/map/v1/hsl-citybike-map/`,
     MQTT: 'wss://dev.hsl.fi/mqtt-proxy',
     ALERTS: `${API_URL}/realtime/service-alerts/v1`,
     FONT: 'https://fonts.googleapis.com/css?family=Lato:300,400,900%7CPT+Sans+Narrow:400,700',
@@ -493,18 +493,24 @@ export default {
     oulu: 'oulu',
     hameenlinna: 'hameenlinna',
     matka: 'matka',
+    jyvaskyla: 'jyvaskyla',
+    lahti: 'lahti',
     kuopio: 'kuopio',
   },
 
   piwikMap: [ // in priority order. 1st match stops
-    { id: '5', expr: 'dev.reittiopas' },
-    { id: '4', expr: 'reittiopas' },
-    { id: '7', expr: 'dev.matka|dev.digitransit' },
-    { id: '6', expr: 'matka|digitransit' },
     { id: '10', expr: 'dev-joensuu' },
     { id: '11', expr: 'joensuu' },
     { id: '12', expr: 'dev-turku' },
     { id: '13', expr: 'turku' },
+    // put generic expressions last so that they do not match waltti cities
+    // e.g. reittiopas.hameenlinna.fi or turku.digitransit.fi
+    { id: '5', expr: 'dev.reittiopas' },
+    { id: '4', expr: 'reittiopas' },
+    { id: '7', expr: 'dev.matka' },
+    { id: '6', expr: 'matka' },
+    { id: '7', expr: 'dev.digitransit' },
+    { id: '6', expr: 'digitransit' },
   ],
 
   parkAndRide: {
@@ -516,4 +522,5 @@ export default {
     },
     maxCapacityThreshold: 2000,
   },
+  minutesToDepartureLimit: 9,
 };

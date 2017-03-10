@@ -287,7 +287,7 @@ div.itinerary-main > div > .row:nth-child(1)  {
     }
 
     .intermediate-stops-link {
-      @include font-bold
+      @include font-bold;
       color: $gray-blue;
       border-bottom: 2px dotted $gray-blue;
     }

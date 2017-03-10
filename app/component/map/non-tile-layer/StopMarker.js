@@ -7,6 +7,7 @@ import cx from 'classnames';
 
 import StopRoute from '../../../route/StopRoute';
 import StopMarkerPopup from '../popups/StopMarkerPopup';
+import AirplaneMarkerPopup from '../popups/AirplaneMarkerPopup';
 import GenericMarker from '../GenericMarker';
 import Icon from '../../Icon';
 import { getCaseRadius, getStopRadius, getHubRadius } from '../../../util/mapIconUtils';
@@ -30,6 +31,15 @@ const StopMarkerPopupWithContext = provideContext(StopMarkerPopup, {
   route: React.PropTypes.object.isRequired,
   config: React.PropTypes.object.isRequired,
 });
+
+const AirplaneMarkerPopupWithContext = provideContext(AirplaneMarkerPopup, {
+  intl: intlShape.isRequired,
+  router: routerShape.isRequired,
+  location: locationShape.isRequired,
+  route: React.PropTypes.object.isRequired,
+  config: React.PropTypes.object.isRequired,
+});
+
 
 class StopMarker extends React.Component {
   static propTypes = {
@@ -132,20 +142,35 @@ class StopMarker extends React.Component {
         renderName={this.props.renderName}
         name={this.props.stop.name}
       >
-        <Relay.RootContainer
-          Component={StopMarkerPopup}
-          route={new StopRoute({
-            stopId: this.props.stop.gtfsId,
-            date: this.context.getStore('TimeStore').getCurrentTime().format('YYYYMMDD'),
-            currentTime: this.context.getStore('TimeStore').getCurrentTime().unix(),
-          })}
-          renderLoading={() =>
-            <div className="card" style={{ height: '12rem' }}><div className="spinner-loader" /></div>
-          }
-          renderFetched={data =>
-            <StopMarkerPopupWithContext {...data} context={this.context} />
-          }
-        />
+        {this.props.mode.toLowerCase() === 'airplane' ?
+          <Relay.RootContainer
+            Component={AirplaneMarkerPopup}
+            route={new StopRoute({
+              stopId: this.props.stop.gtfsId,
+              date: this.context.getStore('TimeStore').getCurrentTime().format('YYYYMMDD'),
+            })}
+            renderLoading={() =>
+              <div className="card" style={{ height: '12rem' }}><div className="spinner-loader" /></div>
+            }
+            renderFetched={data =>
+              <AirplaneMarkerPopupWithContext  {...data} context={this.context} />
+            }
+          /> :
+          <Relay.RootContainer
+            Component={StopMarkerPopup}
+            route={new StopRoute({
+              stopId: this.props.stop.gtfsId,
+              date: this.context.getStore('TimeStore').getCurrentTime().format('YYYYMMDD'),
+              currentTime: this.context.getStore('TimeStore').getCurrentTime().unix(),
+            })}
+            renderLoading={() =>
+              <div className="card" style={{ height: '12rem' }}><div className="spinner-loader" /></div>
+            }
+            renderFetched={data =>
+              <StopMarkerPopupWithContext {...data} context={this.context} />
+            }
+          />
+        }
       </GenericMarker>
     );
   }

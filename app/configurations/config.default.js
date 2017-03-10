@@ -51,7 +51,11 @@ export default {
     suggestions: {
       useTransportIcons: false,
     },
-    useOTPEndPoints: false,
+    usePeliasStops: false,
+    mapPeliasModality: false,
+    peliasMapping: { },
+    peliasLayer: null,
+    peliasLocalization: feature => feature,
   },
 
   nearbyRoutes: {

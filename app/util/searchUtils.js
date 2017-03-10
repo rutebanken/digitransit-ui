@@ -11,6 +11,7 @@ import { getJson } from './xhrPromise';
 import routeCompare from './route-compare';
 import { getLatLng } from './geo-utils';
 import { uniqByLabel } from './suggestionUtils';
+import mapPeliasModality from './pelias-to-modality-mapper';
 
 function getRelayQuery(query) {
   return new Promise((resolve, reject) => {
@@ -136,7 +137,8 @@ export function getGeocodingResult(input, geolocation, language, config) {
       /* eslint no-param-reassign: ["error", { "props": false }] */
       feature.properties.label = `${feature.properties.name}, ${feature.properties.localadmin}`;
       return feature;
-    }), feature => feature.properties.confidence, 'desc'));
+    }), feature => feature.properties.confidence, 'desc'))
+    .then(features => mapPeliasModality(features, config));
 }
 
 function getFavouriteRoutes(favourites, input) {
@@ -213,7 +215,7 @@ function getRoutes(input, config) {
       viewer {
         routes(name: $name ) {
           gtfsId
-          agency {name} 
+          agency {name}
           shortName
           mode
           longName
@@ -232,8 +234,8 @@ function getRoutes(input, config) {
   ).then(suggestions => take(suggestions, 10));
 }
 
-function getStops(input, origin) {
-  if (typeof input !== 'string' || input.trim().length === 0) {
+function getStops(input, origin, config) {
+  if (typeof input !== 'string' || input.trim().length === 0 || config.search.usePeliasStops) {
     return Promise.resolve([]);
   }
   const number = input.match(/^\d+$/);
@@ -269,53 +271,6 @@ function getStops(input, origin) {
   )).then(suggestions => take(suggestions, 10));
 }
 
-const lookupCountyAndMunicipality = (item, config) => {
-  if (!item.properties.localadmin) {
-    const parameters = {
-      'point.lat': item.geometry.coordinates[1],
-      'point.lon': item.geometry.coordinates[0],
-      size: 1,
-    };
-    return getJson(config.URL.PELIAS_REVERSE_GEOCODER, parameters)
-            .then((peliasResult) => {
-              const stop = { ...item };
-              const firstFeature = peliasResult.features[0];
-              if (firstFeature) {
-                stop.properties.county = firstFeature.properties.county;
-                stop.properties.localadmin = firstFeature.properties.localadmin;
-                stop.properties.name = `${stop.properties.name}, ${firstFeature.properties.localadmin}`;
-                stop.properties.label = stop.properties.name;
-              }
-              return Promise.resolve(stop);
-            });
-  }
-  return Promise.resolve(item);
-};
-
-const formatOptionalStops = (optionalStops, config) => {
-  const promises = [];
-  optionalStops.forEach((item) => {
-    if (item.type === 'Stop' && item.properties) {
-      /* Remove link in order to use this as an endpoint */
-      delete item.properties.link; // eslint-disable-line no-param-reassign
-      promises.push(lookupCountyAndMunicipality(item, config));
-    }
-  });
-  return Promise.all(promises);
-};
-
-const getOptionalStops = (input, origin, config) => new Promise((resolve, reject) => {
-  if (!config.search.useOTPEndPoints) {
-    return resolve([]);
-  }
-  return getStops(input, origin).then(stops =>
-    resolve(formatOptionalStops(stops, config))).catch(
-    (err) => {
-      reject(err);
-    },
-  );
-});
-
 export const getAllEndpointLayers = () => (
     ['CurrentPosition', 'FavouritePlace', 'OldSearch', 'Geocoding']
 );
@@ -347,9 +302,6 @@ export function executeSearchImmediate(getStore, { input, type, layers, config }
       }
       searchComponents.push(getOldSearches(oldSearches, input, dropLayers));
     }
-    // NRP-836: Retrieve stop places with municipality / NO PR made
-    searchComponents.push(getOptionalStops(input, position, config));
-
     if (endpointLayers.includes('Geocoding')) {
       searchComponents.push(getGeocodingResult(input, position, language, config));
     }
@@ -377,7 +329,7 @@ export function executeSearchImmediate(getStore, { input, type, layers, config }
       getFavouriteStops(favouriteStops, input, origin),
       getOldSearches(oldSearches, input),
       getRoutes(input, config),
-      getStops(input, location),
+      getStops(input, location, config),
     ])
     .then(flatten)
     .then(uniqByLabel)

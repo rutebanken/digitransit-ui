@@ -96,6 +96,8 @@ export default {
     timeNavigation: {
       enableButtonArrows: false,
     },
+
+    showPlatformCode: false,
   },
 
   nearestStopDistance: {

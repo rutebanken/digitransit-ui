@@ -38,10 +38,10 @@ OriginSelectorRow.contextTypes = {
 };
 
 const OriginSelector = ({ favourites, oldSearches }, { config }) => {
-  const notInFavourites = item => favourites.map(favourite =>
-      favourite.address === item.properties.address &&
-      favourite.lat === item.properties.lat &&
-      favourite.lon === item.properties.lon).length === 0;
+  const notInFavourites = item => favourites.filter(favourite =>
+  favourite.address === item.properties.address &&
+  favourite.lat === item.properties.lat &&
+  favourite.lon === item.properties.lon).length === 0;
 
   const names = favourites.map(
       f => <OriginSelectorRow

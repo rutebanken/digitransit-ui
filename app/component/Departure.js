@@ -15,7 +15,8 @@ function Departure(props) {
   const mode = props.departure.pattern.route.mode.toLowerCase();
 
   let platformNumber = false;
-  if (props.isTerminal) {
+  // NRP-1280: show Platform code for rail as well - TODO remove when parentCode is added
+  if (props.isTerminal || mode === 'rail') {
     platformNumber = <PlatformNumber number={props.departure.stop.platformCode} />;
   }
 

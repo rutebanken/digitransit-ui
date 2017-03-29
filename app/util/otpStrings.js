@@ -4,8 +4,8 @@
 
 export const otpToLocation = (otpString) => {
   const [address, extension1, extension2] = otpString.split('::');
-  const coords = (extension2) ? extension2 : extension1;
-  const gtfsId = (extension2) ? {gtfsId: extension1} : undefined;
+  const coords = extension2 || extension1;
+  const gtfsId = extension2 ? { gtfsId: extension1 } : undefined;
 
   if (coords) {
     return ({
@@ -18,11 +18,11 @@ export const otpToLocation = (otpString) => {
   return { address };
 };
 
-export const locationToOTP = location => {
+export const locationToOTP = (location) => {
   if (location.gtfsId) {
     return `${location.address}::${location.gtfsId}::${location.lat},${location.lon}`;
   }
   return `${location.address}::${location.lat},${location.lon}`;
-}
+};
 
 export const locationToCoords = location => [location.lat, location.lon];

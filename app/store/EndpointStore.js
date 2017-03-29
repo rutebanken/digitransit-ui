@@ -57,6 +57,7 @@ class EndpointStore extends Store {
       lat: null,
       lon: null,
       address: null,
+      gtfsId: null,
     };
   }
 
@@ -67,6 +68,7 @@ class EndpointStore extends Store {
       lat: location.lat,
       lon: location.lon,
       address: location.address,
+      gtfsId: location.gtfsId,
     };
 
     this.emitChange('set-origin');
@@ -79,6 +81,7 @@ class EndpointStore extends Store {
       lat: location.lat,
       lon: location.lon,
       address: location.address,
+      gtfsId: location.gtfsId,
     };
 
     this.emitChange();

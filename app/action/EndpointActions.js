@@ -1,25 +1,27 @@
 import { route } from './ItinerarySearchActions';
 
-export function storeEndpoint(actionContext, { target, endpoint }, done) {
+export function storeEndpoint(actionContext, { target, endpoint, gtfsId }, done) {
   actionContext.dispatch('setEndpoint', {
     target,
     value: {
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
+      gtfsId: gtfsId,
     },
   });
 
   return done();
 }
 
-export function storeEndpointIfNotCurrent(actionContext, { target, endpoint }, done) {
+export function storeEndpointIfNotCurrent(actionContext, { target, endpoint, gtfsId }, done) {
   actionContext.dispatch('setEndpointIfNotCurrent', {
     target,
     value: {
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
+      gtfsId: gtfsId,
     },
   });
 

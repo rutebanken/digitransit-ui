@@ -7,7 +7,7 @@ export function storeEndpoint(actionContext, { target, endpoint, gtfsId }, done)
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
-      gtfsId: gtfsId,
+      gtfsId,
     },
   });
 
@@ -21,7 +21,7 @@ export function storeEndpointIfNotCurrent(actionContext, { target, endpoint, gtf
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
-      gtfsId: gtfsId,
+      gtfsId,
     },
   });
 

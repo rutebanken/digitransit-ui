@@ -16,7 +16,7 @@ import NetworkError from './component/NetworkError';
 import Loading from './component/LoadingPage';
 import SplashOrChildren from './component/SplashOrChildren';
 
-import { otpToLocation } from './util/otpStrings';
+import { otpToLocation, locationToSearch } from './util/otpStrings';
 
 import TopLevel from './component/TopLevel';
 import Title from './component/Title';
@@ -146,8 +146,8 @@ export default (config) => {
         accessibilityOption,
       } } },
     ) => omitBy({
-      fromPlace: from,
-      toPlace: to,
+      fromPlace: locationToSearch(from),
+      toPlace: locationToSearch(to),
       from: otpToLocation(from),
       to: otpToLocation(to),
       intermediatePlaces: getIntermediatePlaces(intermediatePlaces),

@@ -25,4 +25,9 @@ export const locationToOTP = (location) => {
   return `${location.address}::${location.lat},${location.lon}`;
 };
 
+export const locationToSearch = (location) => {
+  const [address, point] = location.split('::');
+  return `${address}::${point}`;
+};
+
 export const locationToCoords = location => [location.lat, location.lon];

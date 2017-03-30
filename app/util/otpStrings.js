@@ -5,7 +5,7 @@
 export const otpToLocation = (otpString) => {
   const [address, extension1, extension2] = otpString.split('::');
   const coords = extension2 || extension1;
-  const gtfsId = extension2 ? { gtfsId: extension1 } : undefined;
+  const gtfsId = extension2 ? extension1 : undefined;
 
   if (coords) {
     return ({

@@ -5745,18 +5745,9 @@ node-uuid@~1.4.0:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.7.tgz#6da5a17668c4b3dd59623bda11cf7fa4c1f60a6f"
 
-node-zopfli@2.0.0:
+node-zopfli@2.0.0, node-zopfli@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/node-zopfli/-/node-zopfli-2.0.0.tgz#009798b728fb7eecf18b73d47296cebebb0fcbd8"
-  dependencies:
-    commander "^2.8.1"
-    defaults "^1.0.2"
-    nan "^2.0.0"
-    node-pre-gyp "^0.6.4"
-
-node-zopfli@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/node-zopfli/-/node-zopfli-2.0.2.tgz#a7a473ae92aaea85d4c68d45bbf2c944c46116b8"
   dependencies:
     commander "^2.8.1"
     defaults "^1.0.2"

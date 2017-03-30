@@ -14,14 +14,14 @@ export function storeEndpoint(actionContext, { target, endpoint, gtfsId }, done)
   return done();
 }
 
-export function storeEndpointIfNotCurrent(actionContext, { target, endpoint, gtfsId }, done) {
+export function storeEndpointIfNotCurrent(actionContext, { target, endpoint }, done) {
   actionContext.dispatch('setEndpointIfNotCurrent', {
     target,
     value: {
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
-      gtfsId,
+      gtfsId: endpoint.gtfsId,
     },
   });
 

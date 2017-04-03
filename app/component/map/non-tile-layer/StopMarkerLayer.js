@@ -63,11 +63,11 @@ class StopMarkerLayer extends React.Component {
 
       const modeClass = stop.routes[0].mode.toLowerCase();
       const selected = this.props.hilightedStops && this.props.hilightedStops.includes(stop.gtfsId);
+      const isTerminal = modeClass in this.context.config.stopsVariableZoom;
 
       if (stop.parentStation &&
           this.context.map.getZoom() <= this.context.config.terminalStopsMaxZoom) {
-        // NRP-1214: larger icons, filter away minor stops
-        if (this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass]) {
+        if (this.skipStop(isTerminal, modeClass)) {
           return;
         }
 
@@ -77,19 +77,14 @@ class StopMarkerLayer extends React.Component {
             terminal={stop.parentStation}
             selected={selected}
             mode={modeClass}
+            fakeLargeIcon={isTerminal}
             renderName={false}
           />,
         );
         return;
       }
 
-      // NRP-1214: show larger icons for terminal like stops
-      const isTerminal = modeClass in this.context.config.stopsVariableZoom;
-      if (!isTerminal && this.context.map.getZoom() < this.context.config.stopsSmallMaxZoom) {
-        return;
-      }
-      if (isTerminal &&
-        this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass]) {
+      if (this.skipStop(isTerminal, modeClass)) {
         return;
       }
 
@@ -108,6 +103,14 @@ class StopMarkerLayer extends React.Component {
     });
 
     return uniq(stops, 'key');
+  }
+
+  // NRP-1214: show larger icons for terminal like stops
+  skipStop(isTerminal, modeClass) {
+    if (!isTerminal) {
+      return this.context.map.getZoom() < this.context.config.stopsSmallMaxZoom;
+    }
+    return this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass];
   }
 
   render() {

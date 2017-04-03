@@ -3,6 +3,7 @@ import Relay from 'react-relay';
 import provideContext from 'fluxible-addons-react/provideContext';
 import { intlShape } from 'react-intl';
 import { routerShape, locationShape } from 'react-router';
+import cx from 'classnames';
 
 import { getDistanceToFurthestStop } from '../../../util/geo-utils';
 import Icon from '../../Icon';
@@ -52,6 +53,7 @@ class TerminalMarker extends React.Component {
     mode: React.PropTypes.string.isRequired,
     selected: React.PropTypes.bool,
     renderName: React.PropTypes.string,
+    fakeLargeIcon: React.PropTypes.bool,
   }
 
   getIcon = () =>
@@ -61,6 +63,31 @@ class TerminalMarker extends React.Component {
       className: `${this.props.mode} cursor-pointer`,
     })
 
+  // NRP-1214: show larger icons for terminal like stops
+  getModeIcon = (zoom) => {
+    const iconId = `icon-icon_${this.props.mode}`;
+    const icon = Icon.asString(iconId, 'mode-icon');
+    let size;
+    if (this.props.fakeLargeIcon) {
+      size = this.context.config.stopsIconSize.default;
+    } else if (zoom <= this.context.config.stopsSmallMaxZoom) {
+      size = this.context.config.stopsIconSize.small;
+    } else if (this.props.selected) {
+      size = this.context.config.stopsIconSize.selected;
+    } else {
+      size = this.context.config.stopsIconSize.default;
+    }
+
+    return L.divIcon({
+      html: icon,
+      iconSize: [size, size],
+      className: cx('cursor-pointer', this.props.mode, {
+        small: size === this.context.config.stopsIconSize.small,
+        selected: this.props.selected,
+      }),
+    });
+  }
+
   getTerminalMarker() {
     return (
       <GenericMarker
@@ -68,7 +95,9 @@ class TerminalMarker extends React.Component {
           lat: this.props.terminal.lat,
           lon: this.props.terminal.lon,
         }}
-        getIcon={this.getIcon}
+        getIcon={
+          this.context.config.map.useModeIconsInNonTileLayer ? this.getModeIcon : this.getIcon
+        }
         id={this.props.terminal.gtfsId}
         renderName={this.props.renderName}
         name={this.props.terminal.name}

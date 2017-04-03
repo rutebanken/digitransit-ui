@@ -66,6 +66,11 @@ class StopMarkerLayer extends React.Component {
 
       if (stop.parentStation &&
           this.context.map.getZoom() <= this.context.config.terminalStopsMaxZoom) {
+        // NRP-1214: larger icons, filter away minor stops
+        if (this.context.map.getZoom() < this.context.config.stopsVariableZoom[modeClass]) {
+          return;
+        }
+
         stops.push(
           <TerminalMarker
             key={stop.parentStation.gtfsId}

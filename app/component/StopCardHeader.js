@@ -2,6 +2,7 @@ import React from 'react';
 import CardHeader from './CardHeader';
 import ComponentUsageExample from './ComponentUsageExample';
 import InfoIcon from './InfoIcon';
+import StopAccessibility from './StopAccessibility';
 
 class StopCardHeader extends React.Component {
   getDescription() {
@@ -30,7 +31,11 @@ class StopCardHeader extends React.Component {
         code={this.context.config.stopCard.header.showStopCode && this.props.stop.code ?
               this.props.stop.code : null}
         icons={this.props.icons}
-      />
+      >
+        <StopAccessibility
+          gtfsId={this.props.stop.gtfsId}
+        />
+      </CardHeader>
     );
   }
 }

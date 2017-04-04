@@ -30,6 +30,7 @@ export default {
     REALTIME: `${API_URL}/realtime/vehicle-positions/v1`,
     PELIAS: `${API_URL}/geocoding/v1/search`,
     PELIAS_REVERSE_GEOCODER: `${API_URL}/geocoding/v1/reverse`,
+    TIAMAT: '',
   },
 
   APP_PATH: `${APP_PATH}`,

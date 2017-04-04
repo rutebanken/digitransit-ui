@@ -1,6 +1,6 @@
 import React from 'react';
 
-import accessibilityUtils from '../util/accessibilityUtils';
+import accessibilityUtils, { accessibilities, hasAccessibility } from '../util/accessibilityUtils';
 
 class StopAccessibility extends React.Component {
   static displayName = 'StopAccessibility';
@@ -14,23 +14,29 @@ class StopAccessibility extends React.Component {
   };
 
   state = {
-    response: undefined,
+    stopPlace: undefined,
   };
 
   componentWillMount() {
     accessibilityUtils(this.props.gtfsId, this.context.config)
-      .then(result => this.setState({ response: result }));
+      .then(result => this.setState({ stopPlace: result.stopPlace[0] }));
   }
 
   getIcons() {
-    const wheelchairAccess = (access) => {
-      return access && access.limitations && access.limitations.wheelchairAccess;
-    };
-
-    if (this.state.response) {
-      if (wheelchairAccess(this.state.response.stopPlace[0].accessibilityAssessment)) {
-        return '\u267f';
-      }
+    if (this.state.stopPlace) {
+      return accessibilities.map((accessibility) => {
+        if (hasAccessibility(this.state.stopPlace, accessibility)) {
+          return '\u267f';
+        }
+        if (this.state.stopPlace.quays) {
+          for (let j = 0; j < this.state.stopPlace.quays.length; j++) {
+            if (hasAccessibility(this.state.stopPlace.quays[j], accessibility)) {
+              return '\u267f';
+            }
+          }
+        }
+        return null;
+      });
     }
     return null;
   }

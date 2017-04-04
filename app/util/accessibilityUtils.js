@@ -1,4 +1,14 @@
-// import { postJson } from './xhrPromise';
+export const accessibilities = [
+  'wheelchairAccess',
+  'stepFreeAccess',
+  'escalatorFreeAccess',
+  'audibleSignalsAvailable',
+  'liftFreeAccess',
+];
+
+export const hasAccessibility = (access, type) => access.accessibilityAssessment &&
+  access.accessibilityAssessment.limitations &&
+  access.accessibilityAssessment.limitations[type] === 'TRUE';
 
 const accessibilityAssessment = gtfsId =>
   `{

@@ -40,6 +40,7 @@ class TerminalMarker extends React.Component {
     route: React.PropTypes.object.isRequired,
     intl: intlShape.isRequired,
     config: React.PropTypes.object.isRequired,
+    map: React.PropTypes.object.isRequired,
   };
 
   static propTypes = {
@@ -67,16 +68,7 @@ class TerminalMarker extends React.Component {
   getModeIcon = (zoom) => {
     const iconId = `icon-icon_${this.props.mode}`;
     const icon = Icon.asString(iconId, 'mode-icon');
-    let size;
-    if (this.props.fakeLargeIcon) {
-      size = this.context.config.stopsIconSize.default;
-    } else if (zoom <= this.context.config.stopsSmallMaxZoom) {
-      size = this.context.config.stopsIconSize.small;
-    } else if (this.props.selected) {
-      size = this.context.config.stopsIconSize.selected;
-    } else {
-      size = this.context.config.stopsIconSize.default;
-    }
+    const size = this.getIconSize(zoom);
 
     return L.divIcon({
       html: icon,
@@ -86,6 +78,17 @@ class TerminalMarker extends React.Component {
         selected: this.props.selected,
       }),
     });
+  };
+
+  getIconSize(zoom) {
+    if (this.props.fakeLargeIcon) {
+      return this.context.config.stopsIconSize.default;
+    } else if (zoom <= this.context.config.stopsSmallMaxZoom) {
+      return this.context.config.stopsIconSize.small;
+    } else if (this.props.selected) {
+      return this.context.config.stopsIconSize.selected;
+    }
+    return this.context.config.stopsIconSize.default;
   }
 
   getTerminalMarker() {
@@ -119,6 +122,9 @@ class TerminalMarker extends React.Component {
     );
   }
 
+  showCircle = () =>
+    this.getIconSize(this.context.map.getZoom()) > this.context.config.stopsIconSize.small;
+
   render() {
     if (!isBrowser) {
       return '';
@@ -126,7 +132,7 @@ class TerminalMarker extends React.Component {
 
     return (
       <div>
-        <Circle
+        {this.showCircle() && <Circle
           center={{ lat: this.props.terminal.lat, lng: this.props.terminal.lon }}
           radius={getDistanceToFurthestStop(
             new L.LatLng(this.props.terminal.lat, this.props.terminal.lon),
@@ -138,7 +144,7 @@ class TerminalMarker extends React.Component {
           className={this.props.mode}
           fillColor="currentColor"
           color="currentColor"
-        />
+        />}
         {this.getTerminalMarker()}
       </div>
     );

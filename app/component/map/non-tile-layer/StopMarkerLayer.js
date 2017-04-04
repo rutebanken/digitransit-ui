@@ -64,13 +64,12 @@ class StopMarkerLayer extends React.Component {
       const modeClass = stop.routes[0].mode.toLowerCase();
       const selected = this.props.hilightedStops && this.props.hilightedStops.includes(stop.gtfsId);
       const isTerminal = modeClass in this.context.config.stopsVariableZoom;
+      if (this.skipStop(isTerminal, modeClass)) {
+        return;
+      }
 
       if (stop.parentStation &&
           this.context.map.getZoom() <= this.context.config.terminalStopsMaxZoom) {
-        if (this.skipStop(isTerminal, modeClass)) {
-          return;
-        }
-
         stops.push(
           <TerminalMarker
             key={stop.parentStation.gtfsId}
@@ -81,10 +80,6 @@ class StopMarkerLayer extends React.Component {
             renderName={false}
           />,
         );
-        return;
-      }
-
-      if (this.skipStop(isTerminal, modeClass)) {
         return;
       }
 

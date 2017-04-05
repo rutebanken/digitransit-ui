@@ -33,7 +33,7 @@ class StopCardHeader extends React.Component {
         icons={this.props.icons}
       >
         <StopAccessibility
-          gtfsId={this.props.stop.gtfsId}
+          stop={this.props.stop}
         />
       </CardHeader>
     );

@@ -10,7 +10,12 @@ class StopAccessibility extends React.Component {
   };
 
   static propTypes = {
-    gtfsId: React.PropTypes.string.isRequired,
+    stop: React.PropTypes.shape({
+      gtfsId: React.PropTypes.string.isRequired,
+      parentStation: React.PropTypes.shape({
+        gtfsId: React.PropTypes.string,
+      }).isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -18,7 +23,9 @@ class StopAccessibility extends React.Component {
   };
 
   componentWillMount() {
-    accessibilityUtils(this.props.gtfsId, this.context.config)
+    const gtfsId = this.props.stop.parentStation ?
+      this.props.stop.parentStation.gtfsId : this.props.stop.gtfsId;
+    accessibilityUtils(gtfsId, this.context.config)
       .then(result => this.setState({ stopPlace: result.stopPlace[0] }));
   }
 

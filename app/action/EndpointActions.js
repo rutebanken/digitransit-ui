@@ -1,12 +1,13 @@
 import { route } from './ItinerarySearchActions';
 
-export function storeEndpoint(actionContext, { target, endpoint }, done) {
+export function storeEndpoint(actionContext, { target, endpoint, gtfsId }, done) {
   actionContext.dispatch('setEndpoint', {
     target,
     value: {
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
+      gtfsId,
     },
   });
 
@@ -20,6 +21,7 @@ export function storeEndpointIfNotCurrent(actionContext, { target, endpoint }, d
       lat: endpoint.lat,
       lon: endpoint.lon,
       address: endpoint.address,
+      gtfsId: endpoint.gtfsId,
     },
   });
 

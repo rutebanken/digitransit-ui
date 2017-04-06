@@ -1,7 +1,8 @@
 import React from 'react';
+import cx from 'classnames';
 
 import accessibilityUtils, {
-  hasAccessibility,
+  getAccessibility,
   accessibilities,
   getAccessibilityIcon,
 } from '../util/accessibilityUtils';
@@ -34,8 +35,11 @@ class StopAccessibility extends React.Component {
   }
 
   getIcon = (stop, accessibility) => {
-    if (hasAccessibility(stop, accessibility)) {
-      return getAccessibilityIcon(accessibility);
+    const status = getAccessibility(stop, accessibility);
+    if (status) {
+      return (
+        <span className={cx(status)}>{getAccessibilityIcon(accessibility)}</span>
+      );
     }
     return null;
   };

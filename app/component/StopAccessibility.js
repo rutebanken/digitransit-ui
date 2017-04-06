@@ -4,6 +4,7 @@ import accessibilityUtils, {
   hasAccessibility,
   accessibilities,
   accessibilityIcons,
+  getAccessibilityIcon,
 } from '../util/accessibilityUtils';
 
 class StopAccessibility extends React.Component {
@@ -33,31 +34,24 @@ class StopAccessibility extends React.Component {
       .then(result => this.setState({ stopPlace: result.stopPlace[0] }));
   }
 
-  getIcons() {
-    if (this.state.stopPlace) {
-      if (this.props.stop.gtfsId.indexOf('Quay') !== -1) {
-        return accessibilities.map((accessibility) => {
-          for (let j = 0; j < this.state.stopPlace.quays.length; j++) {
-            const quay = this.state.stopPlace.quays[j];
-            if (quay.id === this.props.stop.gtfsId) {
-              if (hasAccessibility(quay, accessibility)) {
-                if (accessibility in accessibilityIcons) {
-                  return accessibilityIcons[accessibility];
-                }
-              }
-            }
-          }
-          return null;
-        });
-      }
+  getIcon = (stop, accessibility) => {
+    if (hasAccessibility(stop, accessibility)) {
+      return getAccessibilityIcon(accessibility);
+    }
+    return null;
+  };
 
-      return accessibilities.map((accessibility) => {
-        if (hasAccessibility(this.state.stopPlace, accessibility)) {
-          if (accessibility in accessibilityIcons) {
-            return accessibilityIcons[accessibility];
-          }
-          return '\u267f';
-        }
+  getIcons() {
+    const icons = [];
+    if (this.state.stopPlace) {
+      const gtfsId = this.props.stop.gtfsId;
+      const isQuay = gtfsId.indexOf('Quay') !== -1;
+      const stop = (!isQuay) ? this.state.stopPlace :
+        this.state.stopPlace.quays.filter(quay => quay.id === gtfsId).reduce(a => a);
+
+      accessibilities.forEach((accessibility) => {
+        icons.push(this.getIcon(stop, accessibility));
+      });
         /*
         if (this.state.stopPlace.quays) {
           for (let j = 0; j < this.state.stopPlace.quays.length; j++) {
@@ -67,10 +61,8 @@ class StopAccessibility extends React.Component {
           }
         }
         */
-        return null;
-      });
     }
-    return null;
+    return icons;
   }
 
   render() {

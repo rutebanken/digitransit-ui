@@ -16,9 +16,11 @@ export const accessibilityIcons = {
   liftFreeAccess: '?',
 };
 
-export const hasAccessibility = (access, type) => access.accessibilityAssessment &&
+export const hasAccessibility = (access, type, has = true) => access.accessibilityAssessment &&
   access.accessibilityAssessment.limitations &&
-  access.accessibilityAssessment.limitations[type] === 'TRUE';
+  access.accessibilityAssessment.limitations[type] === (has ? 'TRUE' : 'FALSE');
+
+export const getAccessibilityIcon = accessibility => accessibilityIcons[accessibility];
 
 const accessibilityAssessment = gtfsId =>
   `{

@@ -3,7 +3,6 @@ import React from 'react';
 import accessibilityUtils, {
   hasAccessibility,
   accessibilities,
-  accessibilityIcons,
   getAccessibilityIcon,
 } from '../util/accessibilityUtils';
 

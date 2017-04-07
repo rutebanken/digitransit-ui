@@ -35,10 +35,9 @@ export const getAccessibilityIcon = accessibility => accessibilityIcons[accessib
 const accessibilityAssessment = gtfsId =>
   `{
   stopPlace(id: "${gtfsId}") {
+    id
     accessibilityAssessment {
       limitations {
-        id
-        version
         wheelchairAccess
         stepFreeAccess
         escalatorFreeAccess
@@ -50,8 +49,6 @@ const accessibilityAssessment = gtfsId =>
       id
       accessibilityAssessment {
         limitations {
-          id
-          version
           wheelchairAccess
           stepFreeAccess
           escalatorFreeAccess

@@ -6,7 +6,9 @@ import { setEndpoint } from '../action/EndpointActions';
 import Icon from './Icon';
 import { getIcon } from '../util/suggestionUtils';
 
-const OriginSelectorRow = ({ icon, label, lat, lon }, { executeAction, router, location }) => (
+const OriginSelectorRow = ({ icon, label, lat, lon, gtfsId },
+                           { executeAction, router, location }) =>
+(
   <li>
     <button
       className="noborder"
@@ -14,6 +16,7 @@ const OriginSelectorRow = ({ icon, label, lat, lon }, { executeAction, router, l
       onClick={() => executeAction(setEndpoint, {
         target: 'origin',
         endpoint: { lat, lon, address: label },
+        gtfsId,
         router,
         location,
       })}
@@ -29,6 +32,7 @@ OriginSelectorRow.propTypes = {
   label: React.PropTypes.string.isRequired,
   lat: React.PropTypes.number.isRequired,
   lon: React.PropTypes.number.isRequired,
+  gtfsId: React.PropTypes.string,
 };
 
 OriginSelectorRow.contextTypes = {
@@ -57,6 +61,7 @@ const OriginSelector = ({ favourites, oldSearches }, { config }) => {
         label={s.properties.label}
         lat={s.geometry.coordinates[1]}
         lon={s.geometry.coordinates[0]}
+        gtfsId={s.properties.gtfsId}
       />))
       .concat(config.defaultOrigins.map(o => <OriginSelectorRow key={`o-${o.label}`} {...o} />));
   return <ul>{names.slice(0, 3)}</ul>;

@@ -9,6 +9,7 @@ class MarkerPopupBottom extends React.Component {
 
   static propTypes = {
     location: React.PropTypes.object.isRequired,
+    gtfsId: React.PropTypes.string,
   };
 
   static contextTypes = {
@@ -25,6 +26,7 @@ class MarkerPopupBottom extends React.Component {
       endpoint: this.props.location,
       router: this.context.router,
       location: locationWithTime,
+      gtfsId: this.props.gtfsId,
     });
   }
 
@@ -35,6 +37,7 @@ class MarkerPopupBottom extends React.Component {
       endpoint: this.props.location,
       router: this.context.router,
       location: locationWithTime,
+      gtfsId: this.props.gtfsId,
     });
   }
 

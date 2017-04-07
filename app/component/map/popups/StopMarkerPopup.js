@@ -28,6 +28,7 @@ function StopMarkerPopup(props) {
           lat: stop.lat,
           lon: stop.lon,
         }}
+        gtfsId={stop.gtfsId}
       />
     </div>
   );

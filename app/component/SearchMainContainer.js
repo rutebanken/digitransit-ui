@@ -70,6 +70,7 @@ class SearchMainContainer extends React.Component {
           lon: item.geometry.coordinates[0],
           address: name,
         },
+        gtfsId: item.properties.gtfsId,
       });
     }
 

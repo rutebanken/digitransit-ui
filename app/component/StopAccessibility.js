@@ -48,27 +48,39 @@ class StopAccessibility extends React.Component {
     const icons = [];
     if (this.state.stopPlace) {
       const gtfsId = this.props.stop.gtfsId;
-      const quays = this.state.stopPlace.quays.filter(quay =>
-        quay.accessibilityAssessment !== null &&
-        quay.id === gtfsId);
-      const isQuay = quays.length > 0;
-      const stop = (!isQuay) ? this.state.stopPlace : quays.reduce(a => a);
+      const quays = this.state.stopPlace.quays.filter(q => q.accessibilityAssessment !== null);
+      const quay = quays.filter(q => q.id === gtfsId);
+      let stop;
+      if (quay.length > 0) {
+        stop = quay.reduce(a => a);
+      } else if (quays.length > 0) {
+        stop = quays.reduce(this.quaysConjunction);
+      } else {
+        stop = this.state.stopPlace;
+      }
 
       accessibilities.forEach((accessibility) => {
         icons.push(this.getIcon(stop, accessibility));
       });
-        /*
-        if (this.state.stopPlace.quays) {
-          for (let j = 0; j < this.state.stopPlace.quays.length; j++) {
-            if (hasAccessibility(this.state.stopPlace.quays[j], accessibility)) {
-              return '\u267f';
-            }
-          }
-        }
-        */
     }
     return icons;
   }
+
+  quaysConjunction = (a, b) => {
+    const limit = (q, accessibility) => q.accessibilityAssessment.limitations[accessibility];
+    const result = { };
+
+    accessibilities.forEach((accessibility) => {
+      const limitA = limit(a, accessibility);
+      const limitB = limit(b, accessibility);
+      if (limitA === limitB) {
+        result[accessibility] = limitA;
+      } else if (limitA === 'TRUE' || limitB === 'TRUE') {
+        result[accessibility] = 'PARTIAL';
+      }
+    });
+    return { accessibilityAssessment: { limitations: result } };
+  };
 
   render() {
     return (

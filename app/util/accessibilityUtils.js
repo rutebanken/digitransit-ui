@@ -27,7 +27,7 @@ export const getAccessibility = (access, type) => {
   if (access.accessibilityAssessment && access.accessibilityAssessment.limitations) {
     return access.accessibilityAssessment.limitations[type];
   }
-  return null;
+  return 'UNKNOWN';
 };
 
 export const getAccessibilityIcon = accessibility => accessibilityIcons[accessibility];

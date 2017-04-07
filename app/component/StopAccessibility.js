@@ -48,9 +48,11 @@ class StopAccessibility extends React.Component {
     const icons = [];
     if (this.state.stopPlace) {
       const gtfsId = this.props.stop.gtfsId;
-      const isQuay = gtfsId.indexOf('Quay') !== -1;
-      const stop = (!isQuay) ? this.state.stopPlace :
-        this.state.stopPlace.quays.filter(quay => quay.id === gtfsId).reduce(a => a);
+      const quays = this.state.stopPlace.quays.filter(quay =>
+        quay.accessibilityAssessment !== null &&
+        quay.id === gtfsId);
+      const isQuay = quays.length > 0;
+      const stop = (!isQuay) ? this.state.stopPlace : quays.reduce(a => a);
 
       accessibilities.forEach((accessibility) => {
         icons.push(this.getIcon(stop, accessibility));

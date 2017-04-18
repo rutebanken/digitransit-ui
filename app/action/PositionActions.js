@@ -10,7 +10,7 @@ let geoWatchId;
 function reverseGeocodeAddress(actionContext, location) {
   const language = actionContext.getStore('PreferencesStore').getLanguage();
 
-  return getJson(actionContext.config.URL.PELIAS_REVERSE_GEOCODER, {
+  return getJson(actionContext.config, actionContext.config.URL.PELIAS_REVERSE_GEOCODER, {
     'point.lat': location.lat,
     'point.lon': location.lon,
     lang: language,

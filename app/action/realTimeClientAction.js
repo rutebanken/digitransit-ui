@@ -45,7 +45,8 @@ function parseMessage(topic, message, actionContext) {
 }
 
 function getInitialData(topic, actionContext) {
-  getJson(actionContext.config.URL.REALTIME + topic.replace('#', '')).then((data) => {
+  getJson(actionContext.config, actionContext.config.URL.REALTIME + topic.replace('#', ''))
+  .then((data) => {
     Object.keys(data).forEach((resTopic) => {
       parseMessage(resTopic, data[resTopic], actionContext);
     });

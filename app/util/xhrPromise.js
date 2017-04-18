@@ -12,8 +12,27 @@ function serialize(obj, prefix) {
   }).join('&');
 }
 
+export function tattle(config, url, data, error) {
+  if (config !== undefined && config.URL.TATTLE !== '') {
+    fetch(config.URL.TATTLE,
+      {
+        mode: 'on-cors',
+        timeout: 10000,
+        method: 'POST',
+        body: JSON.stringify({ url, data, error }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      },
+    ).then(res => console.log(res)); // eslint-disable-line no-console
+  } else {
+    throw error;
+  }
+}
+
 // Return Promise for a url json get request
-export function getJson(url, params) {
+export function getJson(config, url, params) {
   return fetch(
     encodeURI(url) + (params ? (url.search(/\?/) === -1 ? '?' : '&') + serialize(params) : ''),
     {
@@ -24,11 +43,12 @@ export function getJson(url, params) {
         Accept: 'application/json',
       },
     },
-  ).then(res => res.json());
+  ).then(res => res.json())
+    .catch(error => tattle(config, url, params, error));
 }
 
 // Return Promise for a json post request
-export function postJson(url, params, payload) {
+export function postJson(url, params, payload, config) {
   return fetch(
     encodeURI(url) + (params ? ((url.search(/\?/) === -1 ? '?' : '&') + serialize(params)) : ''),
     {
@@ -41,7 +61,8 @@ export function postJson(url, params, payload) {
         'Content-Type': 'application/json',
       },
     },
-  ).then(res => res.json());
+  ).then(res => res.json())
+    .catch(error => tattle(config, url, { params, payload }, error));
 }
 
 // Return Promise for array of json get requests

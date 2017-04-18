@@ -132,7 +132,7 @@ export function getGeocodingResult(input, geolocation, language, config) {
 
   const opts = { text: input, ...config.searchParams, ...focusPoint, lang: language };
 
-  return getJson(config.URL.PELIAS, opts)
+  return getJson(config, config.URL.PELIAS, opts)
     .then(res => orderBy(res.features.map((feature) => {
       /* eslint no-param-reassign: ["error", { "props": false }] */
       feature.properties.label = `${feature.properties.name}, ${feature.properties.localadmin}`;

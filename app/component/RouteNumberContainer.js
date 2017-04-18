@@ -14,7 +14,7 @@ const getText = (route, config) => {
 };
 
 const RouteNumberContainer = ({ route, ...props }, { config }) =>
-  route && <RouteNumber mode={route.mode} text={getText(route, config)} {...props} />;
+  route && route.mode && <RouteNumber mode={route.mode} text={getText(route, config)} {...props} />;
 
 RouteNumberContainer.propTypes = {
   route: React.PropTypes.object.isRequired,

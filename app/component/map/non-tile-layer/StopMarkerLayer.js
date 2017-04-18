@@ -61,7 +61,12 @@ class StopMarkerLayer extends React.Component {
         return;
       }
 
-      const modeClass = stop.routes[0].mode.toLowerCase();
+      const stopWithMode = stop.routes.filter(route => route.mode !== null);
+      if (stop.routes.length === 0) {
+        return;
+      }
+
+      const modeClass = stopWithMode[0].mode.toLowerCase();
       const selected = this.props.hilightedStops && this.props.hilightedStops.includes(stop.gtfsId);
       const isTerminal = modeClass in this.context.config.stopsVariableZoom;
       if (this.skipStop(isTerminal, modeClass)) {

@@ -66,6 +66,6 @@ export function postJson(url, params, payload, config) {
 }
 
 // Return Promise for array of json get requests
-export function getJsons(urls) {
-  return Promise.all(urls.map(url => getJson(url)));
+export function getJsons(config, urls) {
+  return Promise.all(urls.map(url => getJson(config, url)));
 }

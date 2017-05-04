@@ -41,6 +41,19 @@ class RoutePage extends React.Component {
       this.context.executeAction(startRealTimeClient, {
         route: route[1],
       });
+    } else {
+      // TODO NRP-1262 fix with publish service implementation
+      let gtfsId;
+      const dash = this.props.route.gtfsId.indexOf('-');
+      if (dash !== -1) {
+        gtfsId = this.props.route.gtfsId.substring(0, dash);
+      } else {
+        gtfsId = this.props.route.gtfsId;
+      }
+
+      this.context.executeAction(startRealTimeClient, {
+        route: gtfsId,
+      });
     }
   }
 

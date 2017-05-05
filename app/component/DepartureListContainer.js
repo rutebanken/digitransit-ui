@@ -37,6 +37,7 @@ const asDepartures = stoptimes => (
       pattern: stoptime.trip.pattern,
       headsign: stoptime.stopHeadsign,
       trip: stoptime.trip,
+      pickupType: stoptime.pickupType,
     };
   })
 );

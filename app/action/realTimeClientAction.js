@@ -13,7 +13,7 @@ function getTopic(options) {
   return `/hfp/journey/+/+/${route}/${direction}/+/${tripStartTime}/#`;
 }
 
-function parseMessage(topic, message, actionContext) {
+function parseMessage(topic, message, actionContext, mapRoute) {
   let parsedMessage;
   const [, , , mode, id, line, dir, /* headsign*/ , startTime, nextStop] /* ...geohash */
     = topic.split('/');
@@ -26,7 +26,7 @@ function parseMessage(topic, message, actionContext) {
 
   const messageContents = {
     id,
-    route: line,
+    route: mapRoute(line),
     direction: parseInt(dir, 10) - 1,
     tripStartTime: startTime,
     operatingDay: parsedMessage.oday && parsedMessage.oday !== 'XXX' ? parsedMessage.oday :
@@ -57,12 +57,20 @@ export function startRealTimeClient(actionContext, originalOptions, done) {
 
   const topics = options.map(option => getTopic(option));
 
+  // TODO NRP-1262 map route ids from Chouette
+  const mapRoute = (line) => {
+    if (originalOptions.mapping && originalOptions.route.indexOf(line) !== -1) {
+      return originalOptions.mapping;
+    }
+    return line;
+  };
+
   topics.forEach(topic => getInitialData(topic, actionContext));
 
   System.import('mqtt').then((mqtt) => {
     const client = mqtt.connect(actionContext.config.URL.MQTT);
     client.on('connect', () => client.subscribe(topics));
-    client.on('message', (topic, message) => parseMessage(topic, message, actionContext));
+    client.on('message', (topic, message) => parseMessage(topic, message, actionContext, mapRoute));
     actionContext.dispatch('RealTimeClientStarted', { client, topics });
     done();
   });

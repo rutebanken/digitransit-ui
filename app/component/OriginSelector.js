@@ -55,11 +55,11 @@ const OriginSelector = ({ favourites, oldSearches }, { config }) => {
         lon={f.lon}
       />)
       .concat(oldSearches.filter(notInFavourites).map(s => <OriginSelectorRow
-        key={`o-${s.properties.label}`}
+        key={`o-${s.properties.label || s.properties.name}`}
         icon={getIcon(s.properties.layer, s.properties.mode)}
-        label={s.properties.label}
-        lat={s.geometry.coordinates[1]}
-        lon={s.geometry.coordinates[0]}
+        label={s.properties.label || s.properties.name}
+        lat={(s.geometry.coordinates && s.geometry.coordinates[1]) || s.lat}
+        lon={(s.geometry.coordinates && s.geometry.coordinates[0]) || s.lon}
         gtfsId={s.properties.gtfsId}
       />))
       .concat(config.defaultOrigins.map(o => <OriginSelectorRow key={`o-${o.label}`} {...o} />));

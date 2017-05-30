@@ -1,0 +1,42 @@
+sudo: required
+
+branches:
+  only:
+  - master
+  - /201[7-9][0-1][0-9][0-3][0-9]/
+
+cache: yarn
+
+language: node_js
+
+node_js:
+  - "6"
+services:
+  - docker
+install:
+  - true
+before_deploy:
+  - echo "before deploy!"
+script:
+  - test/build.sh
+
+jobs:
+  include:
+
+   - stage: test2
+     env: VISUAL=edge13
+     script: test/visual.sh
+   - stage: test2
+     env: VISUAL=chrome50
+     script: test/visual.sh
+   - stage: test2
+     env: VISUAL=ie11
+     script: test/visual.sh
+   - stage: test2
+     env: VISUAL=safari10
+     script: test/visual.sh
+   - stage: test2
+     script: test/flow.sh
+
+   - stage: deploy
+     script: test/deploy.sh

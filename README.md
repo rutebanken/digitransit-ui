@@ -1,4 +1,4 @@
-[![Build](https://snap-ci.com/HSLdevcom/digitransit-ui/branch/master/build_image)](https://snap-ci.com/HSLdevcom/digitransit-ui/branch/master/)
+[![Build Status](https://travis-ci.org/HSLdevcom/digitransit-ui.svg?branch=master)](https://travis-ci.org/HSLdevcom/digitransit-ui)
 
 Digitransit-ui is a mobile friendly User interface built to work with Digitransit platform
 

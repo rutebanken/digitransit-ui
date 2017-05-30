@@ -28,7 +28,7 @@ const legHasPickupDropOff = (leg) => {
 };
 
 const Leg = ({ routeNumber, leg, large }) => (
-  <div className={`leg ${large ? 'large' : ''}`}>
+  <div className="leg">
     { large &&
       <div className="departure-stop overflow-fade">
         &nbsp;{(leg.transitLeg || leg.rentedBike) && leg.from.name}
@@ -54,7 +54,6 @@ const RouteLeg = ({ leg, large, intl }) => {
       defaultMessage: 'Pay Attention',
     });
     routeNumber = (<RouteNumber
-      large={large}
       mode="call"
       text={message}
       className={cx('line', 'call', legHasPickupDropOff(leg))}
@@ -66,7 +65,6 @@ const RouteLeg = ({ leg, large, intl }) => {
     (<RouteNumberContainer
       route={leg.route}
       className={cx('line', leg.mode.toLowerCase(), legHasPickupDropOff(leg))}
-      large={large}
       vertical
       withBar
     />);
@@ -77,8 +75,8 @@ const RouteLeg = ({ leg, large, intl }) => {
 
 RouteLeg.propTypes = {
   leg: React.PropTypes.object.isRequired,
-  large: React.PropTypes.bool.isRequired,
   intl: intlShape.isRequired,
+  large: React.PropTypes.bool.isRequired,
 };
 
 const ModeLeg = ({ leg, mode, large }) => {
@@ -88,6 +86,7 @@ const ModeLeg = ({ leg, mode, large }) => {
       text={''}
       className={cx('line', mode.toLowerCase(), legHasPickupDropOff(leg))}
       vertical
+      withBar
     />
   );
   return <Leg leg={leg} routeNumber={routeNumber} large={large} />;
@@ -119,7 +118,7 @@ ViaLeg.propTypes = {
   leg: React.PropTypes.object.isRequired,
 };
 
-const SummaryRow = (props, { intl, intl: { formatMessage } }) => {
+const SummaryRow = (props, { intl, intl: { formatMessage }, config }) => {
   const data = props.data;
   const refTime = moment(props.refTime);
   const startTime = moment(data.startTime);
@@ -207,7 +206,7 @@ const SummaryRow = (props, { intl, intl: { formatMessage } }) => {
         </span>
         <div className="itinerary-walking-distance">
           <Icon img="icon-icon_walk" viewBox="6 0 40 40" />
-          {displayDistance(data.walkDistance)}
+          {displayDistance(data.walkDistance, config)}
         </div>
       </div>
       {props.open || props.children ? [
@@ -285,6 +284,7 @@ SummaryRow.propTypes = {
 
 SummaryRow.contextTypes = {
   intl: intlShape.isRequired,
+  config: React.PropTypes.object.isRequired,
 };
 
 SummaryRow.displayName = 'SummaryRow';

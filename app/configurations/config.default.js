@@ -528,4 +528,7 @@ export default {
     maxCapacityThreshold: 2000,
   },
   minutesToDepartureLimit: 9,
+
+  imperialEnabled: false,
+  // this flag when true enables imperial measurements  'feet/miles system'
 };

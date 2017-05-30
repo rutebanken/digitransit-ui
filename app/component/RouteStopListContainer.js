@@ -48,7 +48,7 @@ class RouteStopListContainer extends React.Component {
       , vehicle => vehicle.direction);
 
     const vehicleStops = groupBy(vehicles[this.props.pattern.directionId], vehicle =>
-      `HSL:${vehicle.next_stop}`,
+      `${vehicle.next_stop}`,
     );
 
     const rowClassName = this.context.breakpoint === 'large' && 'bp-large';

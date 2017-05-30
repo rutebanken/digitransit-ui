@@ -41,6 +41,23 @@ class RoutePage extends React.Component {
     if (route[0].toLowerCase() === 'hsl') {
       this.context.executeAction(startRealTimeClient, {
         route: route[1],
+        mapping: undefined,
+      });
+    } else {
+      // TODO NRP-1262 fix with publish service implementation from Chouette
+      let gtfsId;
+      let mapping;
+      const dash = this.props.route.gtfsId.indexOf('-');
+      if (dash !== -1) {
+        gtfsId = this.props.route.gtfsId.substring(0, dash);
+        mapping = this.props.route.gtfsId;
+      } else {
+        gtfsId = this.props.route.gtfsId;
+      }
+
+      this.context.executeAction(startRealTimeClient, {
+        route: gtfsId,
+        mapping,
       });
     }
   }

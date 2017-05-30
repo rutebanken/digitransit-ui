@@ -53,7 +53,7 @@ class TripStopListContainer extends React.Component {
       , vehicle => vehicle.direction);
 
     const vehicleStops = groupBy(vehicles[this.props.trip.pattern.directionId], vehicle =>
-      `HSL:${vehicle.next_stop}`,
+      `${vehicle.next_stop}`,
     );
 
     const vehiclesWithCorrectStartTime = Object.keys(this.props.vehicles)
@@ -63,7 +63,7 @@ class TripStopListContainer extends React.Component {
 
     // selected vehicle
     const vehicle = (vehiclesWithCorrectStartTime.length > 0) && vehiclesWithCorrectStartTime[0];
-    const nextStop = vehicle && `HSL:${vehicle.next_stop}`;
+    const nextStop = vehicle && `${vehicle.next_stop}`;
 
     let stopPassed = true;
 

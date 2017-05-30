@@ -60,7 +60,6 @@ const OriginSelector = ({ favourites, oldSearches }, { config }) => {
         label={s.properties.label}
         lat={s.geometry.coordinates[1]}
         lon={s.geometry.coordinates[0]}
-        gtfsId={s.properties.gtfsId}
       />))
       .concat(config.defaultOrigins.map(o => <OriginSelectorRow key={`o-${o.label}`} {...o} />));
   return <ul>{names.slice(0, 3)}</ul>;

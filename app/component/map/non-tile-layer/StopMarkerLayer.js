@@ -82,7 +82,6 @@ class StopMarkerLayer extends React.Component {
             selected={selected}
             mode={modeClass}
             fakeLargeIcon={isTerminal}
-            renderName={false}
           />,
         );
         return;

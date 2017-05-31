@@ -44,14 +44,13 @@ class RoutePage extends React.Component {
       });
     } else {
       // TODO NRP-1262 fix with publish service implementation from Chouette
-      let gtfsId;
+      let gtfsId = this.props.route.gtfsId;
       let mapping;
-      const dash = this.props.route.gtfsId.indexOf('-');
-      if (dash !== -1) {
-        gtfsId = this.props.route.gtfsId.substring(0, dash);
+      const dateSuffix = /-[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+      const dash = this.props.route.gtfsId.match(dateSuffix);
+      if (dash) {
+        gtfsId = this.props.route.gtfsId.substring(0, dash.index);
         mapping = this.props.route.gtfsId;
-      } else {
-        gtfsId = this.props.route.gtfsId;
       }
 
       this.context.executeAction(startRealTimeClient, {

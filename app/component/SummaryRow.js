@@ -46,6 +46,8 @@ Leg.propTypes = {
 
 const RouteLeg = ({ leg, large, intl }) => {
   const isCallAgency = isCallAgencyPickupType(leg);
+  // eslint-disable-next-line no-param-reassign
+  leg.route.mode = leg.route.mode || leg.mode; // NRP TODO fix due to missing data
 
   let routeNumber;
   if (isCallAgency) {

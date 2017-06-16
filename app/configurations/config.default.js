@@ -60,6 +60,7 @@ export default {
     suggestions: {
       useTransportIcons: false,
     },
+    useGtfsInOtpSearch: false,
     usePeliasStops: false,
     mapPeliasModality: false,
     peliasMapping: { },

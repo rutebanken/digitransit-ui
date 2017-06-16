@@ -1,4 +1,4 @@
-import { locationToOTP } from '../util/otpStrings';
+import { locationToOTP, locationToOtpGtfs } from '../util/otpStrings';
 import { getRoutePath } from '../util/path';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -9,6 +9,7 @@ export function route(actionContext, payload, done) {
   const geolocation = actionContext.getStore('PositionStore').getLocationState();
   const origin = actionContext.getStore('EndpointStore').getOrigin();
   const destination = actionContext.getStore('EndpointStore').getDestination();
+  const useGtfs = actionContext.config.search.useGtfsInOtpSearch;
 
   if ((origin.lat || (origin.useCurrentPosition && geolocation.hasLocation)) &&
       (destination.lat || (destination.useCurrentPosition && geolocation.hasLocation))) {
@@ -18,12 +19,16 @@ export function route(actionContext, payload, done) {
 
     if (origin.useCurrentPosition) {
       from = geoString;
+    } else if (useGtfs) {
+      from = locationToOtpGtfs(origin);
     } else {
       from = locationToOTP(origin);
     }
 
     if (destination.useCurrentPosition) {
       to = geoString;
+    } else if (useGtfs) {
+      to = locationToOtpGtfs(destination);
     } else {
       to = locationToOTP(destination);
     }

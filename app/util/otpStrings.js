@@ -18,11 +18,13 @@ export const otpToLocation = (otpString) => {
   return { address };
 };
 
-export const locationToOTP = (location) => {
+export const locationToOTP = location => `${location.address}::${location.lat},${location.lon}`;
+
+export const locationToOtpGtfs = (location) => {
   if (location.gtfsId) {
     return `${location.address}::${location.gtfsId}::${location.lat},${location.lon}`;
   }
-  return `${location.address}::${location.lat},${location.lon}`;
+  return locationToOTP(location);
 };
 
 export const locationToSearch = (location) => {

@@ -211,20 +211,9 @@ function getPluginsConfig(env) {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['common', 'leaflet', 'manifest'],
     }),
-    new webpack.optimize.AggressiveMergingPlugin({ minSizeReduce: 1.2 }),
     new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 60000 }),
     new StatsPlugin('../stats.json', { chunkModules: true }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        negate_iife: false,
-      },
-      mangle: {
-        except: ['$super', '$', 'exports', 'require', 'window'],
-      },
-    }),
+
     // TODO: add after https://github.com/vigneshshanmugam/optimize-js-plugin/issues/7 is shipped
     // new OptimizeJsPlugin({
     //   sourceMap: true,

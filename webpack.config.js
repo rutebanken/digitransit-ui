@@ -200,10 +200,9 @@ function getPluginsConfig(env) {
     new webpack.HashedModuleIdsPlugin({ hashDigestLength: 6 }),
     new WebpackMd5Hash(),
     new webpack.LoaderOptionsPlugin({
-      debug: false,
-      minimize: true,
+      debug: true,
       options: {
-        postcss: () => [autoprefixer({ browsers: prodBrowsers }), csswring],
+        postcss: () => [autoprefixer({ browsers: prodBrowsers })],
       },
     }),
     getSourceMapPlugin(/\.(js)($|\?)/i, '/js/'),

@@ -6,7 +6,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const csswring = require('csswring');
 const StatsPlugin = require('stats-webpack-plugin');
 // const OptimizeJsPlugin = require('optimize-js-plugin');
 const OfflinePlugin = require('offline-plugin');

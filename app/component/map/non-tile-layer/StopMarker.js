@@ -79,7 +79,7 @@ class StopMarker extends React.Component {
   }
 
   getIcon = (zoom) => {
-    const scale = this.props.stop.transfer || this.props.selected ? 1.5 : 1;
+    const scale = this.props.stop.transfer || this.props.selected ? 1.5 : 0.75; // NRP smaller scale
     const calcZoom = this.props.stop.transfer || this.props.selected ? Math.max(zoom, 15) : zoom;
 
     const radius = getCaseRadius({ $zoom: calcZoom }) * scale;

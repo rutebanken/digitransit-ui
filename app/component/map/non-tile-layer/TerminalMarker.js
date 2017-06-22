@@ -100,7 +100,7 @@ class TerminalMarker extends React.Component {
           lon: this.props.terminal.lon,
         }}
         getIcon={
-          this.context.config.map.useModeIconsInNonTileLayer ? this.getModeIcon : this.getIcon
+           this.getModeIcon
         }
         id={this.props.terminal.gtfsId}
         renderName={this.props.renderName}
@@ -133,7 +133,7 @@ class TerminalMarker extends React.Component {
 
     return (
       <div>
-        {this.showCircle() && <Circle
+        <Circle
           center={{ lat: this.props.terminal.lat, lng: this.props.terminal.lon }}
           radius={getDistanceToFurthestStop(
             new L.LatLng(this.props.terminal.lat, this.props.terminal.lon),
@@ -145,7 +145,7 @@ class TerminalMarker extends React.Component {
           className={this.props.mode}
           fillColor="currentColor"
           color="currentColor"
-        />}
+        />
         {this.getTerminalMarker()}
       </div>
     );

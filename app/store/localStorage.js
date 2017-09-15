@@ -134,7 +134,7 @@ export function setModeStorage(data) {
 }
 
 export function getOldSearchesStorage() {
-  return getItemAsJson('saved-searches', '{"items": []}');
+  return JSON.parse('{"items": []}');
 }
 
 export function setOldSearchesStorage(data) {

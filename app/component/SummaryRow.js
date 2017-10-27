@@ -170,6 +170,7 @@ const SummaryRow = (props, { intl, intl: { formatMessage }, config }) => {
   });
 
   let firstLegStartTime = null;
+  let scheduledStartTime = null;
 
   if (!noTransitLegs) {
     let firstDeparture = false;
@@ -185,6 +186,18 @@ const SummaryRow = (props, { intl, intl: { formatMessage }, config }) => {
           {realTimeAvailable && <Icon img="icon-icon_realtime" className="realtime-icon realtime" />}
           {moment(firstDeparture).format('HH:mm')}
         </div>);
+    }
+
+    if (data.legs[0].departureDelay) {
+      const originalTime = moment(firstDeparture)
+        .subtract(data.legs[0].departureDelay, 'seconds')
+        .format('HH:mm');
+
+      scheduledStartTime = (
+        <div style={{ fontSize: '0.6em' }}>
+          Opprinnelig: {originalTime}
+        </div>
+      );
     }
   }
 
@@ -246,6 +259,7 @@ const SummaryRow = (props, { intl, intl: { formatMessage }, config }) => {
           </span>
           {startTime.format('HH:mm')}
           {firstLegStartTime}
+          {scheduledStartTime}
         </div>,
         <div className="itinerary-legs" key="legs">
           {legs}

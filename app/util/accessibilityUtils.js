@@ -67,6 +67,7 @@ const postJson = (url, ignore, graphQLParams) => fetch(url,
     headers: {
       accept: 'application/json',
       'Content-Type': 'application/json',
+      'ET-Client-Name': 'digitransit-ui',
     },
     body: JSON.stringify(graphQLParams),
   })

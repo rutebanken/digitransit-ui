@@ -63,7 +63,7 @@
     "element-resize-detector": "1.1.10",
     "express": "4.15.0",
     "express-static-gzip": "0.2.2",
-    "favicons-webpack-plugin": "^0.0.7",
+    "favicons-webpack-plugin": "^0.0.8",
     "fluxible": "1.2.0",
     "fluxible-addons-react": "0.2.9",
     "foundation-apps": "1.2.0",
